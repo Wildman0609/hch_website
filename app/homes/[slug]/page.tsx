@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
+  ArrowRight,
   CalendarDays,
   HeartHandshake,
   MapPin,
   Phone,
+  Sparkles,
   UserRound,
   UsersRound
 } from "lucide-react";
@@ -140,54 +142,105 @@ export default async function HomeDetailPage({ params }: PageProps) {
             title={`Meet the people at ${home.name}`}
             text={`Led by ${home.manager}, the ${home.shortName} team supports residents with familiar routines, practical reassurance and a calm daily rhythm.`}
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {home.teamMembers.map((member) => (
-              <article
-                key={`${member.name}-${member.role}`}
-                className="rounded-[1.4rem] border border-holly-ink/10 bg-holly-cream p-6 shadow-soft"
+          <div className="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+            <div className="grid gap-6">
+              {home.teamMembers.map((member) => (
+                <article
+                  key={`${member.name}-${member.role}`}
+                  className="overflow-hidden rounded-[1.5rem] border border-holly-ink/10 bg-white shadow-soft"
+                >
+                  <div className="grid gap-0 md:grid-cols-[0.38fr_0.62fr]">
+                    <div className="bg-holly-ink p-6 text-white md:p-8">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-holly-leaf text-2xl font-semibold text-white">
+                        {getInitials(member.name)}
+                      </div>
+                      <p className="mt-6 text-sm font-semibold uppercase tracking-[0.12em] text-holly-leafLight">
+                        {member.role}
+                      </p>
+                      <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">
+                        {member.name}
+                      </h3>
+                      {member.details ? (
+                        <dl className="mt-6 grid gap-3">
+                          {member.details.map((detail) => (
+                            <div key={detail} className="rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-white/12">
+                              <dt className="sr-only">Profile detail</dt>
+                              <dd className="text-sm font-semibold leading-6 text-white/86">{detail}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      ) : null}
+                    </div>
+                    <div className="p-6 md:p-8">
+                      {member.quote ? (
+                        <blockquote className="rounded-[1.2rem] bg-holly-cream p-5 font-display text-2xl font-semibold leading-snug text-holly-ink">
+                          "{member.quote}"
+                        </blockquote>
+                      ) : null}
+                      <div className={member.quote ? "mt-6 grid gap-4" : "grid gap-4"}>
+                        {member.bio.map((paragraph) => (
+                          <p key={paragraph} className="text-base leading-8 text-holly-ink/75">
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                      {member.focusAreas ? (
+                        <div className="mt-7">
+                          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
+                            What they focus on
+                          </p>
+                          <ul className="mt-4 grid gap-3">
+                            {member.focusAreas.map((focus) => (
+                              <li key={focus} className="flex gap-3 rounded-xl border border-holly-ink/10 bg-holly-sky px-4 py-3 text-sm font-semibold leading-6 text-holly-ink/78">
+                                <Sparkles aria-hidden className="mt-0.5 flex-none text-holly-gold" size={17} />
+                                {focus}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
+                      {member.personal ? (
+                        <div className="mt-7 rounded-[1.2rem] border border-holly-gold/25 bg-holly-cream p-5">
+                          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-rust">
+                            A little more about {getFirstName(member.name)}
+                          </p>
+                          <p className="mt-3 text-sm leading-7 text-holly-ink/72">{member.personal}</p>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <aside className="rounded-[1.5rem] bg-holly-ink p-6 text-white shadow-soft md:p-8">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-holly-leafLight/18 text-holly-leafLight">
+                <HeartHandshake aria-hidden size={28} />
+              </div>
+              <p className="mt-6 text-sm font-semibold uppercase tracking-[0.12em] text-holly-leafLight">
+                What this means for families
+              </p>
+              <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">
+                A team families can get to know.
+              </h3>
+              <div className="mt-6 grid gap-3">
+                {home.teamApproach.map((point) => (
+                  <div key={point} className="flex gap-3 rounded-2xl bg-white/9 p-4 ring-1 ring-white/10">
+                    <UsersRound aria-hidden className="mt-1 flex-none text-holly-leafLight" size={18} />
+                    <p className="text-sm leading-7 text-white/78">{point}</p>
+                  </div>
+                ))}
+              </div>
+              <ButtonLink
+                href={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
+                variant="secondary"
+                icon={<ArrowRight aria-hidden size={17} />}
+                className="mt-7 w-full"
+                ctaId={`meet-team-${home.slug}`}
               >
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-holly-leaf text-lg font-semibold text-white">
-                  {getInitials(member.name)}
-                </div>
-                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-                  {member.role}
-                </p>
-                <h3 className="mt-3 font-display text-2xl font-semibold text-holly-ink">
-                  {member.name}
-                </h3>
-                {member.bio ? (
-                  <p className="mt-4 text-sm leading-7 text-holly-ink/70">{member.bio}</p>
-                ) : null}
-              </article>
-            ))}
-            <article className="rounded-[1.4rem] border border-holly-ink/10 bg-white p-6 shadow-soft">
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-holly-cream text-holly-leaf">
-                <HeartHandshake aria-hidden size={26} />
-              </div>
-              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-                Care team
-              </p>
-              <h3 className="mt-3 font-display text-2xl font-semibold text-holly-ink">
-                Day-to-day support
-              </h3>
-              <p className="mt-4 text-sm leading-7 text-holly-ink/70">
-                Familiar carers help residents with personal routines, comfort, dignity and the small details that make each day feel settled.
-              </p>
-            </article>
-            <article className="rounded-[1.4rem] border border-holly-ink/10 bg-white p-6 shadow-soft">
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-holly-ink text-white">
-                <UsersRound aria-hidden size={26} />
-              </div>
-              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-                Home life
-              </p>
-              <h3 className="mt-3 font-display text-2xl font-semibold text-holly-ink">
-                Activities and wellbeing
-              </h3>
-              <p className="mt-4 text-sm leading-7 text-holly-ink/70">
-                The wider home team supports meals, housekeeping, activities, visiting and everyday companionship.
-              </p>
-            </article>
+                Meet the team
+              </ButtonLink>
+            </aside>
           </div>
         </div>
       </section>
@@ -229,4 +282,8 @@ function getInitials(name: string) {
     .slice(0, 2)
     .join("")
     .toUpperCase();
+}
+
+function getFirstName(name: string) {
+  return name.split(" ").filter(Boolean)[0] ?? name;
 }
