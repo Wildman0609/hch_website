@@ -201,7 +201,7 @@ export default async function HomeDetailPage({ params }: PageProps) {
                   {member.focusAreas ? (
                     <div className="mt-8">
                       <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-                        What they focus on
+                        What {getFirstName(member.name)} focuses on
                       </p>
                       <ul className="mt-4 grid gap-4 md:grid-cols-3">
                         {member.focusAreas.map((focus) => (
@@ -303,16 +303,6 @@ export default async function HomeDetailPage({ params }: PageProps) {
   );
 }
 
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .filter(Boolean)
-    .map((part) => part[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
-}
-
 function getFirstName(name: string) {
   return name.split(" ").filter(Boolean)[0] ?? name;
 }
@@ -347,9 +337,6 @@ function ProfilePhoto({ person }: { person: TeamMember }) {
           <p className="mt-1 text-xs uppercase tracking-[0.12em] text-holly-leafLight">
             {person.role}
           </p>
-        </div>
-        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-holly-leaf text-sm font-semibold">
-          {getInitials(person.name)}
         </div>
       </div>
     </div>

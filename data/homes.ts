@@ -210,6 +210,8 @@ export const homes: CareHome[] = [
       {
         name: "Carol Preston",
         role: "Registered Homes Manager",
+        photo: "/images/carol-preston.jpg",
+        photoAlt: "Carol Preston, Registered Homes Manager at Martham Lodge.",
         quote:
           "Life should be fun, and a home filled with love, warmth and laughter is incredibly important.",
         bio: [
