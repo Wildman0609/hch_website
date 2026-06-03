@@ -24,6 +24,21 @@ export type DeputyProfile = {
   bio: string;
 };
 
+export type CareHomeHistoryImage = {
+  src: string;
+  alt: string;
+  caption: string;
+  shape: "wide" | "standard";
+};
+
+export type CareHomeHistory = {
+  title: string;
+  intro: string;
+  paragraphs: string[];
+  brochureDetails: string[];
+  images: CareHomeHistoryImage[];
+};
+
 export type CareHome = {
   slug: HomeSlug;
   name: string;
@@ -43,6 +58,7 @@ export type CareHome = {
   careTypes: string[];
   highlights: string[];
   roomHighlights: string[];
+  history?: CareHomeHistory;
   teamMembers: TeamMember[];
   deputies: DeputyProfile[];
   teamApproach: string[];
@@ -92,6 +108,43 @@ export const homes: CareHome[] = [
       "Nurse call systems for reassurance",
       "Space for cherished belongings"
     ],
+    history: {
+      title: "The home that started Hollyman Care Homes.",
+      intro:
+        "Sue and Ray Hollyman bought Broadlands Park from administration in 1985. From this country manor in Upton, they built the foundations of the family-run group that became Hollyman Care Homes.",
+      paragraphs: [
+        "An original Broadlands Park brochure described the home as a country manor house in three acres of lovely grounds in the heart of the Norfolk Broads, offering privacy, independence and peace and quiet.",
+        "The same brochure captured the way Sue and Ray wanted the home to feel. They were resident proprietors at Broadlands Park, Sue was a qualified nurse, and the home was run with a homely, large family atmosphere.",
+        "That first home became the starting point for a wider group, but the values remain familiar: care that feels personal, surroundings that feel settled and families who know who is looking after their loved one."
+      ],
+      brochureDetails: [
+        "Staff available 24 hours a day",
+        "Nurse call bell and intercom system",
+        "Most rooms with en-suite facilities",
+        "Home-cooked meals, morning coffee and afternoon tea",
+        "Outings, games, sing-alongs and visiting local professionals"
+      ],
+      images: [
+        {
+          src: "/images/broadlands-park-archive-brochure.jpg",
+          alt: "Original Broadlands Park brochure showing interior rooms, gardens and an exterior photograph.",
+          caption: "An original Broadlands Park brochure kept from the early Hollyman years.",
+          shape: "wide"
+        },
+        {
+          src: "/images/broadlands-park-archive-garden.jpg",
+          alt: "Scanned old brochure photograph of the Broadlands Park gardens.",
+          caption: "The brochure highlighted the home's gardens and mature grounds.",
+          shape: "standard"
+        },
+        {
+          src: "/images/broadlands-park-archive-brochure-info.jpg",
+          alt: "Written panel from an original Broadlands Park brochure listing facilities and a location map.",
+          caption: "Page 2 described the family atmosphere, facilities and local location.",
+          shape: "wide"
+        }
+      ]
+    },
     teamMembers: [
       {
         name: "Beverley Brown",

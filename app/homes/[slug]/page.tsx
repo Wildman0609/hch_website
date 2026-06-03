@@ -17,7 +17,14 @@ import { HomeCard } from "@/components/HomeCard";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
-import { getHome, homes, type DeputyProfile, type TeamMember } from "@/data/homes";
+import {
+  getHome,
+  homes,
+  type CareHomeHistory,
+  type CareHomeHistoryImage,
+  type DeputyProfile,
+  type TeamMember
+} from "@/data/homes";
 import { homeSchema } from "@/lib/schema";
 
 type PageProps = {
@@ -135,6 +142,8 @@ export default async function HomeDetailPage({ params }: PageProps) {
           </aside>
         </div>
       </section>
+
+      {home.history ? <HistorySection history={home.history} /> : null}
 
       <section className="bg-white py-14 md:py-20">
         <div className="section-shell">
@@ -305,6 +314,88 @@ export default async function HomeDetailPage({ params }: PageProps) {
 
 function getFirstName(name: string) {
   return name.split(" ").filter(Boolean)[0] ?? name;
+}
+
+function HistorySection({ history }: { history: CareHomeHistory }) {
+  const [featuredImage, ...supportingImages] = history.images;
+
+  return (
+    <section className="bg-white py-14 md:py-20">
+      <div className="section-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div>
+          <SectionIntro eyebrow="History" title={history.title} text={history.intro} />
+
+          <div className="mt-7 grid gap-4">
+            {history.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="text-base leading-8 text-holly-ink/76">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          <div className="mt-8 border-l-4 border-holly-gold pl-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-rust">
+              From the original brochure
+            </p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {history.brochureDetails.map((detail) => (
+                <li key={detail} className="flex gap-3 text-sm font-semibold leading-7 text-holly-ink/74">
+                  <span className="mt-2 h-2 w-2 flex-none rounded-full bg-holly-leaf" />
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="grid gap-5">
+          {featuredImage ? (
+            <HistoryArchiveImage image={featuredImage} priority />
+          ) : null}
+
+          {supportingImages.length > 0 ? (
+            <div className="grid gap-5 md:grid-cols-2">
+              {supportingImages.map((image) => (
+                <HistoryArchiveImage key={image.src} image={image} />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HistoryArchiveImage({
+  image,
+  priority = false
+}: {
+  image: CareHomeHistoryImage;
+  priority?: boolean;
+}) {
+  const isWide = image.shape === "wide";
+
+  return (
+    <figure className={isWide ? "md:col-span-2" : undefined}>
+      <div
+        className={`relative overflow-hidden rounded-[1.25rem] border border-holly-ink/10 bg-white shadow-soft ${
+          isWide ? "aspect-[40/9]" : "aspect-[3/2]"
+        }`}
+      >
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes={isWide ? "(min-width: 1024px) 52rem, 100vw" : "(min-width: 768px) 26rem, 100vw"}
+          className="object-cover"
+          priority={priority}
+        />
+      </div>
+      <figcaption className="mt-3 text-sm leading-6 text-holly-ink/66">
+        {image.caption}
+      </figcaption>
+    </figure>
+  );
 }
 
 function ProfilePhoto({ person }: { person: TeamMember }) {
