@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, CalendarDays, HeartHandshake, Phone } from "lucide-react";
+import { ArrowRight, CalendarDays, HeartHandshake, Images, Phone } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { HomeCard } from "@/components/HomeCard";
@@ -27,15 +27,26 @@ export default function HomePage() {
               title="Four Norfolk homes, each with its own character."
               text="From village greens to peaceful gardens, each Hollyman home has a local feel and a team ready to help families make sense of the next step."
             />
-            <ButtonLink
-              href="/find-your-home"
-              variant="outline"
-              icon={<ArrowRight aria-hidden size={17} />}
-              ctaId="homepage-all-homes"
-              className="md:mb-2"
-            >
-              Compare homes
-            </ButtonLink>
+            <div className="flex flex-col items-start gap-3 md:mb-2 md:items-end">
+              <ButtonLink
+                href="/events"
+                variant="outline"
+                icon={<Images aria-hidden size={17} />}
+                ctaId="homepage-events"
+                className="whitespace-nowrap"
+              >
+                Events & photos
+              </ButtonLink>
+              <ButtonLink
+                href="/find-your-home"
+                variant="outline"
+                icon={<ArrowRight aria-hidden size={17} />}
+                ctaId="homepage-all-homes"
+                className="whitespace-nowrap"
+              >
+                Compare homes
+              </ButtonLink>
+            </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {homes.map((home) => (

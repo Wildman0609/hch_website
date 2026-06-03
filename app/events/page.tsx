@@ -1,24 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, CalendarDays, Camera, CheckCircle2, Home, Images } from "lucide-react";
+import { ArrowRight, CalendarDays, Home, Images } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { SectionIntro } from "@/components/SectionIntro";
 import { sortedHomeEvents, type HomeEvent, type HomeEventPhoto } from "@/data/homeEvents";
 import { homes, type CareHome } from "@/data/homes";
 
 export const metadata: Metadata = {
-  title: "Home Life Events Preview",
+  title: "Events & Photos",
   description:
-    "A private review gallery of selected recent Hollyman Care Homes events and activities.",
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: {
-      index: false,
-      follow: false
-    }
-  }
+    "See recent activities, celebrations and everyday moments from Hollyman Care Homes across Norfolk."
 };
 
 const homesBySlug = new Map(homes.map((home) => [home.slug, home]));
@@ -41,16 +33,16 @@ export default function EventsPage() {
           <div className="grid gap-6 border-y border-holly-ink/10 py-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="flex gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-holly-leaf shadow-soft">
-                <CheckCircle2 aria-hidden size={22} />
+                <Images aria-hidden size={22} />
               </div>
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-                  Review gallery
+                  Life in our homes
                 </p>
                 <p className="mt-2 max-w-3xl text-sm leading-7 text-holly-ink/72">
-                  This page is not linked from the main website or included in the sitemap.
-                  Please confirm photo permissions with each home before using the gallery
-                  outside a Vercel preview.
+                  Activities, visitors, seasonal celebrations and quieter everyday moments
+                  all help each home feel familiar. Browse the latest photos or jump straight
+                  to a home below.
                 </p>
               </div>
             </div>
@@ -80,7 +72,7 @@ export default function EventsPage() {
             <SectionIntro
               eyebrow="Latest first"
               title="Recent events across the homes"
-              text="A selected set of activity photos, grouped as events and ordered with the most recent items first."
+              text="Photos from recent activities and celebrations, grouped by event and ordered with the most recent moments first."
             />
             <ButtonLink
               href="/contact?reason=viewing"
@@ -105,8 +97,8 @@ export default function EventsPage() {
         <div className="section-shell">
           <SectionIntro
             eyebrow="By home"
-            title="Homes represented in this preview"
-            text="Each card links back to the public home page, so the gallery can sit alongside the existing home information during review."
+            title="Explore events by home"
+            text="Each home has its own character, routines and activities. Use these links to move between the photos and the full home pages."
           />
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {representedHomes.map(({ home, events }) => (
@@ -136,14 +128,14 @@ function Hero({ eventCount, photoCount }: { eventCount: number; photoCount: numb
       <div className="section-shell relative flex min-h-[min(72svh,42rem)] items-center py-16 md:py-20">
         <div className="max-w-3xl">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20">
-            <Camera aria-hidden size={17} />
-            Hidden review page
+            <Images aria-hidden size={17} />
+            Events & photos
           </p>
           <h1 className="font-display text-4xl font-semibold leading-tight md:text-6xl">
             Home life and events
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/86 md:text-xl">
-            Selected moments from recent activities, seasonal celebrations and animal visits across the Hollyman homes.
+            Recent activities, seasonal celebrations and everyday moments from across the Hollyman homes.
           </p>
           <dl className="mt-8 flex flex-wrap gap-3 text-sm font-semibold">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 ring-1 ring-white/18">
@@ -255,7 +247,7 @@ function HomeEventSummary({ home, events }: { home: CareHome; events: HomeEvent[
       </h2>
       <p className="mt-3 text-sm leading-7 text-holly-ink/68">
         {events.length} event{events.length === 1 ? "" : "s"} and {photoCount} selected photo
-        {photoCount === 1 ? "" : "s"} in this preview.
+        {photoCount === 1 ? "" : "s"} from {home.shortName}.
       </p>
       <Link
         href={`/homes/${home.slug}`}

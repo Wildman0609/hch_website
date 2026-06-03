@@ -26,7 +26,7 @@ export function Header() {
           </div>
         </Link>
 
-        <nav aria-label="Primary navigation" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-1 xl:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -38,7 +38,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <ButtonLink
             href={site.phoneHref}
             variant="outline"
@@ -52,7 +52,7 @@ export function Header() {
           </ButtonLink>
         </div>
 
-        <details className="group relative lg:hidden">
+        <details className="group relative xl:hidden">
           <summary className="flex h-12 w-12 cursor-pointer list-none items-center justify-center rounded-full border border-holly-ink/10 bg-holly-sky text-holly-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-leaf">
             <Menu aria-hidden size={22} />
             <span className="sr-only">Open menu</span>
