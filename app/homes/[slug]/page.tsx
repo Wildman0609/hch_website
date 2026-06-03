@@ -63,6 +63,7 @@ export default async function HomeDetailPage({ params }: PageProps) {
 
   const otherHomes = homes.filter((item) => item.slug !== home.slug).slice(0, 3);
   const homeEvents = sortedHomeEvents.filter((event) => event.homeSlug === home.slug);
+  const deputies = home.deputies.filter((deputy) => deputy.name || deputy.photo);
 
   return (
     <>
@@ -240,8 +241,8 @@ export default async function HomeDetailPage({ params }: PageProps) {
               </article>
             ))}
 
-            <div className="border-t border-holly-ink/10 pt-10">
-              <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            {deputies.length > 0 ? (
+              <div className="border-t border-holly-ink/10 pt-10">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
                     Deputy team
@@ -250,16 +251,13 @@ export default async function HomeDetailPage({ params }: PageProps) {
                     Deputies at {home.shortName}
                   </h3>
                 </div>
-                <p className="max-w-2xl text-sm leading-7 text-holly-ink/68">
-                  These spaces are ready for two deputy photos and short biographies once the names and copy are confirmed.
-                </p>
+                <div className="mt-6 grid gap-5 md:grid-cols-2">
+                  {deputies.map((deputy, index) => (
+                    <DeputyCard key={`${deputy.role}-${index}`} deputy={deputy} index={index} />
+                  ))}
+                </div>
               </div>
-              <div className="mt-6 grid gap-5 md:grid-cols-2">
-                {home.deputies.map((deputy, index) => (
-                  <DeputyCard key={`${deputy.role}-${index}`} deputy={deputy} index={index} />
-                ))}
-              </div>
-            </div>
+            ) : null}
 
             <div className="rounded-[1.5rem] bg-holly-ink p-6 text-white shadow-soft md:p-8">
               <div className="grid gap-8 lg:grid-cols-[0.5fr_1fr] lg:items-start">
@@ -495,8 +493,8 @@ function ProfilePhoto({ person }: { person: TeamMember }) {
               <UserRound aria-hidden size={44} />
             </div>
             <div>
-              <p className="font-semibold text-holly-ink">Photo coming soon</p>
-              <p className="mt-2 text-sm leading-6">Portrait space for {person.name}</p>
+              <p className="font-semibold text-holly-ink">{person.role}</p>
+              <p className="mt-2 text-sm leading-6">{person.name}</p>
             </div>
           </div>
         )}
@@ -532,7 +530,7 @@ function DeputyCard({ deputy, index }: { deputy: DeputyProfile; index: number })
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-holly-sky text-holly-leaf">
               <UserRound aria-hidden size={28} />
             </div>
-            <p className="text-xs font-semibold leading-5">Photo to add</p>
+            <p className="text-xs font-semibold leading-5">{deputy.role}</p>
           </div>
         )}
       </div>

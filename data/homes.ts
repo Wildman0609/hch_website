@@ -65,17 +65,7 @@ export type CareHome = {
   mapQuery: string;
 };
 
-// Replace or add real home photography in public/images, then update these paths.
-const deputyPlaceholders = (homeName: string): DeputyProfile[] => [
-  {
-    role: "Deputy Manager",
-    bio: `A space for ${homeName}'s deputy manager photo and short biography.`
-  },
-  {
-    role: "Deputy Manager",
-    bio: "A second deputy profile can be added here with a photo, responsibilities and a short introduction."
-  }
-];
+const noDeputyProfiles = (): DeputyProfile[] => [];
 
 export const homes: CareHome[] = [
   {
@@ -163,7 +153,7 @@ export const homes: CareHome[] = [
         ]
       }
     ],
-    deputies: deputyPlaceholders("Broadlands Park"),
+    deputies: noDeputyProfiles(),
     teamApproach: [
       "A country home where residents are known as individuals, not room numbers.",
       "A team culture built around kindness, familiarity and small moments of connection.",
@@ -221,7 +211,7 @@ export const homes: CareHome[] = [
           "Diane is motivated by the small day-to-day differences that matter to residents and staff: a smile, a settled routine, or a team pulling together at the right moment."
       }
     ],
-    deputies: deputyPlaceholders("Broadland House"),
+    deputies: noDeputyProfiles(),
     teamApproach: [
       "A small village home where safe routines and good morale matter.",
       "A team that values laughter, responsiveness and practical support.",
@@ -282,7 +272,7 @@ export const homes: CareHome[] = [
           "Carol is a holistic therapist trained in Sound Therapy, Reiki and Mindfulness Coaching, and has also qualified as a Yoga Teacher. She loves music and dancing, especially Ballroom and Salsa, and brings her love of animals into the home through regular animal therapy sessions."
       }
     ],
-    deputies: deputyPlaceholders("Martham Lodge"),
+    deputies: noDeputyProfiles(),
     teamApproach: [
       "A specialist dementia setting where residents are encouraged to stay active, engaged and fulfilled.",
       "A team Carol describes as kind, compassionate and dedicated to residents' individual needs.",
@@ -343,7 +333,7 @@ export const homes: CareHome[] = [
           "Away from work, Maria is a proud mum of five and grandmother to one. She enjoys family time, swimming when she gets the chance, and writing rhyming poetry."
       }
     ],
-    deputies: deputyPlaceholders("Braydeston Court"),
+    deputies: noDeputyProfiles(),
     teamApproach: [
       "A welcoming home culture shaped by warmth, humour and high standards.",
       "A team supported to grow in confidence and deliver consistent care.",

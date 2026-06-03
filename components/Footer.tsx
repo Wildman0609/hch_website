@@ -85,7 +85,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 px-5 py-5 text-center text-xs text-white/55">
-        Copyright {new Date().getFullYear()} Hollyman Care Homes. Content should be reviewed before launch for current regulatory wording, fees and vacancies.
+        Copyright {new Date().getFullYear()} Hollyman Care Homes. Family-run care homes in Norfolk.
       </div>
     </footer>
   );

@@ -25,6 +25,7 @@ export type LiveVacancy = {
   contract: string;
   shift: string;
   pay: string;
+  perks?: string[];
   status: "Recruiting" | "Register interest";
   summary: string;
 };
@@ -138,8 +139,9 @@ export const liveVacancies: LiveVacancy[] = [
     home: "Braydeston Court",
     location: "Brundall",
     contract: "Role dependent",
-    shift: "Night shifts",
-    pay: "Discussed at interview",
+    shift: "12 hour shifts, 8pm to 8am",
+    pay: "£14.10 per hour",
+    perks: ["1 hour paid breaks"],
     status: "Recruiting",
     summary:
       "A calm overnight role supporting residents with comfort, safety, call bells, observations, care records and handover to the day team."

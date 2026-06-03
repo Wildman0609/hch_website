@@ -235,6 +235,23 @@ export default function CareersPage() {
                       </div>
                     </div>
                   </dl>
+                  {vacancy.perks?.length ? (
+                    <div className="mt-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-holly-leaf">
+                        Perks
+                      </p>
+                      <ul className="mt-2 flex flex-wrap gap-2">
+                        {vacancy.perks.map((perk) => (
+                          <li
+                            key={perk}
+                            className="rounded-full bg-holly-sky px-3 py-1 text-xs font-semibold text-holly-ink/75"
+                          >
+                            {perk}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
                   <ButtonLink
                     href="#apply"
                     variant="outline"
