@@ -370,22 +370,7 @@ export const homes: CareHome[] = [
           "Carol is a holistic therapist trained in Sound Therapy, Reiki and Mindfulness Coaching, and has also qualified as a Yoga Teacher. She loves music and dancing, especially Ballroom and Salsa, and brings her love of animals into the home through regular animal therapy sessions."
       }
     ],
-    deputies: [
-      {
-        name: "Ellis Abel",
-        role: "Deputy",
-        photo: "/images/team/ellis-abel.jpg",
-        photoAlt: "Ellis Abel, Deputy at Braydeston Court.",
-        bio: "Deputy at Braydeston Court."
-      },
-      {
-        name: "Rachel Nicols",
-        role: "Deputy",
-        photo: "/images/team/rachel-nicols.jpg",
-        photoAlt: "Rachel Nicols, Deputy at Braydeston Court.",
-        bio: "Deputy at Braydeston Court."
-      }
-    ],
+    deputies: noDeputyProfiles(),
     teamApproach: [
       "A specialist dementia setting where residents are encouraged to stay active, engaged and fulfilled.",
       "A team Carol describes as kind, compassionate and dedicated to residents' individual needs.",
@@ -469,7 +454,22 @@ export const homes: CareHome[] = [
           "Away from work, Maria is a proud mum of five and grandmother to one. She enjoys family time, swimming when she gets the chance, and writing rhyming poetry."
       }
     ],
-    deputies: noDeputyProfiles(),
+    deputies: [
+      {
+        name: "Ellis Abel",
+        role: "Deputy",
+        photo: "/images/team/ellis-abel.jpg",
+        photoAlt: "Ellis Abel, Deputy at Braydeston Court.",
+        bio: "Deputy at Braydeston Court."
+      },
+      {
+        name: "Rachel Nicols",
+        role: "Deputy",
+        photo: "/images/team/rachel-nicols.jpg",
+        photoAlt: "Rachel Nicols, Deputy at Braydeston Court.",
+        bio: "Deputy at Braydeston Court."
+      }
+    ],
     teamApproach: [
       "A welcoming home culture shaped by warmth, humour and high standards.",
       "A team supported to grow in confidence and deliver consistent care.",
