@@ -197,9 +197,6 @@ export default function CareersPage() {
                     <span className="rounded-full bg-holly-sky px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-holly-leaf">
                       {vacancy.status}
                     </span>
-                    <span className="rounded-full bg-holly-cream px-3 py-1 text-xs font-semibold text-holly-ink/70">
-                      {vacancy.shift}
-                    </span>
                   </div>
                   <h2 className="mt-5 font-display text-2xl font-semibold text-holly-ink">
                     {vacancy.title}
@@ -223,8 +220,8 @@ export default function CareersPage() {
                     <div className="flex gap-3">
                       <Clock aria-hidden className="mt-0.5 flex-none text-holly-leaf" size={17} />
                       <div>
-                        <dt className="sr-only">Contract</dt>
-                        <dd>{vacancy.contract}</dd>
+                        <dt className="sr-only">Shift</dt>
+                        <dd>{vacancy.shift}</dd>
                       </div>
                     </div>
                     <div className="flex gap-3">

@@ -39,6 +39,14 @@ export type CareHomeHistory = {
   images: CareHomeHistoryImage[];
 };
 
+export type CareHomeGalleryImage = {
+  src: string;
+  alt: string;
+  caption: string;
+  category: "Exterior" | "Gardens" | "Communal areas" | "Rooms";
+  position?: string;
+};
+
 export type CareHome = {
   slug: HomeSlug;
   name: string;
@@ -58,6 +66,7 @@ export type CareHome = {
   careTypes: string[];
   highlights: string[];
   roomHighlights: string[];
+  gallery: CareHomeGalleryImage[];
   history?: CareHomeHistory;
   teamMembers: TeamMember[];
   deputies: DeputyProfile[];
@@ -97,6 +106,29 @@ export const homes: CareHome[] = [
       "Accessible en-suite bathrooms in the extension",
       "Nurse call systems for reassurance",
       "Space for cherished belongings"
+    ],
+    gallery: [
+      {
+        src: "/images/homes/broadlands-park/garden-path.webp",
+        alt: "Broadlands Park garden path with outdoor seating beside the red-brick extension.",
+        caption: "Garden path and outdoor seating",
+        category: "Gardens",
+        position: "50% 52%"
+      },
+      {
+        src: "/images/homes/broadlands-park/front-entrance.webp",
+        alt: "Broadlands Park front entrance with a green bench and hanging flower baskets.",
+        caption: "Front entrance",
+        category: "Exterior",
+        position: "50% 48%"
+      },
+      {
+        src: "/images/homes/broadlands-park/rear-garden.webp",
+        alt: "Broadlands Park rear garden with lawn, seating and mature trees.",
+        caption: "Rear garden seating",
+        category: "Gardens",
+        position: "50% 50%"
+      }
     ],
     history: {
       title: "The home that started Hollyman Care Homes.",
@@ -191,6 +223,29 @@ export const homes: CareHome[] = [
       "Personal items encouraged",
       "Quiet spaces for rest"
     ],
+    gallery: [
+      {
+        src: "/images/homes/broadland-house/garden-path.webp",
+        alt: "Broadland House garden path with raised beds and planting.",
+        caption: "Garden paths and planting",
+        category: "Gardens",
+        position: "50% 50%"
+      },
+      {
+        src: "/images/homes/broadland-house/garden-pergola.webp",
+        alt: "Broadland House garden pergola with outdoor table and chairs.",
+        caption: "Outdoor seating",
+        category: "Gardens",
+        position: "50% 52%"
+      },
+      {
+        src: "/images/homes/broadland-house/frontage.jpg",
+        alt: "Broadland House exterior and main entrance in Potter Heigham.",
+        caption: "Main house frontage",
+        category: "Exterior",
+        position: "50% 46%"
+      }
+    ],
     teamMembers: [
       {
         name: "Diane Batch",
@@ -248,6 +303,22 @@ export const homes: CareHome[] = [
       "Warm and familiar surroundings",
       "Personal touches welcomed",
       "Peaceful outlooks from many rooms"
+    ],
+    gallery: [
+      {
+        src: "/images/homes/martham-lodge/side-exterior.jpg",
+        alt: "Martham Lodge exterior viewed from the village green side.",
+        caption: "Village green setting",
+        category: "Exterior",
+        position: "50% 50%"
+      },
+      {
+        src: "/images/homes/martham-lodge/history-hallway.webp",
+        alt: "Martham Lodge hallway with framed photographs and local history displays.",
+        caption: "Hallway history display",
+        category: "Communal areas",
+        position: "50% 50%"
+      }
     ],
     teamMembers: [
       {
@@ -309,6 +380,29 @@ export const homes: CareHome[] = [
       "Rooms with individual character",
       "Personal belongings encouraged",
       "Cosy, restful spaces"
+    ],
+    gallery: [
+      {
+        src: "/images/homes/braydeston-court/cafe-communal-area.jpg",
+        alt: "Braydeston Court cafe-style communal area with tables, bunting and a view to the garden.",
+        caption: "Cafe-style communal area",
+        category: "Communal areas",
+        position: "50% 50%"
+      },
+      {
+        src: "/images/homes/braydeston-court/rear-garden.webp",
+        alt: "Braydeston Court rear garden with lawn, seating and the red-brick house beyond.",
+        caption: "Rear garden lawn",
+        category: "Gardens",
+        position: "50% 50%"
+      },
+      {
+        src: "/images/home-braydeston.webp",
+        alt: "Braydeston Court exterior with its red-brick frontage and tower.",
+        caption: "Historic frontage",
+        category: "Exterior",
+        position: "50% 50%"
+      }
     ],
     teamMembers: [
       {

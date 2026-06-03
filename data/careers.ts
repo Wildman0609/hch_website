@@ -22,7 +22,6 @@ export type LiveVacancy = {
   title: string;
   home: string;
   location: string;
-  contract: string;
   shift: string;
   pay: string;
   perks?: string[];
@@ -138,7 +137,6 @@ export const liveVacancies: LiveVacancy[] = [
     title: "Carer - Night",
     home: "Braydeston Court",
     location: "Brundall",
-    contract: "Role dependent",
     shift: "12 hour shifts, 8pm to 8am",
     pay: "£14.10 per hour",
     perks: ["1 hour paid breaks"],
