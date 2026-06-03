@@ -78,6 +78,7 @@ export default async function HomeDetailPage({ params }: PageProps) {
         text={home.intro}
         image={home.image}
         imageAlt={home.imageAlt}
+        imagePosition={home.imagePosition}
         ctaLabel="Book a viewing"
         ctaHref={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
         primaryCtaId={`call_home_page_${homeTrackingSlug}`}
@@ -170,8 +171,6 @@ export default async function HomeDetailPage({ params }: PageProps) {
           </aside>
         </div>
       </section>
-
-      <QualityRatings home={home} />
 
       <HomePhotoGallery homeName={home.name} images={home.gallery} />
 
@@ -290,6 +289,8 @@ export default async function HomeDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <QualityRatings home={home} />
     </>
   );
 }

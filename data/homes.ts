@@ -92,6 +92,7 @@ export type CareHome = {
   manager: string;
   image: string;
   imageAlt: string;
+  imagePosition?: string;
   summary: string;
   intro: string;
   established?: string;
@@ -306,8 +307,9 @@ export const homes: CareHome[] = [
     phone: "01692 670632",
     phoneHref: "tel:01692670632",
     manager: "Diane Batch",
-    image: "/images/home-broadland-house.webp",
+    image: "/images/home-broadland-house-frontage.webp",
     imageAlt: "Broadland House care home exterior in Potter Heigham.",
+    imagePosition: "50% 45%",
     summary:
       "A warm village care home near the Norfolk Broads, offering residential and dementia care.",
     intro:

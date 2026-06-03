@@ -9,6 +9,7 @@ type PageHeroProps = {
   text: string;
   image: string;
   imageAlt: string;
+  imagePosition?: string;
   ctaLabel?: string;
   ctaHref?: string;
   primaryCtaId?: string;
@@ -21,6 +22,7 @@ export function PageHero({
   text,
   image,
   imageAlt,
+  imagePosition = "50% 50%",
   ctaLabel = "Speak to our team",
   ctaHref = "/contact",
   primaryCtaId = "page_hero_call",
@@ -36,6 +38,7 @@ export function PageHero({
         loading="eager"
         sizes="100vw"
         className="object-cover opacity-45"
+        style={{ objectPosition: imagePosition }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-holly-ink via-holly-ink/80 to-holly-ink/25" />
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
