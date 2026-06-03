@@ -24,6 +24,7 @@ import {
   getHome,
   homes,
   type CareHome,
+  type CareHomeGalleryImage,
   type CareHomeHistory,
   type CareHomeHistoryImage,
   type DeputyProfile,
@@ -148,6 +149,8 @@ export default async function HomeDetailPage({ params }: PageProps) {
           </aside>
         </div>
       </section>
+
+      <GallerySection homeName={home.name} images={home.gallery} />
 
       {home.history ? <HistorySection history={home.history} /> : null}
 
@@ -321,6 +324,86 @@ export default async function HomeDetailPage({ params }: PageProps) {
 
 function getFirstName(name: string) {
   return name.split(" ").filter(Boolean)[0] ?? name;
+}
+
+function GallerySection({
+  homeName,
+  images
+}: {
+  homeName: string;
+  images: CareHomeGalleryImage[];
+}) {
+  if (images.length === 0) {
+    return null;
+  }
+
+  const [featuredImage, ...supportingImages] = images;
+
+  return (
+    <section className="bg-white py-14 md:py-20">
+      <div className="section-shell">
+        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <SectionIntro
+            eyebrow="Photo tour"
+            title={`${homeName} in pictures`}
+            text="A closer look at the home, outdoor spaces and shared areas families can see when they visit."
+          />
+          <div className="inline-flex w-fit items-center gap-2 rounded-full bg-holly-sky px-4 py-2 text-sm font-semibold text-holly-ink/76">
+            <Images aria-hidden size={17} className="text-holly-leaf" />
+            {images.length} photos
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+          {featuredImage ? (
+            <GalleryImageCard image={featuredImage} priority />
+          ) : null}
+
+          {supportingImages.length > 0 ? (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {supportingImages.map((image) => (
+                <GalleryImageCard key={image.src} image={image} />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GalleryImageCard({
+  image,
+  priority = false
+}: {
+  image: CareHomeGalleryImage;
+  priority?: boolean;
+}) {
+  return (
+    <figure className={priority ? "sm:col-span-2 lg:col-span-1" : undefined}>
+      <div
+        className={`relative overflow-hidden rounded-[1.25rem] bg-holly-ink shadow-soft ${
+          priority ? "aspect-[4/3] lg:min-h-[29rem]" : "aspect-[4/3]"
+        }`}
+      >
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes={priority ? "(min-width: 1024px) 48rem, 100vw" : "(min-width: 1024px) 30rem, (min-width: 640px) 50vw, 100vw"}
+          className="object-cover"
+          style={{ objectPosition: image.position ?? "50% 50%" }}
+          priority={priority}
+        />
+        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-holly-ink/86 via-holly-ink/42 to-transparent p-4 text-white">
+          <span className="inline-flex rounded-full bg-white/16 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-white/88">
+            {image.category}
+          </span>
+          <p className="mt-2 text-sm font-semibold leading-6">{image.caption}</p>
+        </figcaption>
+      </div>
+    </figure>
+  );
 }
 
 function HomeLifeSection({ home, events }: { home: CareHome; events: HomeEvent[] }) {
