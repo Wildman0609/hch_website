@@ -171,6 +171,8 @@ export const homes: CareHome[] = [
       {
         name: "Beverley Brown",
         role: "Home Manager",
+        photo: "/images/team/beverley-brown.jpg",
+        photoAlt: "Beverley Brown, Home Manager at Broadlands Park.",
         quote:
           "Every smile and every shared moment helps Broadlands Park feel like one big family.",
         bio: [
@@ -185,7 +187,15 @@ export const homes: CareHome[] = [
         ]
       }
     ],
-    deputies: noDeputyProfiles(),
+    deputies: [
+      {
+        name: "Diana Waterman",
+        role: "Deputy",
+        photo: "/images/team/diana-waterman.jpg",
+        photoAlt: "Diana Waterman, Deputy at Broadlands Park.",
+        bio: "Deputy at Broadlands Park."
+      }
+    ],
     teamApproach: [
       "A country home where residents are known as individuals, not room numbers.",
       "A team culture built around kindness, familiarity and small moments of connection.",
@@ -250,6 +260,8 @@ export const homes: CareHome[] = [
       {
         name: "Diane Batch",
         role: "Home Manager",
+        photo: "/images/team/diane-batch.jpg",
+        photoAlt: "Diane Batch, Home Manager at Broadland House.",
         quote:
           "A good day is when the team works together and the home is full of laughter.",
         bio: [
@@ -266,7 +278,15 @@ export const homes: CareHome[] = [
           "Diane is motivated by the small day-to-day differences that matter to residents and staff: a smile, a settled routine, or a team pulling together at the right moment."
       }
     ],
-    deputies: noDeputyProfiles(),
+    deputies: [
+      {
+        name: "Susan Saint",
+        role: "Deputy",
+        photo: "/images/team/susan-saint.jpg",
+        photoAlt: "Susan Saint, Deputy at Broadland House.",
+        bio: "Deputy at Broadland House."
+      }
+    ],
     teamApproach: [
       "A small village home where safe routines and good morale matter.",
       "A team that values laughter, responsiveness and practical support.",
@@ -313,6 +333,13 @@ export const homes: CareHome[] = [
         position: "50% 50%"
       },
       {
+        src: "/images/homes/martham-lodge/bedroom.webp",
+        alt: "Martham Lodge bedroom with a bed, wardrobe, armchair and en-suite sink.",
+        caption: "Example bedroom",
+        category: "Rooms",
+        position: "50% 50%"
+      },
+      {
         src: "/images/homes/martham-lodge/history-hallway.webp",
         alt: "Martham Lodge hallway with framed photographs and local history displays.",
         caption: "Hallway history display",
@@ -343,7 +370,22 @@ export const homes: CareHome[] = [
           "Carol is a holistic therapist trained in Sound Therapy, Reiki and Mindfulness Coaching, and has also qualified as a Yoga Teacher. She loves music and dancing, especially Ballroom and Salsa, and brings her love of animals into the home through regular animal therapy sessions."
       }
     ],
-    deputies: noDeputyProfiles(),
+    deputies: [
+      {
+        name: "Ellis Abel",
+        role: "Deputy",
+        photo: "/images/team/ellis-abel.jpg",
+        photoAlt: "Ellis Abel, Deputy at Braydeston Court.",
+        bio: "Deputy at Braydeston Court."
+      },
+      {
+        name: "Rachel Nicols",
+        role: "Deputy",
+        photo: "/images/team/rachel-nicols.jpg",
+        photoAlt: "Rachel Nicols, Deputy at Braydeston Court.",
+        bio: "Deputy at Braydeston Court."
+      }
+    ],
     teamApproach: [
       "A specialist dementia setting where residents are encouraged to stay active, engaged and fulfilled.",
       "A team Carol describes as kind, compassionate and dedicated to residents' individual needs.",
