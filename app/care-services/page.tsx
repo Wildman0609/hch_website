@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, HelpCircle } from "lucide-react";
+import { ArrowRight, FileText, HelpCircle, Phone } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { HomeCard } from "@/components/HomeCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -9,6 +9,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { UrgentPathways } from "@/components/UrgentPathways";
 import { homes } from "@/data/homes";
 import { services } from "@/data/services";
+import { site } from "@/data/site";
 import { servicesSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -29,6 +30,8 @@ export default function CareServicesPage() {
         imageAlt="Residents and team members spending time together at a Hollyman care home."
         ctaLabel="Ask what care fits"
         ctaHref="/contact?reason=care-guidance"
+        primaryCtaId="care_services_page_call"
+        secondaryCtaId="care_services_page_guidance"
       />
 
       <section className="bg-holly-cream py-14 md:py-20">
@@ -65,7 +68,7 @@ export default function CareServicesPage() {
               variant="outline"
               icon={<ArrowRight aria-hidden size={17} />}
               className="md:mb-2"
-              ctaId="care-services-find-home"
+              ctaId="care_services_find_home"
             >
               Find your home
             </ButtonLink>
@@ -89,9 +92,23 @@ export default function CareServicesPage() {
               You can call before you know the answer.
             </h2>
           </div>
-          <ButtonLink href="/contact?reason=care-guidance" variant="secondary" ctaId="care-services-guidance">
-            Ask for guidance
-          </ButtonLink>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href={site.phoneHref} icon={<Phone aria-hidden size={17} />} ctaId="care_services_call">
+              Call us today
+            </ButtonLink>
+            <ButtonLink href="/find-the-right-care" variant="secondary" ctaId="care_services_find_care">
+              Ask for guidance
+            </ButtonLink>
+            <ButtonLink
+              href="/request-brochure"
+              variant="outline"
+              icon={<FileText aria-hidden size={17} />}
+              className="border-white/30 bg-white text-holly-ink"
+              ctaId="care_services_brochure"
+            >
+              Request brochure
+            </ButtonLink>
+          </div>
         </div>
       </section>
     </>

@@ -7,6 +7,9 @@ type EnquiryFormProps = {
   urgency?: string;
   reason?: string;
   compactIntro?: boolean;
+  actionPath?: string;
+  submitLabel?: string;
+  submitCtaId?: string;
 };
 
 export function EnquiryForm({
@@ -14,11 +17,14 @@ export function EnquiryForm({
   careType,
   urgency,
   reason,
-  compactIntro = false
+  compactIntro = false,
+  actionPath = "/thank-you/general-enquiry",
+  submitLabel = "Send enquiry",
+  submitCtaId = "general_enquiry_submit"
 }: EnquiryFormProps) {
   return (
     <form
-      action="/thank-you"
+      action={actionPath}
       method="get"
       className="rounded-[1.5rem] border border-holly-ink/10 bg-white p-5 shadow-soft sm:p-7"
       aria-label="Care enquiry form"
@@ -97,10 +103,10 @@ export function EnquiryForm({
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
-          data-cta="enquiry-submit"
+          data-cta={submitCtaId}
           className="inline-flex min-h-12 items-center justify-center rounded-full bg-holly-leaf px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-holly-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-holly-gold"
         >
-          Send enquiry
+          {submitLabel}
         </button>
         <p className="text-sm leading-6 text-holly-ink/65">
           We will use your details to respond to your enquiry. Please do not include sensitive medical information in this form.

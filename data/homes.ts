@@ -11,6 +11,8 @@ export type TeamMember = {
   photoAlt?: string;
   quote?: string;
   bio: string[];
+  careAbout?: string;
+  familiesCanAsk?: string;
   details?: string[];
   focusAreas?: string[];
   personal?: string;
@@ -22,6 +24,8 @@ export type DeputyProfile = {
   photo?: string;
   photoAlt?: string;
   bio: string;
+  careAbout?: string;
+  familiesCanAsk?: string;
 };
 
 export type CareHomeHistoryImage = {
@@ -43,8 +47,37 @@ export type CareHomeGalleryImage = {
   src: string;
   alt: string;
   caption: string;
-  category: "Exterior" | "Gardens" | "Communal areas" | "Rooms";
+  category:
+    | "Exterior"
+    | "Rooms"
+    | "Daily Life"
+    | "Dining"
+    | "Gardens"
+    | "Activities"
+    | "Quiet Spaces";
   position?: string;
+};
+
+export type CareHomeFaq = {
+  question: string;
+  answer: string;
+};
+
+export type CareHomeVisiting = {
+  summary: string;
+  parking: string;
+  firstViewing: string;
+};
+
+export type CareHomeRegulatoryInfo = {
+  cqcLocationId: string;
+  cqcRating: "Outstanding" | "Good" | "Requires improvement" | "Inadequate" | "Not rated";
+  cqcUrl: string;
+  pamms?: {
+    rating: "Excellent" | "Good" | "Requires Improvement" | "Inadequate";
+    assessmentDate: string;
+    reportUrl: string;
+  };
 };
 
 export type CareHome = {
@@ -67,6 +100,13 @@ export type CareHome = {
   highlights: string[];
   roomHighlights: string[];
   gallery: CareHomeGalleryImage[];
+  feelsLike: string[];
+  maySuit: string[];
+  localArea: string;
+  visiting: CareHomeVisiting;
+  familyFaqs: CareHomeFaq[];
+  imagePlaceholders: string[];
+  regulatory: CareHomeRegulatoryInfo;
   history?: CareHomeHistory;
   teamMembers: TeamMember[];
   deputies: DeputyProfile[];
@@ -75,6 +115,46 @@ export type CareHome = {
 };
 
 const noDeputyProfiles = (): DeputyProfile[] => [];
+
+const standardImagePlaceholders = [
+  "TODO: staged bedroom photo - use a bright room with personal belongings and a clear bed view.",
+  "TODO: manager portrait - warm, natural portrait of the manager families are likely to meet.",
+  "TODO: deputy portrait - add where a current deputy or senior team member is available.",
+  "TODO: lounge photo - show seating, daylight and the feel of shared spaces.",
+  "TODO: dining photo - show tables, meals or dining-room atmosphere.",
+  "TODO: garden photo - show accessible outdoor space and seating.",
+  "TODO: activity session photo - show real daily life without making residents feel staged.",
+  "TODO: exterior photo - show the arrival view families will recognise.",
+  "TODO: quiet spaces photo - show calm corners for rest, family visits or one-to-one conversation."
+];
+
+const standardFamilyFaqs = (homeName: string, shortName: string): CareHomeFaq[] => [
+  {
+    question: `Can we visit ${homeName} before deciding?`,
+    answer:
+      "Yes. A viewing is often the best way to understand the atmosphere, meet the team and ask questions about daily routines, rooms, safety and availability."
+  },
+  {
+    question: "What happens if we are not sure which care type is right?",
+    answer:
+      "You can start with what has changed. The team can talk through residential care, dementia care, respite or other options without making the conversation feel clinical or rushed."
+  },
+  {
+    question: "Will our loved one be able to bring familiar belongings?",
+    answer:
+      `${shortName} encourages familiar items where practical, because photographs, favourite blankets, ornaments and everyday objects can help a room feel more like their own.`
+  },
+  {
+    question: "Can families stay involved after someone moves in?",
+    answer:
+      "Yes. Family knowledge is important, especially around routines, food preferences, communication, interests, worries and what helps someone feel settled."
+  },
+  {
+    question: "How quickly can care start?",
+    answer:
+      "This depends on availability, assessment and the person's current needs. If the situation is urgent, call so the team can explain the practical next step."
+  }
+];
 
 const galleryImage = (
   slug: HomeSlug,
@@ -118,25 +198,58 @@ export const homes: CareHome[] = [
     ],
     roomHighlights: [
       "Bright, comfortable bedrooms",
-      "Accessible en-suite bathrooms in the extension",
+      "En-suite rooms available",
+      "Accessible bathrooms in the extension",
       "Nurse call systems for reassurance",
       "Space for cherished belongings"
     ],
     gallery: [
       galleryImage("broadlands-park", "bedroom.webp", "Broadlands Park bedroom with a double bed, soft chair and large windows.", "Example bedroom", "Rooms"),
       galleryImage("broadlands-park", "garden-lawn.webp", "Broadlands Park garden lawn with mature trees and planting.", "Garden lawn", "Gardens"),
-      galleryImage("broadlands-park", "lounge-seating.webp", "Broadlands Park lounge area with chairs, framed photographs and access through to shared spaces.", "Lounge seating", "Communal areas"),
+      galleryImage("broadlands-park", "lounge-seating.webp", "Broadlands Park lounge area with chairs, framed photographs and access through to shared spaces.", "Lounge seating", "Daily Life"),
       galleryImage("broadlands-park", "garden-planting.webp", "Broadlands Park garden planting and flower beds beside the red-brick building.", "Garden planting", "Gardens"),
-      galleryImage("broadlands-park", "fresh-meal.webp", "A freshly served meal at Broadlands Park.", "Freshly served meal", "Communal areas"),
+      galleryImage("broadlands-park", "fresh-meal.webp", "A freshly served meal at Broadlands Park.", "Freshly served meal", "Dining"),
       galleryImage("broadlands-park", "bedroom-corner.webp", "Broadlands Park bedroom corner with a bed, chair, wardrobe and garden view.", "Bedroom corner", "Rooms"),
-      galleryImage("broadlands-park", "lounge-area.webp", "Broadlands Park lounge area with armchairs and bunting.", "Lounge area", "Communal areas"),
-      galleryImage("broadlands-park", "dining-area.webp", "Broadlands Park dining area with tables, chairs and a serving counter.", "Dining area", "Communal areas"),
-      galleryImage("broadlands-park", "reading-corner.webp", "Broadlands Park reading corner with armchairs, framed photographs and magazines.", "Reading corner", "Communal areas"),
-      galleryImage("broadlands-park", "corridor.webp", "Broadlands Park corridor with handrails and bedroom doors.", "Accessible corridors", "Communal areas"),
-      galleryImage("broadlands-park", "hallway.webp", "Broadlands Park hallway leading through to shared lounge areas.", "Hallway through the home", "Communal areas"),
+      galleryImage("broadlands-park", "lounge-area.webp", "Broadlands Park lounge area with armchairs and bunting.", "Lounge area", "Daily Life"),
+      galleryImage("broadlands-park", "dining-area.webp", "Broadlands Park dining area with tables, chairs and a serving counter.", "Dining area", "Dining"),
+      galleryImage("broadlands-park", "reading-corner.webp", "Broadlands Park reading corner with armchairs, framed photographs and magazines.", "Reading corner", "Quiet Spaces"),
+      galleryImage("broadlands-park", "corridor.webp", "Broadlands Park corridor with handrails and bedroom doors.", "Accessible corridors", "Daily Life"),
+      galleryImage("broadlands-park", "hallway.webp", "Broadlands Park hallway leading through to shared lounge areas.", "Hallway through the home", "Daily Life"),
       galleryImage("broadlands-park", "garden-border.webp", "Broadlands Park garden border with planting beside the lawn.", "Garden border", "Gardens"),
       galleryImage("broadlands-park", "garden-detail.webp", "Broadlands Park garden detail with planting and decorative features.", "Garden detail", "Gardens")
     ],
+    feelsLike: [
+      "Peaceful and settled, with a country-house feel and mature gardens around the home.",
+      "Small enough for families to recognise familiar faces, with routines shaped around each resident.",
+      "Warm and traditional without feeling formal, especially for families who value a quieter setting."
+    ],
+    maySuit: [
+      "Families looking for residential care near Acle, Upton or the Norfolk Broads.",
+      "Someone who would benefit from gardens, calm lounges and a peaceful village setting.",
+      "Families who want a long-established home with a clear family-run history."
+    ],
+    localArea:
+      "Broadlands Park is in Upton, close to Acle and the Norfolk Broads, making it practical for families travelling from nearby villages, Great Yarmouth, Norwich routes and the surrounding Broadland area.",
+    visiting: {
+      summary:
+        "Families can arrange a viewing to see bedrooms, lounges, dining areas and the gardens, then talk through care needs and availability.",
+      parking:
+        "Ample on-site parking is available for visitors, and the home is served by local bus routes. Ask the team about the easiest arrival point when booking your visit.",
+      firstViewing:
+        "At a first viewing, bring any questions about routines, mobility, medication support, family involvement, fees and what would help your loved one settle."
+    },
+    familyFaqs: standardFamilyFaqs("Broadlands Park", "Broadlands Park"),
+    imagePlaceholders: standardImagePlaceholders,
+    regulatory: {
+      cqcLocationId: "1-1879878247",
+      cqcRating: "Requires improvement",
+      cqcUrl: "https://www.cqc.org.uk/location/1-1879878247",
+      pamms: {
+        rating: "Good",
+        assessmentDate: "21/03/2024",
+        reportUrl: "https://www.hollymancarehomes.co.uk/hch/wp-content/uploads/2025/01/broadlands-park-report.pdf"
+      }
+    },
     history: {
       title: "The home that started Hollyman Care Homes.",
       intro:
@@ -174,35 +287,8 @@ export const homes: CareHome[] = [
         }
       ]
     },
-    teamMembers: [
-      {
-        name: "Beverley Brown",
-        role: "Home Manager",
-        photo: "/images/team/beverley-brown.jpg",
-        photoAlt: "Beverley Brown, Home Manager at Broadlands Park.",
-        quote:
-          "Every smile and every shared moment helps Broadlands Park feel like one big family.",
-        bio: [
-          "Beverley is the experienced and compassionate manager at Broadlands Park. She has spent more than 23 years in care, beginning as a care assistant before progressing into leadership.",
-          "Her approach is warm, steady and community-focused. She wants residents, relatives and staff to feel part of a home where dignity, respect and personalised care are part of everyday life."
-        ],
-        details: ["23+ years in care", "Started as a care assistant", "Family-led culture"],
-        focusAreas: [
-          "Creating a strong sense of community",
-          "Supporting dignity, respect and individual choice",
-          "Helping families feel confident and reassured"
-        ]
-      }
-    ],
-    deputies: [
-      {
-        name: "Diana Waterman",
-        role: "Deputy",
-        photo: "/images/team/diana-waterman.jpg",
-        photoAlt: "Diana Waterman, Deputy at Broadlands Park.",
-        bio: "Deputy at Broadlands Park."
-      }
-    ],
+    teamMembers: [],
+    deputies: noDeputyProfiles(),
     teamApproach: [
       "A country home where residents are known as individuals, not room numbers.",
       "A team culture built around kindness, familiarity and small moments of connection.",
@@ -236,18 +322,51 @@ export const homes: CareHome[] = [
     ],
     roomHighlights: [
       "Bright, spacious bedrooms",
+      "En-suite rooms available",
       "A calm and familiar feel",
       "Personal items encouraged",
       "Quiet spaces for rest"
     ],
     gallery: [
       galleryImage("broadland-house", "bedroom.webp", "Broadland House bedroom with a bed, armchair and window view.", "Example bedroom", "Rooms"),
-      galleryImage("broadland-house", "garden-activity.webp", "Residents and team members taking part in an outdoor garden activity at Broadland House.", "Garden activity", "Gardens"),
+      galleryImage("broadland-house", "garden-activity.webp", "Residents and team members taking part in an outdoor garden activity at Broadland House.", "Garden activity", "Activities"),
       galleryImage("broadland-house", "bedroom-sitting-area.webp", "Broadland House bedroom with a bed, armchairs, table and television.", "Bedroom sitting area", "Rooms"),
       galleryImage("broadland-house", "raised-garden-beds.webp", "Broadland House garden with raised beds, benches and winter planting.", "Raised garden beds", "Gardens"),
       galleryImage("broadland-house", "garden-pergola.webp", "Broadland House garden pergola with outdoor table, chairs and bunting.", "Garden pergola", "Gardens"),
-      galleryImage("broadland-house", "conservatory-lounge.webp", "Broadland House conservatory lounge with armchairs and a jukebox.", "Conservatory lounge", "Communal areas")
+      galleryImage("broadland-house", "conservatory-lounge.webp", "Broadland House conservatory lounge with armchairs and a jukebox.", "Conservatory lounge", "Daily Life")
     ],
+    feelsLike: [
+      "Small, homely and village-based, with a calm pace and familiar faces.",
+      "Practical and reassuring for families considering dementia care in Potter Heigham.",
+      "A place where gardens, shared spaces and everyday conversation help the home feel lived-in."
+    ],
+    maySuit: [
+      "Families looking for care near Potter Heigham, the Norfolk Broads or Great Yarmouth routes.",
+      "Someone living with dementia who may benefit from a smaller, familiar environment.",
+      "Families who want a home where questions can be talked through without pressure."
+    ],
+    localArea:
+      "Broadland House sits in Potter Heigham, close to the Norfolk Broads and surrounding villages, making it a practical option for families near Potter Heigham, Ludham, Martham and Great Yarmouth routes.",
+    visiting: {
+      summary:
+        "A viewing can include bedrooms, garden areas, shared lounges and a conversation about how the team supports daily routines.",
+      parking:
+        "Ample on-site parking is available for visitors, and the home is served by local bus routes. Ask the team about the simplest arrival arrangements when you book, especially if you are visiting with someone who has mobility needs.",
+      firstViewing:
+        "Families often ask about dementia support, settling in, safety, meals, activities and how relatives remain involved."
+    },
+    familyFaqs: standardFamilyFaqs("Broadland House", "Broadland House"),
+    imagePlaceholders: standardImagePlaceholders,
+    regulatory: {
+      cqcLocationId: "1-1879878336",
+      cqcRating: "Requires improvement",
+      cqcUrl: "https://www.cqc.org.uk/location/1-1879878336",
+      pamms: {
+        rating: "Good",
+        assessmentDate: "18/01/2024",
+        reportUrl: "https://www.hollymancarehomes.co.uk/hch/wp-content/uploads/2025/01/HollymanCareHomesLimited-Summary.pdf"
+      }
+    },
     teamMembers: [
       {
         name: "Diane Batch",
@@ -261,6 +380,10 @@ export const homes: CareHome[] = [
           "At Broadland House, Diane leads the daily running of the home with a focus on safe staffing, strong governance and responsive, person-centred care. She enjoys the moments that show the home is working well: residents feeling happy, staff feeling supported and the atmosphere feeling light, warm and settled."
         ],
         details: ["25+ years in care", "Care planning and assessments", "Joined Broadland House in 2025"],
+        careAbout:
+          "Helping Broadland House feel safe, responsive and full of everyday warmth for residents, relatives and staff.",
+        familiesCanAsk:
+          "Dementia support, care planning, assessments, daily routines, staffing and what happens after a first enquiry.",
         focusAreas: [
           "Maintaining safety and good governance",
           "Leading and supporting the team",
@@ -270,15 +393,7 @@ export const homes: CareHome[] = [
           "Diane is motivated by the small day-to-day differences that matter to residents and staff: a smile, a settled routine, or a team pulling together at the right moment."
       }
     ],
-    deputies: [
-      {
-        name: "Susan Saint",
-        role: "Deputy",
-        photo: "/images/team/susan-saint.jpg",
-        photoAlt: "Susan Saint, Deputy at Broadland House.",
-        bio: "Deputy at Broadland House."
-      }
-    ],
+    deputies: noDeputyProfiles(),
     teamApproach: [
       "A small village home where safe routines and good morale matter.",
       "A team that values laughter, responsiveness and practical support.",
@@ -312,18 +427,52 @@ export const homes: CareHome[] = [
     ],
     roomHighlights: [
       "Modern, comfortable rooms",
+      "En-suite rooms available",
       "Warm and familiar surroundings",
       "Personal touches welcomed",
       "Peaceful outlooks from many rooms"
     ],
     gallery: [
-      galleryImage("martham-lodge", "patio-seating.webp", "Martham Lodge patio seating beside a blue exterior wall and garden gate.", "Patio seating", "Gardens"),
-      galleryImage("martham-lodge", "bedroom.webp", "Martham Lodge bedroom with a bed, armchair, sink and window view.", "Example bedroom", "Rooms"),
-      galleryImage("martham-lodge", "garden-seating.webp", "Martham Lodge garden seating with planting, trees and a garden room.", "Garden seating", "Gardens"),
-      galleryImage("martham-lodge", "home-cat.webp", "A cat standing in a Martham Lodge communal area.", "A familiar face", "Communal areas"),
-      galleryImage("martham-lodge", "activity-table.webp", "Martham Lodge activity table with games, craft materials and colourful cones.", "Activity table", "Communal areas"),
-      galleryImage("martham-lodge", "conservatory-lounge.webp", "Martham Lodge conservatory lounge with armchairs, plants and garden light.", "Conservatory lounge", "Communal areas")
+      galleryImage("martham-lodge", "garden-planters.webp", "Martham Lodge garden with colourful planters, lawn and hanging decorations.", "Garden planters", "Gardens"),
+      galleryImage("martham-lodge", "main-lounge.webp", "Martham Lodge lounge with armchairs beside large bay windows.", "Main lounge seating", "Daily Life"),
+      galleryImage("martham-lodge", "bedroom.webp", "Martham Lodge bedroom with a single bed, bedside cabinet and personal touches.", "Example bedroom", "Rooms"),
+      galleryImage("martham-lodge", "garden-activity.webp", "Residents taking part in a flower potting activity outside at Martham Lodge.", "Garden activity", "Activities"),
+      galleryImage("martham-lodge", "library-lounge.webp", "Martham Lodge lounge corner with armchairs, bookshelves, television and framed photographs.", "Library lounge", "Quiet Spaces"),
+      galleryImage("martham-lodge", "garden-path.webp", "Martham Lodge garden path with mature planting and hanging decorations.", "Garden path", "Gardens"),
+      galleryImage("martham-lodge", "garden-pots.webp", "Martham Lodge patio area with flower pots, bunting and garden ornaments.", "Garden pots and flowers", "Gardens"),
+      galleryImage("martham-lodge", "salon-corner.webp", "Martham Lodge salon corner with lighted mirror, chair and hairdryer.", "Salon corner", "Daily Life"),
+      galleryImage("martham-lodge", "home-cat-chair.webp", "A Martham Lodge cat resting on a leather chair.", "Home cat", "Daily Life"),
+      galleryImage("martham-lodge", "animal-therapy-rabbits.webp", "Rabbits being held during an animal therapy visit at Martham Lodge.", "Animal therapy visit", "Activities"),
+      galleryImage("martham-lodge", "flower-power-resident.webp", "A resident smiling in flower-themed accessories during an activity at Martham Lodge.", "Flower power fun", "Activities"),
+      galleryImage("martham-lodge", "flower-power-team.webp", "Martham Lodge team members dressed in colourful themed outfits for an activity day.", "Themed activity day", "Activities")
     ],
+    feelsLike: [
+      "Characterful, familiar and village-rooted, with the green close by and garden spaces around the home.",
+      "Specialist dementia care with a focus on calm reassurance, activities and meaningful daily moments.",
+      "Warm and personal, especially for families who want a smaller setting where people are known."
+    ],
+    maySuit: [
+      "Families looking for dementia care near Martham, Potter Heigham, Hemsby or the east Norfolk villages.",
+      "Someone who benefits from a familiar daily rhythm, patient reassurance and meaningful activities.",
+      "Families who want a specialist dementia setting that still feels homely and village-based."
+    ],
+    localArea:
+      "Martham Lodge is on Martham village green, close to the Norfolk Broads and east Norfolk coastal routes, giving families a recognisable local setting for visits.",
+    visiting: {
+      summary:
+        "A visit can help families see the village-green setting, shared spaces, bedrooms and how dementia care is supported day to day.",
+      parking:
+        "Ample on-site parking is available for visitors, and the home is served by local bus routes. Arrival arrangements can be confirmed when you book, so the team can make the visit as easy as possible.",
+      firstViewing:
+        "For dementia enquiries, families may want to bring notes on routines, triggers, communication, personal history, mobility and what helps the person feel safe."
+    },
+    familyFaqs: standardFamilyFaqs("Martham Lodge", "Martham Lodge"),
+    imagePlaceholders: standardImagePlaceholders,
+    regulatory: {
+      cqcLocationId: "1-1879878280",
+      cqcRating: "Good",
+      cqcUrl: "https://www.cqc.org.uk/location/1-1879878280"
+    },
     teamMembers: [
       {
         name: "Carol Preston",
@@ -338,6 +487,10 @@ export const homes: CareHome[] = [
           "One of Carol's proudest achievements was becoming a finalist in the 2023 Great British Care Awards after being nominated by families, residents and staff for Best Registered Care Home Manager of the Year."
         ],
         details: ["46+ years in care", "Great British Care Awards finalist", "At Martham Lodge since March 2025"],
+        careAbout:
+          "Helping people living with dementia enjoy meaningful, warm and fulfilling days while families feel listened to and reassured.",
+        familiesCanAsk:
+          "Dementia routines, activities, therapies, settling in, family involvement and what information helps the team get to know someone.",
         focusAreas: [
           "Helping residents, especially those living with dementia, enjoy meaningful and fulfilling lives",
           "Building a happy, confident team supported by experienced deputies",
@@ -381,24 +534,52 @@ export const homes: CareHome[] = [
     ],
     roomHighlights: [
       "Light-filled bedrooms",
+      "En-suite rooms available",
       "Rooms with individual character",
       "Personal belongings encouraged",
       "Cosy, restful spaces"
     ],
     gallery: [
       galleryImage("braydeston-court", "bedroom.webp", "Braydeston Court bedroom with a bed, chair and large window.", "Example bedroom", "Rooms"),
-      galleryImage("braydeston-court", "cafe-menu.webp", "Braydeston Court cafe menu board set into a brick feature wall.", "Cafe menu board", "Communal areas"),
-      galleryImage("braydeston-court", "staircase-seating.webp", "Braydeston Court staircase seating area with wood panelling and armchairs.", "Staircase seating", "Communal areas"),
+      galleryImage("braydeston-court", "cafe-menu.webp", "Braydeston Court cafe menu board set into a brick feature wall.", "Cafe menu board", "Dining"),
+      galleryImage("braydeston-court", "staircase-seating.webp", "Braydeston Court staircase seating area with wood panelling and armchairs.", "Staircase seating", "Quiet Spaces"),
       galleryImage("braydeston-court", "front-exterior.webp", "Braydeston Court red-brick exterior with bay windows and a tower.", "Edwardian frontage", "Exterior"),
-      galleryImage("braydeston-court", "bay-window-seating.webp", "Braydeston Court bay-window seating area with a small table and chairs.", "Bay-window seating", "Communal areas"),
-      galleryImage("braydeston-court", "cafe-counter.webp", "Braydeston Court cafe counter with tea cups, shelves and wall decoration.", "Cafe counter", "Communal areas"),
-      galleryImage("braydeston-court", "tea-station.webp", "Braydeston Court tea and coffee station with teapots and cafe signage.", "Tea and coffee corner", "Communal areas"),
-      galleryImage("braydeston-court", "tea-service.webp", "Braydeston Court tea service detail with cups and a teapot.", "Tea service detail", "Communal areas"),
-      galleryImage("braydeston-court", "cafe-wall-display.webp", "Braydeston Court cafe wall display with hats, signs and decorative features.", "Cafe wall display", "Communal areas"),
-      galleryImage("braydeston-court", "window-table.webp", "Braydeston Court quiet table beside a tall window.", "Quiet table by the window", "Communal areas"),
-      galleryImage("braydeston-court", "hallway.webp", "Braydeston Court hallway with seating, artwork and light green wall panels.", "Hallway seating", "Communal areas"),
-      galleryImage("braydeston-court", "corridor.webp", "Braydeston Court corridor with blue door and arched opening.", "Bright corridors", "Communal areas")
+      galleryImage("braydeston-court", "bay-window-seating.webp", "Braydeston Court bay-window seating area with a small table and chairs.", "Bay-window seating", "Quiet Spaces"),
+      galleryImage("braydeston-court", "cafe-counter.webp", "Braydeston Court cafe counter with tea cups, shelves and wall decoration.", "Cafe counter", "Dining"),
+      galleryImage("braydeston-court", "tea-station.webp", "Braydeston Court tea and coffee station with teapots and cafe signage.", "Tea and coffee corner", "Dining"),
+      galleryImage("braydeston-court", "tea-service.webp", "Braydeston Court tea service detail with cups and a teapot.", "Tea service detail", "Dining"),
+      galleryImage("braydeston-court", "cafe-wall-display.webp", "Braydeston Court cafe wall display with hats, signs and decorative features.", "Cafe wall display", "Daily Life"),
+      galleryImage("braydeston-court", "window-table.webp", "Braydeston Court quiet table beside a tall window.", "Quiet table by the window", "Quiet Spaces"),
+      galleryImage("braydeston-court", "hallway.webp", "Braydeston Court hallway with seating, artwork and light green wall panels.", "Hallway seating", "Daily Life"),
+      galleryImage("braydeston-court", "corridor.webp", "Braydeston Court corridor with blue door and arched opening.", "Bright corridors", "Daily Life")
     ],
+    feelsLike: [
+      "Characterful and welcoming, with Edwardian details, cosy corners and a cafe-style shared space.",
+      "Sociable without losing quiet places to sit, talk or spend time with family.",
+      "Close to Brundall and Norwich routes, while still feeling residential and settled."
+    ],
+    maySuit: [
+      "Families looking for care near Brundall, Norwich, Blofield or the Broadland villages.",
+      "Someone who may enjoy characterful shared spaces, a cafe feel and a smaller residential setting.",
+      "Families exploring residential, dementia, respite or palliative support in the Brundall area."
+    ],
+    localArea:
+      "Braydeston Court is in Brundall, close to Norwich and surrounding Broadland villages, making it practical for families who want a home near Brundall with accessible visiting routes.",
+    visiting: {
+      summary:
+        "A viewing can include the Edwardian frontage, cafe-style area, bedrooms, quiet corners and a conversation about current care needs.",
+      parking:
+        "Ample on-site parking is available for visitors, and the home is served by local bus routes. Ask about the easiest arrival point when booking, particularly if you are visiting with a relative or need step-free guidance.",
+      firstViewing:
+        "Families often ask about care types, respite options, dementia support, activities, visiting routines and what availability looks like."
+    },
+    familyFaqs: standardFamilyFaqs("Braydeston Court", "Braydeston Court"),
+    imagePlaceholders: standardImagePlaceholders,
+    regulatory: {
+      cqcLocationId: "1-11890777495",
+      cqcRating: "Requires improvement",
+      cqcUrl: "https://www.cqc.org.uk/location/1-11890777495"
+    },
     teamMembers: [
       {
         name: "Maria Barber",
@@ -413,6 +594,10 @@ export const homes: CareHome[] = [
           "Her focus is simple: residents should feel valued, families should feel reassured and staff should feel proud of the care they give."
         ],
         details: ["30+ years in care", "Qualified to teach Health and Social Care", "Hands-on leadership"],
+        careAbout:
+          "Making sure residents feel valued, families feel reassured and staff feel proud of the care they give.",
+        familiesCanAsk:
+          "Residential care, dementia support, respite enquiries, daily life, moving in and how the team supports changing needs.",
         focusAreas: [
           "Supporting compassionate, person-centred care",
           "Building confident and valued teams",
@@ -422,22 +607,7 @@ export const homes: CareHome[] = [
           "Away from work, Maria is a proud mum of five and grandmother to one. She enjoys family time, swimming when she gets the chance, and writing rhyming poetry."
       }
     ],
-    deputies: [
-      {
-        name: "Ellis Abel",
-        role: "Deputy",
-        photo: "/images/team/ellis-abel.jpg",
-        photoAlt: "Ellis Abel, Deputy at Braydeston Court.",
-        bio: "Deputy at Braydeston Court."
-      },
-      {
-        name: "Rachel Nicols",
-        role: "Deputy",
-        photo: "/images/team/rachel-nicols.jpg",
-        photoAlt: "Rachel Nicols, Deputy at Braydeston Court.",
-        bio: "Deputy at Braydeston Court."
-      }
-    ],
+    deputies: noDeputyProfiles(),
     teamApproach: [
       "A welcoming home culture shaped by warmth, humour and high standards.",
       "A team supported to grow in confidence and deliver consistent care.",

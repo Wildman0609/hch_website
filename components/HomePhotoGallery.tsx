@@ -13,10 +13,17 @@ type HomePhotoGalleryProps = {
 export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeCategory, setActiveCategory] = useState<CareHomeGalleryImage["category"] | "All">("All");
 
-  const activeImage = images[activeIndex] ?? images[0];
-  const previewImages = images.slice(0, 5);
-  const remainingCount = Math.max(images.length - previewImages.length, 0);
+  const categories = Array.from(new Set(images.map((image) => image.category)));
+  const activeImages =
+    activeCategory === "All"
+      ? images
+      : images.filter((image) => image.category === activeCategory);
+  const categoryOptions: Array<CareHomeGalleryImage["category"] | "All"> = ["All", ...categories];
+  const activeImage = activeImages[activeIndex] ?? activeImages[0];
+  const previewImages = activeImages.slice(0, 6);
+  const remainingCount = Math.max(activeImages.length - previewImages.length, 0);
 
   const openGallery = (index: number) => {
     setActiveIndex(index);
@@ -24,7 +31,7 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
   };
 
   const moveTo = (index: number) => {
-    setActiveIndex((index + images.length) % images.length);
+    setActiveIndex((index + activeImages.length) % activeImages.length);
   };
 
   useEffect(() => {
@@ -41,11 +48,11 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
       }
 
       if (event.key === "ArrowLeft") {
-        setActiveIndex((currentIndex) => (currentIndex - 1 + images.length) % images.length);
+        setActiveIndex((currentIndex) => (currentIndex - 1 + activeImages.length) % activeImages.length);
       }
 
       if (event.key === "ArrowRight") {
-        setActiveIndex((currentIndex) => (currentIndex + 1) % images.length);
+        setActiveIndex((currentIndex) => (currentIndex + 1) % activeImages.length);
       }
     };
 
@@ -55,7 +62,7 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [images.length, isOpen]);
+  }, [activeImages.length, isOpen]);
 
   if (images.length === 0) {
     return null;
@@ -86,6 +93,26 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
             <span>Open gallery</span>
             <span className="rounded-full bg-white/18 px-2 py-0.5 text-xs">{images.length}</span>
           </button>
+        </div>
+
+        <div className="mt-6 flex gap-2 overflow-x-auto pb-2" aria-label="Filter photo gallery">
+          {categoryOptions.map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => {
+                setActiveCategory(category);
+                setActiveIndex(0);
+              }}
+              className={`flex-none rounded-full px-4 py-2 text-sm font-semibold transition ${
+                activeCategory === category
+                  ? "bg-holly-leaf text-white"
+                  : "bg-white text-holly-ink shadow-soft hover:bg-holly-cream"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:h-[30rem] lg:grid-cols-4 lg:grid-rows-2">
@@ -186,7 +213,7 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
 
                   <div className="flex flex-none items-center justify-between gap-3 sm:justify-end">
                     <span className="text-sm font-semibold text-white/62">
-                      {activeIndex + 1} of {images.length}
+                      {activeIndex + 1} of {activeImages.length}
                     </span>
                     <div className="flex gap-2 lg:hidden">
                       <button

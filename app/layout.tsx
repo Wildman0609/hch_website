@@ -15,6 +15,17 @@ export const metadata: Metadata = {
     template: "%s | Hollyman Care Homes"
   },
   description: site.description,
+  keywords: [
+    "care homes in Norfolk",
+    "dementia care Norfolk",
+    "residential care Norfolk",
+    "respite care Norfolk",
+    "care homes near Acle",
+    "care homes near Brundall",
+    "care homes near Martham",
+    "care homes near Potter Heigham",
+    "family-run care homes Norfolk"
+  ],
   openGraph: {
     title: "Hollyman Care Homes",
     description: site.description,

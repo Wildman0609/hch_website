@@ -32,7 +32,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
           variant="outline"
           icon={<ArrowRight aria-hidden size={17} />}
           className="mt-6"
-          ctaId={`service-card-${service.slug}`}
+          ctaId={`service_card_${service.slug.replaceAll("-", "_")}`}
         >
           Learn about {service.title.toLowerCase()}
         </ButtonLink>

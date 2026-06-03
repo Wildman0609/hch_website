@@ -42,6 +42,8 @@ export default function FeesFundingPage() {
         imageAlt="A peaceful Norfolk Broads waterway."
         ctaLabel="Ask about fees"
         ctaHref="/contact?reason=fees"
+        primaryCtaId="fees_page_call"
+        secondaryCtaId="fees_page_enquiry"
       />
 
       <section className="bg-holly-cream py-14 md:py-20">
@@ -99,7 +101,7 @@ export default function FeesFundingPage() {
                 Norfolk County Council paying for care
               </OfficialLink>
             </div>
-            <ButtonLink href="/contact?reason=fees" className="mt-7" ctaId="fees-contact">
+            <ButtonLink href="/contact?reason=fees" className="mt-7" ctaId="fees_page_enquiry">
               Ask Hollyman about fees
             </ButtonLink>
           </aside>

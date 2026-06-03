@@ -23,7 +23,7 @@ export function UrgentPathways() {
               href={action.href}
               variant={index === 0 ? "secondary" : "outline"}
               className={`mt-6 ${index === 1 ? "border-white/30 bg-white text-holly-ink" : ""}`}
-              ctaId={`pathway-${index === 0 ? "urgent" : "viewing"}`}
+              ctaId={`pathway_${index === 0 ? "urgent_help" : "find_care"}`}
             >
               Continue
             </ButtonLink>

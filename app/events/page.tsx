@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, CalendarDays, Home, Images } from "lucide-react";
+import { AdmissionsCTA } from "@/components/AdmissionsCTA";
 import { ButtonLink } from "@/components/ButtonLink";
 import { SectionIntro } from "@/components/SectionIntro";
 import { sortedHomeEvents, type HomeEvent, type HomeEventPhoto } from "@/data/homeEvents";
@@ -78,7 +79,7 @@ export default function EventsPage() {
               href="/contact?reason=viewing"
               variant="outline"
               icon={<ArrowRight aria-hidden size={17} />}
-              ctaId="events-gallery-book-viewing"
+              ctaId="events_gallery_book_viewing"
               className="md:mb-2"
             >
               Book a viewing
@@ -107,6 +108,12 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      <AdmissionsCTA
+        title="Seen a home you would like to visit?"
+        text="Photos can help a home feel familiar, but a viewing lets you meet the team and ask about availability, rooms and care needs."
+        ctaPrefix="events_page"
+      />
     </>
   );
 }

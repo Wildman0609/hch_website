@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowRight, MapPin } from "lucide-react";
+import { AdmissionsCTA } from "@/components/AdmissionsCTA";
 import { ButtonLink } from "@/components/ButtonLink";
 import { HomeCard } from "@/components/HomeCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -26,6 +27,8 @@ export default function FindYourHomePage() {
         imageAlt="The Norfolk Broads landscape near Hollyman Care Homes locations."
         ctaLabel="Make an enquiry"
         ctaHref="/contact"
+        primaryCtaId="find_home_page_call"
+        secondaryCtaId="find_home_page_enquiry"
       />
 
       <section className="bg-holly-cream py-14 md:py-20">
@@ -67,13 +70,19 @@ export default function FindYourHomePage() {
               variant="outline"
               icon={<ArrowRight aria-hidden size={17} />}
               className="mt-2 w-fit"
-              ctaId="find-guide"
+              ctaId="find_home_family_guide"
             >
               Read the family guide
             </ButtonLink>
           </div>
         </div>
       </section>
+
+      <AdmissionsCTA
+        title="Want help narrowing the homes down?"
+        text="Tell us the preferred area, care need and urgency. The team can help you compare homes and decide whether a viewing or brochure is the next step."
+        ctaPrefix="find_home_page"
+      />
     </>
   );
 }

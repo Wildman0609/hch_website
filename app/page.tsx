@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ArrowRight, CalendarDays, HeartHandshake, Images, Phone } from "lucide-react";
+import { ArrowRight, CalendarDays, FileText, HeartHandshake, Images, Phone, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { HomeCard } from "@/components/HomeCard";
@@ -18,6 +19,7 @@ export default function HomePage() {
     <>
       <JsonLd data={[...homeSchema(), servicesSchema()]} />
       <Hero />
+      <QuickConversionLinks />
 
       <section className="bg-holly-cream py-14 md:py-20">
         <div className="section-shell">
@@ -31,7 +33,7 @@ export default function HomePage() {
               href="/find-your-home"
               variant="outline"
               icon={<ArrowRight aria-hidden size={17} />}
-              ctaId="homepage-all-homes"
+              ctaId="homepage_all_homes"
               className="whitespace-nowrap md:mb-2"
             >
               Compare homes
@@ -55,7 +57,7 @@ export default function HomePage() {
               href="/events"
               variant="plain"
               icon={<Images aria-hidden size={17} />}
-              ctaId="homepage-events"
+              ctaId="homepage_events"
               className="w-fit px-0"
             >
               See life in our homes
@@ -130,7 +132,7 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-          <EnquiryForm reason="homepage" />
+          <EnquiryForm reason="homepage" submitCtaId="homepage_enquiry_submit" />
         </div>
       </section>
     </>
@@ -168,7 +170,7 @@ function Hero() {
               href={site.phoneHref}
               icon={<Phone aria-hidden size={18} />}
               className="text-base"
-              ctaId="hero-call"
+              ctaId="homepage_hero_call"
             >
               Call now: {site.phone}
             </ButtonLink>
@@ -177,7 +179,7 @@ function Hero() {
               variant="secondary"
               icon={<CalendarDays aria-hidden size={18} />}
               className="text-base"
-              ctaId="hero-book-viewing"
+              ctaId="homepage_hero_book_viewing"
             >
               Book a viewing
             </ButtonLink>
@@ -185,6 +187,71 @@ function Hero() {
           <p className="mt-5 max-w-xl text-sm leading-6 text-white/72">
             You can call just to ask questions. No pressure, no jargon, and no need to know the exact care type before you speak to us.
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function QuickConversionLinks() {
+  const actions = [
+    {
+      title: "I need help now",
+      text: "For discharge, falls, dementia changes or carer burnout.",
+      href: "/urgent-care-help",
+      ctaId: "homepage_urgent_help",
+      icon: ShieldCheck
+    },
+    {
+      title: "Find the right care",
+      text: "Answer a few questions if you are unsure where to start.",
+      href: "/find-the-right-care",
+      ctaId: "homepage_find_care",
+      icon: HeartHandshake
+    },
+    {
+      title: "Book a viewing",
+      text: "Visit a home, meet the team and ask practical questions.",
+      href: "/contact?reason=viewing",
+      ctaId: "homepage_book_viewing",
+      icon: CalendarDays
+    },
+    {
+      title: "Request a brochure",
+      text: "Ask for printed information for your family notes.",
+      href: "/request-brochure",
+      ctaId: "homepage_request_brochure",
+      icon: FileText
+    }
+  ];
+
+  return (
+    <section className="bg-white py-6">
+      <div className="section-shell">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {actions.map((action) => {
+            const Icon = action.icon;
+            return (
+              <Link
+                key={action.href}
+                href={action.href}
+                data-cta={action.ctaId}
+                className="group flex min-h-[9rem] gap-4 rounded-[1.2rem] border border-holly-ink/10 bg-holly-cream p-5 transition hover:-translate-y-0.5 hover:bg-holly-sky hover:shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-leaf"
+              >
+                <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-white text-holly-leaf shadow-soft">
+                  <Icon aria-hidden size={21} />
+                </span>
+                <span>
+                  <span className="block font-display text-2xl font-semibold leading-tight text-holly-ink">
+                    {action.title}
+                  </span>
+                  <span className="mt-2 block text-sm leading-6 text-holly-ink/68">
+                    {action.text}
+                  </span>
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

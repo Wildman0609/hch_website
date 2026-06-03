@@ -55,6 +55,8 @@ export default function CareersPage() {
         imageAlt="Hollyman residents and team members spending time together."
         ctaLabel="Apply for a role"
         ctaHref="#apply"
+        primaryCtaId="careers_page_call"
+        secondaryCtaId="careers_page_apply"
       />
 
       <section className="bg-holly-cream py-14 md:py-20">
@@ -98,7 +100,7 @@ export default function CareersPage() {
               href="/find-your-home"
               variant="outline"
               icon={<ArrowRight aria-hidden size={17} />}
-              ctaId="careers-view-homes"
+              ctaId="careers_view_homes"
               className="md:mb-2"
             >
               Compare homes
@@ -180,7 +182,7 @@ export default function CareersPage() {
             <ButtonLink
               href="#apply"
               icon={<BriefcaseBusiness aria-hidden size={17} />}
-              ctaId="careers-apply-top"
+              ctaId="careers_apply_top"
               className="md:mb-2"
             >
               Apply now
@@ -253,7 +255,7 @@ export default function CareersPage() {
                     href="#apply"
                     variant="outline"
                     icon={<ArrowRight aria-hidden size={17} />}
-                    ctaId={`careers-apply-${vacancy.id}`}
+                    ctaId={`careers_apply_${vacancy.id.replaceAll("-", "_")}`}
                     className="mt-6"
                   >
                     Apply for this role
@@ -372,7 +374,7 @@ function ApplicationForm() {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
-          data-cta="careers-application-submit"
+          data-cta="careers_application_submit"
           className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-holly-leaf px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-holly-moss focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-holly-gold"
         >
           <Send aria-hidden size={17} />

@@ -2,23 +2,27 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
-  ArrowRight,
   CalendarDays,
+  CheckCircle2,
+  CircleHelp,
   HeartHandshake,
   Images,
   MapPin,
   Phone,
-  Sparkles,
+  ClipboardList,
   UserRound,
   UsersRound
 } from "lucide-react";
+import { AdmissionsCTA } from "@/components/AdmissionsCTA";
 import { ButtonLink } from "@/components/ButtonLink";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { HomeCard } from "@/components/HomeCard";
 import { HomePhotoGallery } from "@/components/HomePhotoGallery";
 import { HomeReviews } from "@/components/HomeReviews";
 import { JsonLd } from "@/components/JsonLd";
+import { ManagerProfile } from "@/components/ManagerProfile";
 import { PageHero } from "@/components/PageHero";
+import { QualityRatings } from "@/components/QualityRatings";
 import { SectionIntro } from "@/components/SectionIntro";
 import { sortedHomeEvents, type HomeEvent, type HomeEventPhoto } from "@/data/homeEvents";
 import {
@@ -26,11 +30,9 @@ import {
   homes,
   type CareHome,
   type CareHomeHistory,
-  type CareHomeHistoryImage,
-  type DeputyProfile,
-  type TeamMember
+  type CareHomeHistoryImage
 } from "@/data/homes";
-import { homeSchema } from "@/lib/schema";
+import { faqSchema, homeSchema } from "@/lib/schema";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -65,10 +67,11 @@ export default async function HomeDetailPage({ params }: PageProps) {
   const otherHomes = homes.filter((item) => item.slug !== home.slug).slice(0, 3);
   const homeEvents = sortedHomeEvents.filter((event) => event.homeSlug === home.slug);
   const deputies = home.deputies.filter((deputy) => deputy.name || deputy.photo);
+  const homeTrackingSlug = home.slug.replaceAll("-", "_");
 
   return (
     <>
-      <JsonLd data={homeSchema(home.slug)} />
+      <JsonLd data={[...homeSchema(home.slug), faqSchema(home.familyFaqs, `${home.slug}-family-faqs`)]} />
       <PageHero
         eyebrow={home.location}
         title={`${home.name} care home`}
@@ -77,6 +80,8 @@ export default async function HomeDetailPage({ params }: PageProps) {
         imageAlt={home.imageAlt}
         ctaLabel="Book a viewing"
         ctaHref={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
+        primaryCtaId={`call_home_page_${homeTrackingSlug}`}
+        secondaryCtaId={`book_viewing_home_page_${homeTrackingSlug}`}
       />
 
       <section className="bg-holly-cream py-14 md:py-20">
@@ -134,23 +139,50 @@ export default async function HomeDetailPage({ params }: PageProps) {
               </div>
             </dl>
             <div className="mt-7 grid gap-3">
-              <ButtonLink href={home.phoneHref} icon={<Phone aria-hidden size={17} />} ctaId={`home-detail-call-${home.slug}`}>
+              <ButtonLink href={home.phoneHref} icon={<Phone aria-hidden size={17} />} ctaId={`call_home_page_${homeTrackingSlug}`}>
                 Call this home
               </ButtonLink>
               <ButtonLink
                 href={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
                 variant="secondary"
                 icon={<CalendarDays aria-hidden size={17} />}
-                ctaId={`home-detail-viewing-${home.slug}`}
+                ctaId={`book_viewing_home_page_${homeTrackingSlug}`}
               >
                 Book a viewing
+              </ButtonLink>
+              <ButtonLink
+                href={`/contact?reason=availability&home=${encodeURIComponent(home.name)}`}
+                variant="outline"
+                ctaId={`ask_availability_home_page_${homeTrackingSlug}`}
+                className="border-white/30 bg-white text-holly-ink"
+              >
+                Ask about availability
+              </ButtonLink>
+              <ButtonLink
+                href={`/request-brochure?home=${encodeURIComponent(home.name)}`}
+                variant="outline"
+                ctaId={`request_brochure_home_page_${homeTrackingSlug}`}
+                className="border-white/30 bg-white text-holly-ink"
+              >
+                Request a brochure by post
               </ButtonLink>
             </div>
           </aside>
         </div>
       </section>
 
+      <QualityRatings home={home} />
+
       <HomePhotoGallery homeName={home.name} images={home.gallery} />
+
+      <HomeFitSection home={home} />
+
+      <AdmissionsCTA
+        title={`Want to know if ${home.name} could be right?`}
+        text="Speak to the team about availability, suitability, viewing times or a printed brochure. You can start with a few questions."
+        homeName={home.name}
+        ctaPrefix={`home_${homeTrackingSlug}`}
+      />
 
       {home.history ? <HistorySection history={home.history} /> : null}
 
@@ -164,84 +196,12 @@ export default async function HomeDetailPage({ params }: PageProps) {
 
           <div className="mt-10 grid gap-12">
             {home.teamMembers.map((member) => (
-              <article
+              <ManagerProfile
                 key={`${member.name}-${member.role}`}
-                className="grid gap-8 lg:grid-cols-[minmax(16rem,22rem)_1fr] lg:items-start"
-              >
-                <ProfilePhoto person={member} />
-
-                <div>
-                  <div className="flex flex-col gap-4 border-b border-holly-ink/10 pb-6 md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-                        {member.role}
-                      </p>
-                      <h3 className="mt-3 font-display text-4xl font-semibold leading-tight text-holly-ink md:text-5xl">
-                        {member.name}
-                      </h3>
-                    </div>
-                    <ButtonLink
-                      href={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
-                      variant="outline"
-                      icon={<ArrowRight aria-hidden size={17} />}
-                      className="w-fit"
-                      ctaId={`meet-manager-${home.slug}`}
-                    >
-                      Book a viewing
-                    </ButtonLink>
-                  </div>
-
-                  {member.quote ? (
-                    <blockquote className="mt-6 border-l-4 border-holly-gold pl-5 font-display text-2xl font-semibold leading-snug text-holly-ink md:text-3xl">
-                      "{member.quote}"
-                    </blockquote>
-                  ) : null}
-
-                  {member.details ? (
-                    <dl className="mt-6 flex flex-wrap gap-3">
-                      {member.details.map((detail) => (
-                        <div key={detail} className="rounded-full bg-holly-sky px-4 py-2">
-                          <dt className="sr-only">Profile detail</dt>
-                          <dd className="text-sm font-semibold text-holly-ink/76">{detail}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  ) : null}
-
-                  <div className="mt-6 grid gap-4">
-                    {member.bio.map((paragraph) => (
-                      <p key={paragraph} className="max-w-4xl text-base leading-8 text-holly-ink/76">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-
-                  {member.focusAreas ? (
-                    <div className="mt-8">
-                      <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-                        What {getFirstName(member.name)} focuses on
-                      </p>
-                      <ul className="mt-4 grid gap-4 md:grid-cols-3">
-                        {member.focusAreas.map((focus) => (
-                          <li key={focus} className="border-t border-holly-ink/12 pt-4 text-sm font-semibold leading-7 text-holly-ink/76">
-                            <Sparkles aria-hidden className="mb-3 text-holly-gold" size={18} />
-                            {focus}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
-
-                  {member.personal ? (
-                    <div className="mt-8 rounded-[1.2rem] bg-holly-cream p-5">
-                      <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-rust">
-                        A little more about {getFirstName(member.name)}
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-holly-ink/72">{member.personal}</p>
-                    </div>
-                  ) : null}
-                </div>
-              </article>
+                person={member}
+                ctaHref={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
+                ctaId={`meet_manager_${homeTrackingSlug}`}
+              />
             ))}
 
             {deputies.length > 0 ? (
@@ -256,7 +216,11 @@ export default async function HomeDetailPage({ params }: PageProps) {
                 </div>
                 <div className="mt-6 grid gap-5 md:grid-cols-2">
                   {deputies.map((deputy, index) => (
-                    <DeputyCard key={`${deputy.role}-${index}`} deputy={deputy} index={index} />
+                    <ManagerProfile
+                      key={`${deputy.role}-${index}`}
+                      person={deputy}
+                      variant="card"
+                    />
                   ))}
                 </div>
               </div>
@@ -293,6 +257,8 @@ export default async function HomeDetailPage({ params }: PageProps) {
 
       {homeEvents.length > 0 ? <HomeLifeSection home={home} events={homeEvents} /> : null}
 
+      <VisitingFaqSection home={home} />
+
       <section className="bg-white py-14 md:py-20">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <SectionIntro
@@ -300,7 +266,13 @@ export default async function HomeDetailPage({ params }: PageProps) {
             title={`Ask about ${home.name}`}
             text="You can ask about availability, suitability, care needs, visiting or what to expect from a viewing."
           />
-          <EnquiryForm preferredHome={home.name} compactIntro reason={`home-${home.slug}`} />
+          <EnquiryForm
+            preferredHome={home.name}
+            compactIntro
+            reason={`home-${home.slug}`}
+            actionPath="/thank-you/general-enquiry"
+            submitCtaId={`home_${homeTrackingSlug}_enquiry_submit`}
+          />
         </div>
       </section>
 
@@ -322,8 +294,131 @@ export default async function HomeDetailPage({ params }: PageProps) {
   );
 }
 
-function getFirstName(name: string) {
-  return name.split(" ").filter(Boolean)[0] ?? name;
+function HomeFitSection({ home }: { home: CareHome }) {
+  return (
+    <section className="bg-white py-14 md:py-20">
+      <div className="section-shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+        <div>
+          <SectionIntro
+            eyebrow="Feel and fit"
+            title={`What ${home.name} feels like before you visit.`}
+            text="Families often need more than a list of facilities. These notes help you picture the home, who it may suit and what to ask next."
+          />
+          <div className="mt-8 grid gap-4">
+            {home.feelsLike.map((point) => (
+              <div key={point} className="rounded-[1.2rem] bg-holly-sky p-5">
+                <div className="flex gap-3">
+                  <HeartHandshake aria-hidden className="mt-1 flex-none text-holly-leaf" size={20} />
+                  <p className="font-semibold leading-7 text-holly-ink">{point}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid gap-5">
+          <article className="rounded-[1.4rem] border border-holly-ink/10 bg-holly-cream p-6 shadow-soft">
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-holly-leaf">
+              <CheckCircle2 aria-hidden size={22} />
+            </div>
+            <h2 className="font-display text-3xl font-semibold text-holly-ink">
+              Who this home may suit
+            </h2>
+            <ul className="mt-5 grid gap-3">
+              {home.maySuit.map((item) => (
+                <li key={item} className="flex gap-3 text-sm font-semibold leading-7 text-holly-ink/74">
+                  <span className="mt-2 h-2 w-2 flex-none rounded-full bg-holly-leaf" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="rounded-[1.4rem] bg-holly-ink p-6 text-white shadow-soft">
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-holly-leafLight">
+              <ClipboardList aria-hidden size={23} />
+            </div>
+            <h2 className="font-display text-3xl font-semibold">Care types available</h2>
+            <ul className="mt-5 grid gap-3">
+              {home.careTypes.map((item) => (
+                <li key={item} className="rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white/82">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VisitingFaqSection({ home }: { home: CareHome }) {
+  return (
+    <section className="bg-holly-cream py-14 md:py-20">
+      <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="grid gap-5">
+          <SectionIntro
+            eyebrow="Visiting and local area"
+            title={`Planning a first visit to ${home.name}.`}
+            text={home.visiting.summary}
+          />
+          <article className="rounded-[1.25rem] bg-white p-6 shadow-soft">
+            <div className="flex gap-4">
+              <MapPin aria-hidden className="mt-1 flex-none text-holly-leaf" size={22} />
+              <div>
+                <h2 className="font-display text-2xl font-semibold text-holly-ink">
+                  Local area context
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-holly-ink/72">{home.localArea}</p>
+              </div>
+            </div>
+          </article>
+          <article className="rounded-[1.25rem] bg-white p-6 shadow-soft">
+            <div className="flex gap-4">
+              <CalendarDays aria-hidden className="mt-1 flex-none text-holly-leaf" size={22} />
+              <div>
+                <h2 className="font-display text-2xl font-semibold text-holly-ink">
+                  Visiting and parking
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-holly-ink/72">{home.visiting.parking}</p>
+                <p className="mt-3 text-sm leading-7 text-holly-ink/72">{home.visiting.firstViewing}</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div>
+          <div className="mb-6 flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-holly-leaf shadow-soft">
+              <CircleHelp aria-hidden size={21} />
+            </div>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
+                Family questions
+              </p>
+              <h2 className="font-display text-3xl font-semibold text-holly-ink">
+                What families usually ask us
+              </h2>
+            </div>
+          </div>
+          <div className="grid gap-3">
+            {home.familyFaqs.map((faq) => (
+              <details key={faq.question} className="group rounded-[1.15rem] bg-white p-5 shadow-soft">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
+                  <span className="font-semibold leading-7 text-holly-ink">{faq.question}</span>
+                  <span className="mt-1 flex h-7 w-7 flex-none items-center justify-center rounded-full bg-holly-sky text-holly-leaf transition group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 text-sm leading-7 text-holly-ink/72">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function HomeLifeSection({ home, events }: { home: CareHome; events: HomeEvent[] }) {
@@ -344,7 +439,7 @@ function HomeLifeSection({ home, events }: { home: CareHome; events: HomeEvent[]
             <ButtonLink
               href={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
               icon={<CalendarDays aria-hidden size={17} />}
-              ctaId={`home-life-viewing-${home.slug}`}
+              ctaId={`home_life_viewing_${home.slug.replaceAll("-", "_")}`}
             >
               Book a viewing
             </ButtonLink>
@@ -352,7 +447,7 @@ function HomeLifeSection({ home, events }: { home: CareHome; events: HomeEvent[]
               href={`/events#${home.slug}-events`}
               variant="outline"
               icon={<Images aria-hidden size={17} />}
-              ctaId={`home-life-events-${home.slug}`}
+              ctaId={`home_life_events_${home.slug.replaceAll("-", "_")}`}
             >
               More photos
             </ButtonLink>
@@ -475,77 +570,5 @@ function HistoryArchiveImage({
         {image.caption}
       </figcaption>
     </figure>
-  );
-}
-
-function ProfilePhoto({ person }: { person: TeamMember }) {
-  return (
-    <div className="overflow-hidden rounded-[1.5rem] bg-holly-ink p-4 shadow-soft">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[1.15rem] bg-holly-cream">
-        {person.photo ? (
-          <Image
-            src={person.photo}
-            alt={person.photoAlt ?? `${person.name}, ${person.role}`}
-            fill
-            sizes="(min-width: 1024px) 22rem, 100vw"
-            className="object-cover"
-          />
-        ) : (
-          <div className="flex h-full flex-col items-center justify-center gap-4 px-6 text-center text-holly-ink/68">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white text-holly-leaf shadow-soft">
-              <UserRound aria-hidden size={44} />
-            </div>
-            <div>
-              <p className="font-semibold text-holly-ink">{person.role}</p>
-              <p className="mt-2 text-sm leading-6">{person.name}</p>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="flex items-center justify-between gap-4 px-2 pt-4 text-white">
-        <div>
-          <p className="text-sm font-semibold">{person.name}</p>
-          <p className="mt-1 text-xs uppercase tracking-[0.12em] text-holly-leafLight">
-            {person.role}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function DeputyCard({ deputy, index }: { deputy: DeputyProfile; index: number }) {
-  const name = deputy.name ?? `Deputy ${index + 1}`;
-
-  return (
-    <article className="grid gap-5 rounded-[1.25rem] border border-holly-ink/10 bg-holly-cream p-4 shadow-soft sm:grid-cols-[9rem_1fr]">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[1rem] bg-white">
-        {deputy.photo ? (
-          <Image
-            src={deputy.photo}
-            alt={deputy.photoAlt ?? `${name}, ${deputy.role}`}
-            fill
-            sizes="9rem"
-            className="object-cover"
-          />
-        ) : (
-          <div className="flex h-full flex-col items-center justify-center gap-3 px-3 text-center text-holly-ink/62">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-holly-sky text-holly-leaf">
-              <UserRound aria-hidden size={28} />
-            </div>
-            <p className="text-xs font-semibold leading-5">{deputy.role}</p>
-          </div>
-        )}
-      </div>
-      <div className="py-1">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-          {deputy.role}
-        </p>
-        <h4 className="mt-2 font-display text-2xl font-semibold text-holly-ink">
-          {name}
-        </h4>
-        <p className="mt-3 text-sm leading-7 text-holly-ink/70">{deputy.bio}</p>
-      </div>
-    </article>
   );
 }

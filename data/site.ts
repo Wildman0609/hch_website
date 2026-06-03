@@ -13,15 +13,18 @@ export const site = {
 };
 
 export const navItems = [
+  { label: "Find Care", href: "/find-the-right-care" },
   { label: "Find Your Home", href: "/find-your-home" },
   { label: "Care Services", href: "/care-services" },
   { label: "Fees & Funding", href: "/fees-funding" },
-  { label: "Family Guide", href: "/family-guide" },
   { label: "Contact", href: "/contact" }
 ];
 
 export const footerNavItems = [
   ...navItems,
+  { label: "I need help now", href: "/urgent-care-help" },
+  { label: "Family Guide", href: "/family-guide" },
+  { label: "Request a brochure", href: "/request-brochure" },
   { label: "Events & photos", href: "/events" },
   { label: "Careers", href: "/careers" }
 ];
@@ -68,13 +71,13 @@ export const quickActions = [
   {
     title: "I need care urgently",
     text: "Tell us what has changed and which area of Norfolk you are looking in. We will help you understand the next practical step.",
-    href: "/contact?urgency=urgent",
+    href: "/urgent-care-help",
     icon: ShieldCheck
   },
   {
-    title: "Book a viewing",
-    text: "Visit a home, meet the team and ask the questions that matter to your family.",
-    href: "/contact?reason=viewing",
+    title: "Find the right care",
+    text: "Answer a few practical questions if you are not sure which home, care type or next step may fit.",
+    href: "/find-the-right-care",
     icon: Home
   }
 ];

@@ -11,6 +11,8 @@ type PageHeroProps = {
   imageAlt: string;
   ctaLabel?: string;
   ctaHref?: string;
+  primaryCtaId?: string;
+  secondaryCtaId?: string;
 };
 
 export function PageHero({
@@ -20,7 +22,9 @@ export function PageHero({
   image,
   imageAlt,
   ctaLabel = "Speak to our team",
-  ctaHref = "/contact"
+  ctaHref = "/contact",
+  primaryCtaId = "page_hero_call",
+  secondaryCtaId = "page_hero_secondary"
 }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden bg-holly-ink text-white">
@@ -46,10 +50,10 @@ export function PageHero({
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/86">{text}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={site.phoneHref} icon={<Phone aria-hidden size={18} />} ctaId="page-hero-call">
+            <ButtonLink href={site.phoneHref} icon={<Phone aria-hidden size={18} />} ctaId={primaryCtaId}>
               Call {site.phone}
             </ButtonLink>
-            <ButtonLink href={ctaHref} variant="secondary" ctaId="page-hero-secondary">
+            <ButtonLink href={ctaHref} variant="secondary" ctaId={secondaryCtaId}>
               {ctaLabel}
             </ButtonLink>
           </div>

@@ -1,4 +1,5 @@
 import { homes } from "@/data/homes";
+import type { CareHomeFaq } from "@/data/homes";
 import { services } from "@/data/services";
 import { site } from "@/data/site";
 
@@ -72,6 +73,22 @@ export function servicesSchema() {
       position: index + 1,
       url: `${site.url}/care-services/${service.slug}`,
       name: service.title
+    }))
+  };
+}
+
+export function faqSchema(items: CareHomeFaq[], id: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${site.url}/#${id}`,
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
     }))
   };
 }

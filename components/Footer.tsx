@@ -24,7 +24,7 @@ export function Footer() {
             <Link
               href={site.phoneHref}
               className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-holly-ink transition hover:bg-holly-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-holly-leafLight"
-              data-cta="footer-call"
+              data-cta="footer_call"
             >
               <Phone aria-hidden size={17} />
               {site.phone}

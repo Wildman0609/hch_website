@@ -3,6 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
+import { familyReassurance } from "@/data/admissions";
 
 export const metadata: Metadata = {
   title: "Family Guide to Choosing a Care Home",
@@ -40,6 +41,8 @@ export default function FamilyGuidePage() {
         imageAlt="A dining and activity area inside a Hollyman care home."
         ctaLabel="Book a viewing"
         ctaHref="/contact?reason=viewing"
+        primaryCtaId="family_guide_page_call"
+        secondaryCtaId="family_guide_page_viewing"
       />
 
       <section className="bg-holly-cream py-14 md:py-20">
@@ -92,13 +95,34 @@ export default function FamilyGuidePage() {
               Families often call before they have the language for what is happening. Start with the practical details: where your loved one lives, what has changed, and how soon you need advice.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <ButtonLink href="/contact?urgency=urgent" variant="secondary" ctaId="guide-urgent">
+              <ButtonLink href="/urgent-care-help" variant="secondary" ctaId="guide_urgent_help">
                 I need care urgently
               </ButtonLink>
-              <ButtonLink href="/contact?reason=viewing" className="bg-white text-holly-ink hover:bg-holly-sky" ctaId="guide-viewing">
+              <ButtonLink href="/contact?reason=viewing" className="bg-white text-holly-ink hover:bg-holly-sky" ctaId="guide_viewing">
                 Book a viewing
               </ButtonLink>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-holly-cream py-14 md:py-20">
+        <div className="section-shell">
+          <SectionIntro
+            align="center"
+            eyebrow="What families worry about"
+            title="The emotional questions are part of the decision."
+            text="You can ask about practical care and still talk honestly about guilt, settling in and safety."
+          />
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {familyReassurance.map((item) => (
+              <article key={item.question} className="rounded-[1.25rem] bg-white p-5 shadow-soft">
+                <h2 className="font-display text-2xl font-semibold text-holly-ink">
+                  {item.question}
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-holly-ink/72">{item.answer}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>

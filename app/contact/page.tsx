@@ -21,6 +21,18 @@ type ContactPageProps = {
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
   const params = await searchParams;
+  const actionPath =
+    params.reason === "viewing"
+      ? "/thank-you/viewing-request"
+      : params.urgency === "urgent" || params.reason === "urgent"
+        ? "/thank-you/urgent-help-request"
+        : "/thank-you/general-enquiry";
+  const submitLabel =
+    params.reason === "viewing"
+      ? "Request viewing"
+      : params.urgency === "urgent" || params.reason === "urgent"
+        ? "Request urgent callback"
+        : "Send enquiry";
 
   return (
     <>
@@ -32,6 +44,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         imageAlt="A Hollyman team member supporting a resident during an activity."
         ctaLabel="Find a home"
         ctaHref="/find-your-home"
+        primaryCtaId="contact_page_call"
+        secondaryCtaId="contact_page_find_home"
       />
 
       <section className="bg-holly-cream py-14 md:py-20">
@@ -41,6 +55,15 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             careType={params.care}
             urgency={params.urgency ?? params.reason}
             reason={params.reason ?? "contact"}
+            actionPath={actionPath}
+            submitLabel={submitLabel}
+            submitCtaId={
+              params.reason === "viewing"
+                ? "viewing_request_submit"
+                : params.urgency === "urgent" || params.reason === "urgent"
+                  ? "urgent_help_request_submit"
+                  : "general_enquiry_submit"
+            }
           />
           <div className="grid gap-4">
             {homes.map((home) => (

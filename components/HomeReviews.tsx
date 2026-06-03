@@ -31,7 +31,7 @@ export function HomeReviews({ home }: HomeReviewsProps) {
             target="_blank"
             rel="noreferrer"
             className="inline-flex min-h-12 w-fit items-center justify-center gap-2 rounded-full border border-holly-leaf/35 bg-white px-5 py-3 text-sm font-semibold text-holly-ink transition hover:border-holly-leaf hover:bg-holly-sky"
-            data-cta={`reviews-google-${home.slug}`}
+            data-cta={`reviews_google_${home.slug.replaceAll("-", "_")}`}
           >
             <ExternalLink aria-hidden size={17} />
             <span>Open Google reviews</span>
@@ -46,7 +46,7 @@ export function HomeReviews({ home }: HomeReviewsProps) {
             text="Open the home's Google profile to read current public reviews and ratings."
             href={googleReviewsUrl}
             ctaLabel="View on Google"
-            ctaId={`reviews-card-google-${home.slug}`}
+            ctaId={`reviews_card_google_${home.slug.replaceAll("-", "_")}`}
           />
 
           {carehomeSource.widgetHtml ? (
@@ -64,7 +64,7 @@ export function HomeReviews({ home }: HomeReviewsProps) {
               text="Read verified carehome.co.uk reviews directly on the home's official profile."
               href={carehomeSource.profileUrl}
               ctaLabel="View on carehome.co.uk"
-              ctaId={`reviews-card-carehome-${home.slug}`}
+              ctaId={`reviews_card_carehome_${home.slug.replaceAll("-", "_")}`}
             />
           )}
 
@@ -84,7 +84,7 @@ export function HomeReviews({ home }: HomeReviewsProps) {
             <a
               href={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
               className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-holly-gold px-5 py-3 text-sm font-semibold text-holly-ink transition hover:bg-[#b77824]"
-              data-cta={`reviews-book-viewing-${home.slug}`}
+              data-cta={`reviews_book_viewing_${home.slug.replaceAll("-", "_")}`}
             >
               Book a viewing
             </a>

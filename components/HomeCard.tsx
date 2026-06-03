@@ -52,14 +52,14 @@ export function HomeCard({ home, compact = false }: HomeCardProps) {
             href={`/homes/${home.slug}`}
             variant="outline"
             icon={<ArrowRight aria-hidden size={17} />}
-            ctaId={`home-card-${home.slug}`}
+            ctaId={`home_card_${home.slug.replaceAll("-", "_")}`}
           >
             View home
           </ButtonLink>
           <ButtonLink
             href={home.phoneHref}
             icon={<Phone aria-hidden size={17} />}
-            ctaId={`home-card-call-${home.slug}`}
+            ctaId={`home_card_call_${home.slug.replaceAll("-", "_")}`}
           >
             Call
           </ButtonLink>

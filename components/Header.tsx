@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Phone } from "lucide-react";
+import { CalendarDays, Menu, Phone, ShieldCheck } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { navItems, site } from "@/data/site";
 
@@ -38,18 +38,32 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <ButtonLink
             href={site.phoneHref}
             variant="outline"
             icon={<Phone aria-hidden size={17} />}
-            ctaId="header-call"
+            className="whitespace-nowrap px-4"
+            ctaId="call_header"
           >
             {site.phone}
           </ButtonLink>
-          <ButtonLink href="/contact?reason=viewing" ctaId="header-viewing">
+          <ButtonLink
+            href="/contact?reason=viewing"
+            icon={<CalendarDays aria-hidden size={17} />}
+            className="whitespace-nowrap px-4"
+            ctaId="book_viewing_header"
+          >
             Book a viewing
           </ButtonLink>
+          <Link
+            href="/urgent-care-help"
+            data-cta="urgent_help_header"
+            className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-holly-gold/35 bg-holly-cream px-4 py-2 text-sm font-semibold text-holly-rust transition hover:border-holly-gold hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-holly-gold"
+          >
+            <ShieldCheck aria-hidden size={16} />
+            Need help now?
+          </Link>
         </div>
 
         <details className="group relative lg:hidden">
@@ -70,11 +84,20 @@ export function Header() {
               ))}
             </nav>
             <div className="mt-4 grid gap-2">
-              <ButtonLink href={site.phoneHref} icon={<Phone aria-hidden size={17} />} ctaId="mobile-menu-call">
+              <ButtonLink href={site.phoneHref} icon={<Phone aria-hidden size={17} />} ctaId="call_mobile_menu">
                 Call now
               </ButtonLink>
-              <ButtonLink href="/contact?reason=viewing" variant="secondary" ctaId="mobile-menu-viewing">
+              <ButtonLink href="/contact?reason=viewing" variant="outline" ctaId="book_viewing_mobile_menu">
                 Book a viewing
+              </ButtonLink>
+              <ButtonLink
+                href="/urgent-care-help"
+                variant="outline"
+                icon={<ShieldCheck aria-hidden size={17} />}
+                className="bg-holly-cream text-holly-rust"
+                ctaId="urgent_help_mobile_menu"
+              >
+                Need help now?
               </ButtonLink>
             </div>
           </div>

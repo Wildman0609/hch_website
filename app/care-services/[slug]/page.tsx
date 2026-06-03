@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, FileText } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { JsonLd } from "@/components/JsonLd";
@@ -58,6 +58,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         imageAlt={service.imageAlt}
         ctaLabel="Talk to us about this care"
         ctaHref={`/contact?care=${encodeURIComponent(service.title)}`}
+        primaryCtaId={`service_${service.slug.replaceAll("-", "_")}_call`}
+        secondaryCtaId={`service_${service.slug.replaceAll("-", "_")}_enquiry`}
       />
 
       <section className="bg-holly-cream py-14 md:py-20">
@@ -100,12 +102,26 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               href="/fees-funding"
               variant="outline"
               className="mt-7"
-              ctaId={`service-funding-${service.slug}`}
+              ctaId={`service_funding_${service.slug.replaceAll("-", "_")}`}
             >
               Read fees and funding guidance
             </ButtonLink>
+            <ButtonLink
+              href={`/request-brochure?care=${encodeURIComponent(service.title)}`}
+              variant="outline"
+              icon={<FileText aria-hidden size={17} />}
+              className="ml-0 mt-3 sm:ml-3"
+              ctaId={`service_brochure_${service.slug.replaceAll("-", "_")}`}
+            >
+              Request a brochure
+            </ButtonLink>
           </div>
-          <EnquiryForm careType={service.title} compactIntro reason={`service-${service.slug}`} />
+          <EnquiryForm
+            careType={service.title}
+            compactIntro
+            reason={`service-${service.slug}`}
+            submitCtaId={`service_${service.slug.replaceAll("-", "_")}_enquiry_submit`}
+          />
         </div>
       </section>
     </>
