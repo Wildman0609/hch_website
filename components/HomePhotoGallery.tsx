@@ -109,7 +109,7 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
 
       {isOpen && activeImage ? (
         <div
-          className="fixed inset-0 z-[90] bg-holly-ink/96 text-white"
+          className="fixed inset-0 z-[90] bg-holly-ink text-white"
           role="dialog"
           aria-modal="true"
           aria-labelledby="home-photo-gallery-title"
@@ -121,7 +121,7 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
                   {homeName}
                 </p>
                 <h2 id="home-photo-gallery-title" className="mt-1 truncate font-display text-2xl font-semibold">
-                  {activeImage.caption}
+                  Photo gallery
                 </h2>
               </div>
               <button
@@ -135,21 +135,21 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
               </button>
             </div>
 
-            <div className="grid min-h-0 flex-1 gap-4 px-4 py-4 lg:grid-cols-[4rem_1fr_4rem] lg:px-6">
-              <div className="hidden items-center justify-center lg:flex">
-                <button
-                  type="button"
-                  onClick={() => moveTo(activeIndex - 1)}
-                  title="Previous photo"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-gold"
-                >
-                  <ChevronLeft aria-hidden size={24} />
-                  <span className="sr-only">Previous photo</span>
-                </button>
-              </div>
+            <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)_auto]">
+              <div className="grid min-h-0 gap-3 px-3 py-3 sm:px-5 sm:py-5 lg:grid-cols-[3.5rem_minmax(0,1fr)_3.5rem]">
+                <div className="hidden items-center justify-center lg:flex">
+                  <button
+                    type="button"
+                    onClick={() => moveTo(activeIndex - 1)}
+                    title="Previous photo"
+                    className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-gold"
+                  >
+                    <ChevronLeft aria-hidden size={24} />
+                    <span className="sr-only">Previous photo</span>
+                  </button>
+                </div>
 
-              <figure className="grid min-h-0 grid-rows-[minmax(0,1fr)_auto] gap-4">
-                <div className="relative min-h-[18rem] overflow-hidden rounded-lg bg-black/24">
+                <figure className="relative min-h-[18rem] overflow-hidden rounded-lg bg-black">
                   <Image
                     src={activeImage.src}
                     alt={activeImage.alt}
@@ -158,78 +158,58 @@ export function HomePhotoGallery({ homeName, images }: HomePhotoGalleryProps) {
                     className="object-contain"
                     priority
                   />
+                </figure>
+
+                <div className="hidden items-center justify-center lg:flex">
+                  <button
+                    type="button"
+                    onClick={() => moveTo(activeIndex + 1)}
+                    title="Next photo"
+                    className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-gold"
+                  >
+                    <ChevronRight aria-hidden size={24} />
+                    <span className="sr-only">Next photo</span>
+                  </button>
                 </div>
-                <figcaption className="flex flex-col gap-2 text-sm leading-6 text-white/78 sm:flex-row sm:items-center sm:justify-between">
-                  <span>
-                    <span className="mr-2 inline-flex rounded-full bg-white/12 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-white/84">
+              </div>
+
+              <div className="border-t border-white/12 px-4 py-4 sm:px-6">
+                <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
+                    <p className="inline-flex rounded-full bg-white/12 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-white/84">
                       {activeImage.category}
+                    </p>
+                    <p className="mt-2 font-display text-2xl font-semibold leading-tight text-white">
+                      {activeImage.caption}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-none items-center justify-between gap-3 sm:justify-end">
+                    <span className="text-sm font-semibold text-white/62">
+                      {activeIndex + 1} of {images.length}
                     </span>
-                    {activeImage.alt}
-                  </span>
-                  <span className="flex-none text-white/56">
-                    {activeIndex + 1} of {images.length}
-                  </span>
-                </figcaption>
-              </figure>
-
-              <div className="hidden items-center justify-center lg:flex">
-                <button
-                  type="button"
-                  onClick={() => moveTo(activeIndex + 1)}
-                  title="Next photo"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-gold"
-                >
-                  <ChevronRight aria-hidden size={24} />
-                  <span className="sr-only">Next photo</span>
-                </button>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 lg:hidden">
-                <button
-                  type="button"
-                  onClick={() => moveTo(activeIndex - 1)}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white/10 px-4 text-sm font-semibold text-white"
-                >
-                  <ChevronLeft aria-hidden size={18} />
-                  Previous
-                </button>
-                <button
-                  type="button"
-                  onClick={() => moveTo(activeIndex + 1)}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white/10 px-4 text-sm font-semibold text-white"
-                >
-                  Next
-                  <ChevronRight aria-hidden size={18} />
-                </button>
-              </div>
-            </div>
-
-            <div className="border-t border-white/12 px-4 py-3 sm:px-6">
-              <div className="flex gap-3 overflow-x-auto pb-1">
-                {images.map((image, index) => {
-                  const isSelected = index === activeIndex;
-
-                  return (
-                    <button
-                      key={image.src}
-                      type="button"
-                      onClick={() => setActiveIndex(index)}
-                      className={`relative h-20 w-28 flex-none overflow-hidden rounded-md border transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-gold ${
-                        isSelected ? "border-holly-gold" : "border-white/18 opacity-72 hover:opacity-100"
-                      }`}
-                      aria-label={`Show ${image.caption}`}
-                    >
-                      <Image
-                        src={image.src}
-                        alt=""
-                        fill
-                        sizes="7rem"
-                        className="object-cover"
-                        style={{ objectPosition: image.position ?? "50% 50%" }}
-                      />
-                    </button>
-                  );
-                })}
+                    <div className="flex gap-2 lg:hidden">
+                      <button
+                        type="button"
+                        onClick={() => moveTo(activeIndex - 1)}
+                        title="Previous photo"
+                        className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-gold"
+                      >
+                        <ChevronLeft aria-hidden size={21} />
+                        <span className="sr-only">Previous photo</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => moveTo(activeIndex + 1)}
+                        title="Next photo"
+                        className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/18 focus-visible:outline focus-visible:outline-2 focus-visible:outline-holly-gold"
+                      >
+                        <ChevronRight aria-hidden size={21} />
+                        <span className="sr-only">Next photo</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
