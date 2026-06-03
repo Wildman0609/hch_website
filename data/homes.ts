@@ -324,6 +324,8 @@ export const homes: CareHome[] = [
       {
         name: "Maria Barber",
         role: "Home Manager",
+        photo: "/images/maria-barber.jpg",
+        photoAlt: "Maria Barber, Home Manager at Braydeston Court.",
         quote:
           "Good care starts with treating people as you would want your own loved ones to be treated.",
         bio: [

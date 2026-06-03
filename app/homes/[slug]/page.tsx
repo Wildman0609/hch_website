@@ -14,6 +14,7 @@ import {
 import { ButtonLink } from "@/components/ButtonLink";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { HomeCard } from "@/components/HomeCard";
+import { HomeReviews } from "@/components/HomeReviews";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
@@ -282,6 +283,8 @@ export default async function HomeDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <HomeReviews home={home} />
 
       <section className="bg-white py-14 md:py-20">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
