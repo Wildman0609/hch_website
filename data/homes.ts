@@ -76,6 +76,21 @@ export type CareHome = {
 
 const noDeputyProfiles = (): DeputyProfile[] => [];
 
+const galleryImage = (
+  slug: HomeSlug,
+  fileName: string,
+  alt: string,
+  caption: string,
+  category: CareHomeGalleryImage["category"],
+  position?: string
+): CareHomeGalleryImage => ({
+  src: `/images/homes/${slug}/${fileName}`,
+  alt,
+  caption,
+  category,
+  ...(position ? { position } : {})
+});
+
 export const homes: CareHome[] = [
   {
     slug: "broadlands-park",
@@ -108,27 +123,19 @@ export const homes: CareHome[] = [
       "Space for cherished belongings"
     ],
     gallery: [
-      {
-        src: "/images/homes/broadlands-park/garden-path.webp",
-        alt: "Broadlands Park garden path with outdoor seating beside the red-brick extension.",
-        caption: "Garden path and outdoor seating",
-        category: "Gardens",
-        position: "50% 52%"
-      },
-      {
-        src: "/images/homes/broadlands-park/front-entrance.webp",
-        alt: "Broadlands Park front entrance with a green bench and hanging flower baskets.",
-        caption: "Front entrance",
-        category: "Exterior",
-        position: "50% 48%"
-      },
-      {
-        src: "/images/homes/broadlands-park/rear-garden.webp",
-        alt: "Broadlands Park rear garden with lawn, seating and mature trees.",
-        caption: "Rear garden seating",
-        category: "Gardens",
-        position: "50% 50%"
-      }
+      galleryImage("broadlands-park", "bedroom.webp", "Broadlands Park bedroom with a double bed, soft chair and large windows.", "Example bedroom", "Rooms"),
+      galleryImage("broadlands-park", "garden-lawn.webp", "Broadlands Park garden lawn with mature trees and planting.", "Garden lawn", "Gardens"),
+      galleryImage("broadlands-park", "lounge-seating.webp", "Broadlands Park lounge area with chairs, framed photographs and access through to shared spaces.", "Lounge seating", "Communal areas"),
+      galleryImage("broadlands-park", "garden-planting.webp", "Broadlands Park garden planting and flower beds beside the red-brick building.", "Garden planting", "Gardens"),
+      galleryImage("broadlands-park", "fresh-meal.webp", "A freshly served meal at Broadlands Park.", "Freshly served meal", "Communal areas"),
+      galleryImage("broadlands-park", "bedroom-corner.webp", "Broadlands Park bedroom corner with a bed, chair, wardrobe and garden view.", "Bedroom corner", "Rooms"),
+      galleryImage("broadlands-park", "lounge-area.webp", "Broadlands Park lounge area with armchairs and bunting.", "Lounge area", "Communal areas"),
+      galleryImage("broadlands-park", "dining-area.webp", "Broadlands Park dining area with tables, chairs and a serving counter.", "Dining area", "Communal areas"),
+      galleryImage("broadlands-park", "reading-corner.webp", "Broadlands Park reading corner with armchairs, framed photographs and magazines.", "Reading corner", "Communal areas"),
+      galleryImage("broadlands-park", "corridor.webp", "Broadlands Park corridor with handrails and bedroom doors.", "Accessible corridors", "Communal areas"),
+      galleryImage("broadlands-park", "hallway.webp", "Broadlands Park hallway leading through to shared lounge areas.", "Hallway through the home", "Communal areas"),
+      galleryImage("broadlands-park", "garden-border.webp", "Broadlands Park garden border with planting beside the lawn.", "Garden border", "Gardens"),
+      galleryImage("broadlands-park", "garden-detail.webp", "Broadlands Park garden detail with planting and decorative features.", "Garden detail", "Gardens")
     ],
     history: {
       title: "The home that started Hollyman Care Homes.",
@@ -234,27 +241,12 @@ export const homes: CareHome[] = [
       "Quiet spaces for rest"
     ],
     gallery: [
-      {
-        src: "/images/homes/broadland-house/garden-path.webp",
-        alt: "Broadland House garden path with raised beds and planting.",
-        caption: "Garden paths and planting",
-        category: "Gardens",
-        position: "50% 50%"
-      },
-      {
-        src: "/images/homes/broadland-house/garden-pergola.webp",
-        alt: "Broadland House garden pergola with outdoor table and chairs.",
-        caption: "Outdoor seating",
-        category: "Gardens",
-        position: "50% 52%"
-      },
-      {
-        src: "/images/homes/broadland-house/frontage.jpg",
-        alt: "Broadland House exterior and main entrance in Potter Heigham.",
-        caption: "Main house frontage",
-        category: "Exterior",
-        position: "50% 46%"
-      }
+      galleryImage("broadland-house", "bedroom.webp", "Broadland House bedroom with a bed, armchair and window view.", "Example bedroom", "Rooms"),
+      galleryImage("broadland-house", "garden-activity.webp", "Residents and team members taking part in an outdoor garden activity at Broadland House.", "Garden activity", "Gardens"),
+      galleryImage("broadland-house", "bedroom-sitting-area.webp", "Broadland House bedroom with a bed, armchairs, table and television.", "Bedroom sitting area", "Rooms"),
+      galleryImage("broadland-house", "raised-garden-beds.webp", "Broadland House garden with raised beds, benches and winter planting.", "Raised garden beds", "Gardens"),
+      galleryImage("broadland-house", "garden-pergola.webp", "Broadland House garden pergola with outdoor table, chairs and bunting.", "Garden pergola", "Gardens"),
+      galleryImage("broadland-house", "conservatory-lounge.webp", "Broadland House conservatory lounge with armchairs and a jukebox.", "Conservatory lounge", "Communal areas")
     ],
     teamMembers: [
       {
@@ -325,27 +317,12 @@ export const homes: CareHome[] = [
       "Peaceful outlooks from many rooms"
     ],
     gallery: [
-      {
-        src: "/images/homes/martham-lodge/side-exterior.jpg",
-        alt: "Martham Lodge exterior viewed from the village green side.",
-        caption: "Village green setting",
-        category: "Exterior",
-        position: "50% 50%"
-      },
-      {
-        src: "/images/homes/martham-lodge/bedroom.webp",
-        alt: "Martham Lodge bedroom with a bed, wardrobe, armchair and en-suite sink.",
-        caption: "Example bedroom",
-        category: "Rooms",
-        position: "50% 50%"
-      },
-      {
-        src: "/images/homes/martham-lodge/history-hallway.webp",
-        alt: "Martham Lodge hallway with framed photographs and local history displays.",
-        caption: "Hallway history display",
-        category: "Communal areas",
-        position: "50% 50%"
-      }
+      galleryImage("martham-lodge", "patio-seating.webp", "Martham Lodge patio seating beside a blue exterior wall and garden gate.", "Patio seating", "Gardens"),
+      galleryImage("martham-lodge", "bedroom.webp", "Martham Lodge bedroom with a bed, armchair, sink and window view.", "Example bedroom", "Rooms"),
+      galleryImage("martham-lodge", "garden-seating.webp", "Martham Lodge garden seating with planting, trees and a garden room.", "Garden seating", "Gardens"),
+      galleryImage("martham-lodge", "home-cat.webp", "A cat standing in a Martham Lodge communal area.", "A familiar face", "Communal areas"),
+      galleryImage("martham-lodge", "activity-table.webp", "Martham Lodge activity table with games, craft materials and colourful cones.", "Activity table", "Communal areas"),
+      galleryImage("martham-lodge", "conservatory-lounge.webp", "Martham Lodge conservatory lounge with armchairs, plants and garden light.", "Conservatory lounge", "Communal areas")
     ],
     teamMembers: [
       {
@@ -409,27 +386,18 @@ export const homes: CareHome[] = [
       "Cosy, restful spaces"
     ],
     gallery: [
-      {
-        src: "/images/homes/braydeston-court/cafe-communal-area.jpg",
-        alt: "Braydeston Court cafe-style communal area with tables, bunting and a view to the garden.",
-        caption: "Cafe-style communal area",
-        category: "Communal areas",
-        position: "50% 50%"
-      },
-      {
-        src: "/images/homes/braydeston-court/rear-garden.webp",
-        alt: "Braydeston Court rear garden with lawn, seating and the red-brick house beyond.",
-        caption: "Rear garden lawn",
-        category: "Gardens",
-        position: "50% 50%"
-      },
-      {
-        src: "/images/home-braydeston.webp",
-        alt: "Braydeston Court exterior with its red-brick frontage and tower.",
-        caption: "Historic frontage",
-        category: "Exterior",
-        position: "50% 50%"
-      }
+      galleryImage("braydeston-court", "bedroom.webp", "Braydeston Court bedroom with a bed, chair and large window.", "Example bedroom", "Rooms"),
+      galleryImage("braydeston-court", "cafe-menu.webp", "Braydeston Court cafe menu board set into a brick feature wall.", "Cafe menu board", "Communal areas"),
+      galleryImage("braydeston-court", "staircase-seating.webp", "Braydeston Court staircase seating area with wood panelling and armchairs.", "Staircase seating", "Communal areas"),
+      galleryImage("braydeston-court", "front-exterior.webp", "Braydeston Court red-brick exterior with bay windows and a tower.", "Edwardian frontage", "Exterior"),
+      galleryImage("braydeston-court", "bay-window-seating.webp", "Braydeston Court bay-window seating area with a small table and chairs.", "Bay-window seating", "Communal areas"),
+      galleryImage("braydeston-court", "cafe-counter.webp", "Braydeston Court cafe counter with tea cups, shelves and wall decoration.", "Cafe counter", "Communal areas"),
+      galleryImage("braydeston-court", "tea-station.webp", "Braydeston Court tea and coffee station with teapots and cafe signage.", "Tea and coffee corner", "Communal areas"),
+      galleryImage("braydeston-court", "tea-service.webp", "Braydeston Court tea service detail with cups and a teapot.", "Tea service detail", "Communal areas"),
+      galleryImage("braydeston-court", "cafe-wall-display.webp", "Braydeston Court cafe wall display with hats, signs and decorative features.", "Cafe wall display", "Communal areas"),
+      galleryImage("braydeston-court", "window-table.webp", "Braydeston Court quiet table beside a tall window.", "Quiet table by the window", "Communal areas"),
+      galleryImage("braydeston-court", "hallway.webp", "Braydeston Court hallway with seating, artwork and light green wall panels.", "Hallway seating", "Communal areas"),
+      galleryImage("braydeston-court", "corridor.webp", "Braydeston Court corridor with blue door and arched opening.", "Bright corridors", "Communal areas")
     ],
     teamMembers: [
       {
