@@ -27,31 +27,39 @@ export default function HomePage() {
               title="Four Norfolk homes, each with its own character."
               text="From village greens to peaceful gardens, each Hollyman home has a local feel and a team ready to help families make sense of the next step."
             />
-            <div className="flex flex-col items-start gap-3 md:mb-2 md:items-end">
-              <ButtonLink
-                href="/events"
-                variant="outline"
-                icon={<Images aria-hidden size={17} />}
-                ctaId="homepage-events"
-                className="whitespace-nowrap"
-              >
-                Events & photos
-              </ButtonLink>
-              <ButtonLink
-                href="/find-your-home"
-                variant="outline"
-                icon={<ArrowRight aria-hidden size={17} />}
-                ctaId="homepage-all-homes"
-                className="whitespace-nowrap"
-              >
-                Compare homes
-              </ButtonLink>
-            </div>
+            <ButtonLink
+              href="/find-your-home"
+              variant="outline"
+              icon={<ArrowRight aria-hidden size={17} />}
+              ctaId="homepage-all-homes"
+              className="whitespace-nowrap md:mb-2"
+            >
+              Compare homes
+            </ButtonLink>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {homes.map((home) => (
               <HomeCard key={home.slug} home={home} compact />
             ))}
+          </div>
+          <div className="mt-8 flex flex-col gap-4 border-t border-holly-ink/10 pt-6 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
+                Life in our homes
+              </p>
+              <p className="mt-2 text-sm leading-7 text-holly-ink/70">
+                Activities, visitors and seasonal moments help families see the character of each home.
+              </p>
+            </div>
+            <ButtonLink
+              href="/events"
+              variant="plain"
+              icon={<Images aria-hidden size={17} />}
+              ctaId="homepage-events"
+              className="w-fit px-0"
+            >
+              See life in our homes
+            </ButtonLink>
           </div>
         </div>
       </section>

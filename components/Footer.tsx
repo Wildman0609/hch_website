@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Facebook, Phone } from "lucide-react";
 import { homes } from "@/data/homes";
 import { services } from "@/data/services";
-import { navItems, site } from "@/data/site";
+import { footerNavItems, site } from "@/data/site";
 
 export function Footer() {
   return (
@@ -45,7 +45,7 @@ export function Footer() {
               Explore
             </h2>
             <ul className="mt-4 grid gap-3 text-sm text-white/72">
-              {navItems.map((item) => (
+              {footerNavItems.map((item) => (
                 <li key={item.href}>
                   <Link className="hover:text-white" href={item.href}>
                     {item.label}

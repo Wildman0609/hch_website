@@ -5,6 +5,7 @@ import {
   ArrowRight,
   CalendarDays,
   HeartHandshake,
+  Images,
   MapPin,
   Phone,
   Sparkles,
@@ -18,9 +19,11 @@ import { HomeReviews } from "@/components/HomeReviews";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
+import { sortedHomeEvents, type HomeEvent, type HomeEventPhoto } from "@/data/homeEvents";
 import {
   getHome,
   homes,
+  type CareHome,
   type CareHomeHistory,
   type CareHomeHistoryImage,
   type DeputyProfile,
@@ -59,6 +62,7 @@ export default async function HomeDetailPage({ params }: PageProps) {
   }
 
   const otherHomes = homes.filter((item) => item.slug !== home.slug).slice(0, 3);
+  const homeEvents = sortedHomeEvents.filter((event) => event.homeSlug === home.slug);
 
   return (
     <>
@@ -286,6 +290,8 @@ export default async function HomeDetailPage({ params }: PageProps) {
 
       <HomeReviews home={home} />
 
+      {homeEvents.length > 0 ? <HomeLifeSection home={home} events={homeEvents} /> : null}
+
       <section className="bg-white py-14 md:py-20">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <SectionIntro
@@ -317,6 +323,76 @@ export default async function HomeDetailPage({ params }: PageProps) {
 
 function getFirstName(name: string) {
   return name.split(" ").filter(Boolean)[0] ?? name;
+}
+
+function HomeLifeSection({ home, events }: { home: CareHome; events: HomeEvent[] }) {
+  const photos = events.flatMap((event) => event.photos).slice(0, 3);
+  const latestEvent = events[0];
+  const eventLabel = `${events.length} recent event${events.length === 1 ? "" : "s"}`;
+
+  return (
+    <section className="bg-holly-cream py-14 md:py-20">
+      <div className="section-shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div>
+          <SectionIntro
+            eyebrow={`Life at ${home.shortName}`}
+            title={`See daily life and events at ${home.name}`}
+            text={`${home.shortName} has photos from ${eventLabel}, including ${latestEvent.title}. These moments help show the atmosphere families can expect when they visit.`}
+          />
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink
+              href={`/contact?reason=viewing&home=${encodeURIComponent(home.name)}`}
+              icon={<CalendarDays aria-hidden size={17} />}
+              ctaId={`home-life-viewing-${home.slug}`}
+            >
+              Book a viewing
+            </ButtonLink>
+            <ButtonLink
+              href={`/events#${home.slug}-events`}
+              variant="outline"
+              icon={<Images aria-hidden size={17} />}
+              ctaId={`home-life-events-${home.slug}`}
+            >
+              More photos
+            </ButtonLink>
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          {photos.map((photo, index) => (
+            <HomeLifePhoto key={photo.src} photo={photo} featured={index === 0} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomeLifePhoto({
+  photo,
+  featured
+}: {
+  photo: HomeEventPhoto;
+  featured: boolean;
+}) {
+  return (
+    <figure className={featured ? "sm:col-span-2" : undefined}>
+      <div
+        className={`relative overflow-hidden rounded-[1.25rem] bg-holly-ink shadow-soft ${
+          featured ? "aspect-[16/9]" : "aspect-[4/3]"
+        }`}
+      >
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          sizes={featured ? "(min-width: 1024px) 40rem, 100vw" : "(min-width: 640px) 20rem, 100vw"}
+          className="object-cover"
+          style={{ objectPosition: photo.position ?? "50% 50%" }}
+        />
+      </div>
+    </figure>
+  );
 }
 
 function HistorySection({ history }: { history: CareHomeHistory }) {

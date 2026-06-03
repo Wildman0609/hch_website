@@ -174,8 +174,8 @@ export default function CareersPage() {
           <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <SectionIntro
               eyebrow="Live roles"
-              title="Current opportunities and future interest."
-              text="See the roles currently being highlighted across HCH, then apply for a specific vacancy or register interest in another position."
+              title="Current opening at HCH."
+              text="Our current vacancy is for a night carer at Braydeston Court. You can also use the form to register interest in future roles."
             />
             <ButtonLink
               href="#apply"

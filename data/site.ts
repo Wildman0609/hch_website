@@ -14,12 +14,16 @@ export const site = {
 
 export const navItems = [
   { label: "Find Your Home", href: "/find-your-home" },
-  { label: "Events", href: "/events" },
   { label: "Care Services", href: "/care-services" },
   { label: "Fees & Funding", href: "/fees-funding" },
   { label: "Family Guide", href: "/family-guide" },
-  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" }
+];
+
+export const footerNavItems = [
+  ...navItems,
+  { label: "Events & photos", href: "/events" },
+  { label: "Careers", href: "/careers" }
 ];
 
 export const trustBlocks = [

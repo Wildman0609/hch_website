@@ -133,99 +133,15 @@ export const careerRoles: CareerRole[] = [
 
 export const liveVacancies: LiveVacancy[] = [
   {
-    id: "day-care-assistant",
-    title: "Carer - Day",
-    home: "Across Hollyman Care Homes",
-    location: "Upton, Potter Heigham, Martham and Brundall",
-    contract: "Full-time and part-time roles considered",
-    shift: "Day shifts",
-    pay: "From £13.75 per hour",
-    status: "Recruiting",
-    summary:
-      "A practical, people-focused role supporting residents with everyday care, routines, companionship and dignity."
-  },
-  {
     id: "night-care-assistant",
     title: "Carer - Night",
-    home: "Across Hollyman Care Homes",
-    location: "Norfolk",
+    home: "Braydeston Court",
+    location: "Brundall",
     contract: "Role dependent",
     shift: "Night shifts",
     pay: "Discussed at interview",
-    status: "Register interest",
+    status: "Recruiting",
     summary:
-      "For carers who can provide calm overnight support, complete observations and help residents feel safe through the night."
-  },
-  {
-    id: "senior-care-assistant",
-    title: "Senior Care Assistant",
-    home: "Across Hollyman Care Homes",
-    location: "Norfolk",
-    contract: "Role dependent",
-    shift: "Day shifts",
-    pay: "Discussed at interview",
-    status: "Register interest",
-    summary:
-      "For experienced carers who are ready to help lead shifts, support colleagues and keep care delivery organised."
-  },
-  {
-    id: "deputy-manager",
-    title: "Deputy / Head of Shift",
-    home: "Across Hollyman Care Homes",
-    location: "Norfolk",
-    contract: "Role dependent",
-    shift: "Home leadership",
-    pay: "Discussed at interview",
-    status: "Register interest",
-    summary:
-      "For experienced senior care leaders who can support managers with care quality, team leadership and daily operations."
-  },
-  {
-    id: "manager",
-    title: "Manager",
-    home: "Across Hollyman Care Homes",
-    location: "Norfolk",
-    contract: "Role dependent",
-    shift: "Home leadership",
-    pay: "Discussed at interview",
-    status: "Register interest",
-    summary:
-      "For experienced managers who can lead a home, support families and staff, and keep care quality and operations aligned."
-  },
-  {
-    id: "housekeeper",
-    title: "Housekeeper",
-    home: "Across Hollyman Care Homes",
-    location: "Norfolk",
-    contract: "Role dependent",
-    shift: "Housekeeping",
-    pay: "Discussed at interview",
-    status: "Register interest",
-    summary:
-      "For people who take pride in keeping residents' rooms and shared spaces clean, safe, comfortable and welcoming."
-  },
-  {
-    id: "maintenance",
-    title: "Maintenance",
-    home: "Across Hollyman Care Homes",
-    location: "Norfolk",
-    contract: "Role dependent",
-    shift: "Maintenance",
-    pay: "Discussed at interview",
-    status: "Register interest",
-    summary:
-      "For practical, safety-minded applicants who can support repairs, checks and the everyday upkeep of the home."
-  },
-  {
-    id: "host",
-    title: "Host",
-    home: "Across Hollyman Care Homes",
-    location: "Norfolk",
-    contract: "Role dependent",
-    shift: "Mealtime support",
-    pay: "Discussed at interview",
-    status: "Register interest",
-    summary:
-      "For applicants who enjoy helping residents have calm, well-presented mealtimes with safe food service and a welcoming dining room."
+      "A calm overnight role supporting residents with comfort, safety, call bells, observations, care records and handover to the day team."
   }
 ];
