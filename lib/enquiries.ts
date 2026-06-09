@@ -39,7 +39,7 @@ export async function submitBrochureRequest(
     return { status: "sent_to_print_provider" as const };
   }
 
-  await submitWebsiteSubmission({
+  const result = await submitWebsiteSubmission({
     kind: "brochure_request",
     source: "request-brochure",
     name: request.name,
@@ -52,7 +52,7 @@ export async function submitBrochureRequest(
     postalAddress: request.postalAddress
   });
 
-  return { status: "sent_to_crm" as const };
+  return { status: result.ok ? "sent_to_crm" as const : "crm_submission_failed" as const };
 }
 
 export async function submitCareCallback(
@@ -64,7 +64,7 @@ export async function submitCareCallback(
     return { status: "sent_to_enquiry_provider" as const };
   }
 
-  await submitWebsiteSubmission({
+  const result = await submitWebsiteSubmission({
     kind: request.source === "find-the-right-care" ? "care_guidance" : "care_enquiry",
     source: request.source,
     name: request.name,
@@ -76,7 +76,7 @@ export async function submitCareCallback(
     message: request.message
   });
 
-  return { status: "sent_to_crm" as const };
+  return { status: result.ok ? "sent_to_crm" as const : "crm_submission_failed" as const };
 }
 
 export function formValue(formData: FormData, name: string) {

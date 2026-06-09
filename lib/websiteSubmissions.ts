@@ -20,12 +20,18 @@ export type WebsiteSubmissionPayload = {
   pageUrl?: string;
 };
 
-function requiredServerEnv(name: string) {
+export type WebsiteSubmissionResult =
+  | {
+      ok: true;
+    }
+  | {
+      ok: false;
+      error: string;
+    };
+
+function serverEnv(name: string) {
   const value = process.env[name]?.trim();
-  if (!value) {
-    throw new Error(`Missing ${name}.`);
-  }
-  return value;
+  return value || "";
 }
 
 async function readResponseDetail(response: Response) {
@@ -44,23 +50,49 @@ async function readResponseDetail(response: Response) {
   }
 }
 
-export async function submitWebsiteSubmission(payload: WebsiteSubmissionPayload) {
-  const endpoint = requiredServerEnv("CRM_WEBSITE_INTAKE_URL");
-  const secret = requiredServerEnv("CRM_WEBSITE_INTAKE_SECRET");
+export async function submitWebsiteSubmission(
+  payload: WebsiteSubmissionPayload
+): Promise<WebsiteSubmissionResult> {
+  const endpoint = serverEnv("CRM_WEBSITE_INTAKE_URL");
+  const secret = serverEnv("CRM_WEBSITE_INTAKE_SECRET");
 
-  const response = await fetch(endpoint, {
-    method: "POST",
-    cache: "no-store",
-    headers: {
-      Authorization: `Bearer ${secret}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      ...payload,
-      source: payload.source || "website",
-      submittedAt: new Date().toISOString()
-    })
-  });
+  if (!endpoint || !secret) {
+    const missing = [
+      !endpoint ? "CRM_WEBSITE_INTAKE_URL" : "",
+      !secret ? "CRM_WEBSITE_INTAKE_SECRET" : ""
+    ].filter(Boolean);
+    const error = `Missing website CRM intake configuration: ${missing.join(", ")}.`;
+    console.error(error, {
+      kind: payload.kind,
+      source: payload.source
+    });
+    return { ok: false, error };
+  }
+
+  let response: Response;
+  try {
+    response = await fetch(endpoint, {
+      method: "POST",
+      cache: "no-store",
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...payload,
+        source: payload.source || "website",
+        submittedAt: new Date().toISOString()
+      })
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("CRM website intake request failed", {
+      message,
+      kind: payload.kind,
+      source: payload.source
+    });
+    return { ok: false, error: message };
+  }
 
   if (!response.ok) {
     const detail = await readResponseDetail(response);
@@ -68,6 +100,11 @@ export async function submitWebsiteSubmission(payload: WebsiteSubmissionPayload)
       status: response.status,
       detail
     });
-    throw new Error("Unable to submit website form to CRM.");
+    return {
+      ok: false,
+      error: detail || `CRM website intake failed with status ${response.status}.`
+    };
   }
+
+  return { ok: true };
 }
