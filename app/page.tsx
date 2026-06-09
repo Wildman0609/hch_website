@@ -12,6 +12,7 @@ import { UrgentPathways } from "@/components/UrgentPathways";
 import { homes } from "@/data/homes";
 import { reassurancePoints, site } from "@/data/site";
 import { services } from "@/data/services";
+import { submitCareEnquiry } from "@/app/contact/actions";
 import { homeSchema, servicesSchema } from "@/lib/schema";
 
 export default function HomePage() {
@@ -132,7 +133,11 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-          <EnquiryForm reason="homepage" submitCtaId="homepage_enquiry_submit" />
+          <EnquiryForm
+            action={submitCareEnquiry}
+            reason="homepage"
+            submitCtaId="homepage_enquiry_submit"
+          />
         </div>
       </section>
     </>

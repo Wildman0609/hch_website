@@ -20,7 +20,7 @@ Open `http://localhost:3000`.
 
 ## Lead generation
 
-Primary CTAs use `data-cta` attributes for analytics wiring. The enquiry form currently submits to `/thank-you` with GET parameters as a frontend placeholder. Connect it to a CRM, email service or server action before launch.
+Primary CTAs use `data-cta` attributes for analytics wiring. Website forms post through server actions to the `carehome-audit-fresh` CRM intake endpoint using `CRM_WEBSITE_INTAKE_URL` and `CRM_WEBSITE_INTAKE_SECRET`.
 
 ## Launch checks
 

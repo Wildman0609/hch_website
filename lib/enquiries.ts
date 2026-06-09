@@ -1,3 +1,5 @@
+import { submitWebsiteSubmission } from "@/lib/websiteSubmissions";
+
 export type BrochureRequestInput = {
   name: string;
   email: string;
@@ -37,7 +39,20 @@ export async function submitBrochureRequest(
     return { status: "sent_to_print_provider" as const };
   }
 
-  return { status: "queued_for_manual_follow_up" as const };
+  await submitWebsiteSubmission({
+    kind: "brochure_request",
+    source: "request-brochure",
+    name: request.name,
+    email: request.email,
+    phone: request.phone,
+    preferredHome: request.preferredHome,
+    careType: request.careType,
+    urgency: request.urgency,
+    message: request.message,
+    postalAddress: request.postalAddress
+  });
+
+  return { status: "sent_to_crm" as const };
 }
 
 export async function submitCareCallback(
@@ -49,7 +64,19 @@ export async function submitCareCallback(
     return { status: "sent_to_enquiry_provider" as const };
   }
 
-  return { status: "queued_for_manual_follow_up" as const };
+  await submitWebsiteSubmission({
+    kind: request.source === "find-the-right-care" ? "care_guidance" : "care_enquiry",
+    source: request.source,
+    name: request.name,
+    email: request.email,
+    phone: request.phone,
+    preferredHome: request.preferredHome,
+    careType: request.careType,
+    urgency: request.urgency,
+    message: request.message
+  });
+
+  return { status: "sent_to_crm" as const };
 }
 
 export function formValue(formData: FormData, name: string) {

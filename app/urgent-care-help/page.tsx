@@ -8,6 +8,7 @@ import { SectionIntro } from "@/components/SectionIntro";
 import { urgentScenarios } from "@/data/admissions";
 import { homes } from "@/data/homes";
 import { site } from "@/data/site";
+import { submitCareEnquiry } from "@/app/contact/actions";
 
 export const metadata: Metadata = {
   title: "I Need Help Now",
@@ -135,10 +136,11 @@ export default function UrgentCareHelpPage() {
             </div>
           </div>
           <EnquiryForm
+            action={submitCareEnquiry}
             urgency="urgent"
             reason="urgent-help"
             compactIntro
-            actionPath="/thank-you/urgent-help-request"
+            thankYouType="urgent-help-request"
             submitLabel="Request urgent callback"
             submitCtaId="urgent_help_request_submit"
           />

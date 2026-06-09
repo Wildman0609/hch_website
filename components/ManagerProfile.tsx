@@ -153,10 +153,16 @@ function ProfileImage({
       sizes={small ? "(min-width: 640px) 8.5rem, 9rem" : "(min-width: 1024px) 22rem, 100vw"}
       className="object-cover"
     />
+  ) : small ? (
+    <div className="flex h-full items-center justify-center text-holly-ink/68">
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-holly-leaf shadow-soft">
+        <UserRound aria-hidden size={32} />
+      </div>
+    </div>
   ) : (
     <div className="flex h-full flex-col items-center justify-center gap-4 px-6 text-center text-holly-ink/68">
-      <div className={`flex items-center justify-center rounded-full bg-white text-holly-leaf shadow-soft ${small ? "h-14 w-14" : "h-20 w-20"}`}>
-        <UserRound aria-hidden size={small ? 32 : 44} />
+      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-holly-leaf shadow-soft">
+        <UserRound aria-hidden size={44} />
       </div>
       <div>
         <p className="font-semibold text-holly-ink">{person.role}</p>

@@ -23,7 +23,7 @@ export function BrochureRequestForm({ action, preferredHome, preferredCare }: Br
           Request a brochure by post
         </h2>
         <p className="mt-3 text-sm leading-7 text-holly-ink/70">
-          Share where to send it and which home you are interested in. The current website queues this for manual follow-up and is ready for a future print-and-post provider.
+          Share where to send it and which home you are interested in. The team can follow up from the details you provide.
         </p>
       </div>
 

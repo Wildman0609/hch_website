@@ -288,12 +288,81 @@ export const homes: CareHome[] = [
         }
       ]
     },
-    teamMembers: [],
-    deputies: noDeputyProfiles(),
+    teamMembers: [
+      {
+        name: "Beverley Brown",
+        role: "Home Manager",
+        photo: "/images/team/beverley-brown.jpg",
+        photoAlt: "Beverley Brown, Home Manager at Broadlands Park.",
+        quote:
+          "A good day is when residents and staff feel well, settled and supported.",
+        bio: [
+          "Beverley leads the day-to-day running of Broadlands Park, with responsibility for the home, its governance and its compliance. She brings more than 25 years of healthcare experience, including previous management roles, to her work with residents, families and staff.",
+          "Her leadership style is organised, dependable and approachable. Beverley is proud of the long-standing staff team at Broadlands Park and values a positive culture where people support one another and residents are known as individuals.",
+          "She particularly enjoys spending time with residents and seeing the home working well: residents feeling happy, staff feeling supported and the team bringing warmth to the people around them."
+        ],
+        details: ["25+ years in healthcare", "Home governance and compliance", "At Broadlands Park since 2022"],
+        careAbout:
+          "Making sure residents, relatives and staff feel happy, listened to and well supported.",
+        familiesCanAsk:
+          "Care planning, daily routines, governance, compliance, staffing, visits and what helps a new resident settle.",
+        focusAreas: [
+          "Running the home safely and consistently",
+          "Supporting staff and encouraging long-standing team relationships",
+          "Keeping residents' wellbeing at the centre of everyday decisions"
+        ],
+        personal:
+          "Away from work, Beverley enjoys diamond art to relax and spending time with her children and grandchildren."
+      }
+    ],
+    deputies: [
+      {
+        name: "Lorraine Marie Kennedy",
+        role: "Deputy Manager",
+        bio:
+          "Lorraine helps run the home day to day, supporting and supervising staff while helping residents receive safe, high-quality care. She is organised, brings good leadership skills to the Blue Team and is known for being on hand when support is needed.",
+        careAbout:
+          "Keeping daily operations organised while bringing warmth, laughter and practical support to the team.",
+        familiesCanAsk:
+          "Day-to-day care, staff support, resident routines and how the Blue Team supports safe, consistent care."
+      },
+      {
+        name: "Diana Waterman",
+        role: "Deputy Manager",
+        photo: "/images/team/diana-waterman.jpg",
+        photoAlt: "Diana Waterman, Deputy Manager at Broadlands Park.",
+        bio:
+          "Diana has worked at Broadlands Park for about 11 years. She helps the floor and each shift run smoothly, supports residents and staff, and deals with issues professionally and calmly. She is known as a good listener with patience, humour and a hands-on approach.",
+        careAbout:
+          "Helping residents and staff stay calm, supported and cared for, especially when the day needs steady coordination.",
+        familiesCanAsk:
+          "Shift routines, resident wellbeing, communication with the team and how issues are handled day to day."
+      },
+      {
+        name: "Karen Monument",
+        role: "Senior Care Team",
+        bio:
+          "Karen supports the deputy team on the Blue Team and helps keep residents safe and well cared for. She brings around 42 years of care experience, a methodical working style and a calm approach to medication routines, emergencies and resident needs.",
+        careAbout:
+          "Providing high-quality care with kindness, compassion and a willingness to help wherever she is needed.",
+        familiesCanAsk:
+          "Resident safety, medication routines, Blue Team support and how daily care needs are met."
+      },
+      {
+        name: "Hollie Batley",
+        role: "Senior Care Team",
+        bio:
+          "Hollie supports the smooth running of shifts and helps oversee the floor when senior cover is needed. She brings about six years at Broadlands Park, medication knowledge and a direct, positive working style focused on getting things done properly.",
+        careAbout:
+          "Making sure shifts run smoothly, medication is completed correctly and residents are well covered by the team.",
+        familiesCanAsk:
+          "Shift routines, medication support, daily care cover and how the team keeps care organised."
+      }
+    ],
     teamApproach: [
       "A country home where residents are known as individuals, not room numbers.",
-      "A team culture built around kindness, familiarity and small moments of connection.",
-      "Care planning that balances independence, safety and family involvement."
+      "A team culture built around kindness, patience, good humour and practical support.",
+      "Steady leadership across the manager, deputy and senior team so families know who is looking after their loved one."
     ],
     mapQuery: "Broadlands Park Care Home, 27 The Green, Upton NR13 6BA"
   },
@@ -502,10 +571,21 @@ export const homes: CareHome[] = [
           "Carol is a holistic therapist trained in Sound Therapy, Reiki and Mindfulness Coaching, and has also qualified as a Yoga Teacher. She loves music and dancing, especially Ballroom and Salsa, and brings her love of animals into the home through regular animal therapy sessions."
       }
     ],
-    deputies: noDeputyProfiles(),
+    deputies: [
+      {
+        name: "Cat Lawrence",
+        role: "Deputy Manager",
+        bio:
+          "Cat began her care career at 17 with Hollyman Care Homes and joined Martham Lodge in January 2020. Since then she has worked across housekeeping, cooking, care assistant and senior carer roles before progressing to Deputy Manager, giving her a rounded understanding of daily life in the home.",
+        careAbout:
+          "Creating a warm, welcoming environment where residents feel valued, respected and truly at home.",
+        familiesCanAsk:
+          "Daily routines, dementia support, activities, settling in, family relationships and how the team helps residents enjoy meaningful days."
+      }
+    ],
     teamApproach: [
       "A specialist dementia setting where residents are encouraged to stay active, engaged and fulfilled.",
-      "A team Carol describes as kind, compassionate and dedicated to residents' individual needs.",
+      "A team Carol and Cat describe as kind, compassionate and dedicated to residents' individual needs.",
       "A home where warmth, laughter, meaningful activities and family reassurance all matter."
     ],
     mapQuery: "Martham Lodge Care Home, 34 The Green, Martham NR29 4PA"

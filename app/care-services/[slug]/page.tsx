@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
 import { getService, services } from "@/data/services";
+import { submitCareEnquiry } from "@/app/contact/actions";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -117,6 +118,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </ButtonLink>
           </div>
           <EnquiryForm
+            action={submitCareEnquiry}
             careType={service.title}
             compactIntro
             reason={`service-${service.slug}`}

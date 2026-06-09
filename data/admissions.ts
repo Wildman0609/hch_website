@@ -130,7 +130,7 @@ export const thankYouContent: Record<
     nextSteps: [
       "We will check the preferred home and postal details.",
       "A member of the team can follow up if any detail is unclear.",
-      "The brochure system is prepared for a future print-and-post provider connection."
+      "Your request is recorded so the right home team can respond."
     ],
     secondaryHref: "/find-your-home",
     secondaryLabel: "Compare homes",

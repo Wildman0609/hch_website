@@ -3,6 +3,7 @@ import { MapPin, Phone, UserRound } from "lucide-react";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
 import { homes } from "@/data/homes";
+import { submitCareEnquiry } from "@/app/contact/actions";
 
 export const metadata: Metadata = {
   title: "Contact Hollyman Care Homes",
@@ -21,12 +22,12 @@ type ContactPageProps = {
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
   const params = await searchParams;
-  const actionPath =
+  const thankYouType =
     params.reason === "viewing"
-      ? "/thank-you/viewing-request"
+      ? "viewing-request"
       : params.urgency === "urgent" || params.reason === "urgent"
-        ? "/thank-you/urgent-help-request"
-        : "/thank-you/general-enquiry";
+        ? "urgent-help-request"
+        : "general-enquiry";
   const submitLabel =
     params.reason === "viewing"
       ? "Request viewing"
@@ -51,11 +52,12 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <section className="bg-holly-cream py-14 md:py-20">
         <div className="section-shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <EnquiryForm
+            action={submitCareEnquiry}
             preferredHome={params.home}
             careType={params.care}
             urgency={params.urgency ?? params.reason}
             reason={params.reason ?? "contact"}
-            actionPath={actionPath}
+            thankYouType={thankYouType}
             submitLabel={submitLabel}
             submitCtaId={
               params.reason === "viewing"

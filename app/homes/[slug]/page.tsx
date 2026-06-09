@@ -32,6 +32,7 @@ import {
   type CareHomeHistory,
   type CareHomeHistoryImage
 } from "@/data/homes";
+import { submitCareEnquiry } from "@/app/contact/actions";
 import { faqSchema, homeSchema } from "@/lib/schema";
 
 type PageProps = {
@@ -207,10 +208,10 @@ export default async function HomeDetailPage({ params }: PageProps) {
               <div className="border-t border-holly-ink/10 pt-10">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.12em] text-holly-leaf">
-                    Deputy team
+                    Deputy and senior team
                   </p>
                   <h3 className="mt-3 font-display text-3xl font-semibold text-holly-ink">
-                    Deputies at {home.shortName}
+                    Deputies and seniors at {home.shortName}
                   </h3>
                 </div>
                 <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -266,10 +267,10 @@ export default async function HomeDetailPage({ params }: PageProps) {
             text="You can ask about availability, suitability, care needs, visiting or what to expect from a viewing."
           />
           <EnquiryForm
+            action={submitCareEnquiry}
             preferredHome={home.name}
             compactIntro
             reason={`home-${home.slug}`}
-            actionPath="/thank-you/general-enquiry"
             submitCtaId={`home_${homeTrackingSlug}_enquiry_submit`}
           />
         </div>

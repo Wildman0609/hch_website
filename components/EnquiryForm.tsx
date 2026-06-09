@@ -2,30 +2,31 @@ import { homes } from "@/data/homes";
 import { services } from "@/data/services";
 
 type EnquiryFormProps = {
+  action: (formData: FormData) => Promise<void>;
   preferredHome?: string;
   careType?: string;
   urgency?: string;
   reason?: string;
   compactIntro?: boolean;
-  actionPath?: string;
+  thankYouType?: "general-enquiry" | "viewing-request" | "urgent-help-request";
   submitLabel?: string;
   submitCtaId?: string;
 };
 
 export function EnquiryForm({
+  action,
   preferredHome,
   careType,
   urgency,
   reason,
   compactIntro = false,
-  actionPath = "/thank-you/general-enquiry",
+  thankYouType = "general-enquiry",
   submitLabel = "Send enquiry",
   submitCtaId = "general_enquiry_submit"
 }: EnquiryFormProps) {
   return (
     <form
-      action={actionPath}
-      method="get"
+      action={action}
       className="rounded-[1.5rem] border border-holly-ink/10 bg-white p-5 shadow-soft sm:p-7"
       aria-label="Care enquiry form"
     >
@@ -43,6 +44,7 @@ export function EnquiryForm({
         </div>
       ) : null}
       <input type="hidden" name="source" value={reason ?? "website-enquiry"} />
+      <input type="hidden" name="thankYouType" value={thankYouType} />
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Your name" name="name" autoComplete="name" required />
         <Field label="Phone number" name="phone" autoComplete="tel" type="tel" required />
