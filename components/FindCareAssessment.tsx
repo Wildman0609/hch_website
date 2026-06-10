@@ -4,6 +4,7 @@ import type { ReactNode, RefObject } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, CalendarDays, FileText, Phone, Send } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
+import { SpamTrapFields } from "@/components/SpamTrapFields";
 import { guidedCareQuestions } from "@/data/admissions";
 import { homes } from "@/data/homes";
 import { site } from "@/data/site";
@@ -59,6 +60,7 @@ export function FindCareAssessment({ action }: FindCareAssessmentProps) {
         </div>
 
         <form action={action} className="mt-7 rounded-[1.25rem] border border-holly-ink/10 bg-holly-cream p-5">
+          <SpamTrapFields />
           <input type="hidden" name="preferredHome" value={preferredHome} />
           <input type="hidden" name="careType" value={recommendation.careType} />
           <input type="hidden" name="urgency" value={answers.urgent ?? ""} />

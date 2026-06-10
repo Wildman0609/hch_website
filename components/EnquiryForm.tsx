@@ -1,3 +1,4 @@
+import { SpamTrapFields } from "@/components/SpamTrapFields";
 import { homes } from "@/data/homes";
 import { services } from "@/data/services";
 
@@ -45,6 +46,7 @@ export function EnquiryForm({
       ) : null}
       <input type="hidden" name="source" value={reason ?? "website-enquiry"} />
       <input type="hidden" name="thankYouType" value={thankYouType} />
+      <SpamTrapFields />
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Your name" name="name" autoComplete="name" required />
         <Field label="Phone number" name="phone" autoComplete="tel" type="tel" required />

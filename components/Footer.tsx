@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Phone } from "lucide-react";
+import { Facebook, Mail, Phone } from "lucide-react";
 import { homes } from "@/data/homes";
 import { services } from "@/data/services";
 import { footerNavItems, site } from "@/data/site";
@@ -28,6 +28,14 @@ export function Footer() {
             >
               <Phone aria-hidden size={17} />
               {site.phone}
+            </Link>
+            <Link
+              href={`mailto:${site.email}`}
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-holly-leafLight"
+              data-cta="footer_email"
+            >
+              <Mail aria-hidden size={17} />
+              Email us
             </Link>
             <Link
               href={site.facebook}
@@ -85,7 +93,14 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 px-5 py-5 text-center text-xs text-white/55">
-        Copyright {new Date().getFullYear()} Hollyman Care Homes. Family-run care homes in Norfolk.
+        <span>Copyright {new Date().getFullYear()} Hollyman Care Homes. Family-run care homes in Norfolk.</span>
+        <button
+          type="button"
+          data-cookie-preferences-trigger
+          className="ml-3 underline-offset-4 transition hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-holly-leafLight"
+        >
+          Cookie preferences
+        </button>
       </div>
     </footer>
   );

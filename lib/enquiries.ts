@@ -1,4 +1,5 @@
 import { submitWebsiteSubmission } from "@/lib/websiteSubmissions";
+import type { SpamProtectionInput } from "@/lib/spamProtection";
 
 export type BrochureRequestInput = {
   name: string;
@@ -32,7 +33,8 @@ export type EnquiryProvider = {
 
 export async function submitBrochureRequest(
   request: BrochureRequestInput,
-  provider?: PrintAndPostProvider
+  provider?: PrintAndPostProvider,
+  spamProtection?: SpamProtectionInput
 ) {
   if (provider) {
     await provider.sendBrochure(request);
@@ -50,14 +52,15 @@ export async function submitBrochureRequest(
     urgency: request.urgency,
     message: request.message,
     postalAddress: request.postalAddress
-  });
+  }, { spamProtection });
 
   return { status: result.ok ? "sent_to_crm" as const : "crm_submission_failed" as const };
 }
 
 export async function submitCareCallback(
   request: CareCallbackInput,
-  provider?: EnquiryProvider
+  provider?: EnquiryProvider,
+  spamProtection?: SpamProtectionInput
 ) {
   if (provider) {
     await provider.sendCallback(request);
@@ -74,7 +77,7 @@ export async function submitCareCallback(
     careType: request.careType,
     urgency: request.urgency,
     message: request.message
-  });
+  }, { spamProtection });
 
   return { status: result.ok ? "sent_to_crm" as const : "crm_submission_failed" as const };
 }

@@ -4,6 +4,7 @@ import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
 import { homes } from "@/data/homes";
 import { submitCareEnquiry } from "@/app/contact/actions";
+import { buildDirectionsUrl } from "@/lib/marketing/careHomes";
 
 export const metadata: Metadata = {
   title: "Contact Hollyman Care Homes",
@@ -79,6 +80,19 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     <div>
                       <dt className="sr-only">Address</dt>
                       <dd>{home.address.join(", ")}</dd>
+                      <dd className="mt-1">
+                        <a
+                          href={buildDirectionsUrl(home.mapQuery)}
+                          target="_blank"
+                          rel="noreferrer"
+                          data-track-event="directions_click"
+                          data-cta={`contact_directions_${home.slug.replaceAll("-", "_")}`}
+                          data-care-home={home.name}
+                          className="font-semibold text-holly-leaf hover:underline"
+                        >
+                          Get directions
+                        </a>
+                      </dd>
                     </div>
                   </div>
                   <div className="flex gap-3">
@@ -86,7 +100,11 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     <div>
                       <dt className="sr-only">Phone</dt>
                       <dd>
-                        <a className="font-semibold text-holly-ink hover:underline" href={home.phoneHref}>
+                        <a
+                          className="font-semibold text-holly-ink hover:underline"
+                          href={home.phoneHref}
+                          data-care-home={home.name}
+                        >
                           {home.phone}
                         </a>
                       </dd>

@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { SpamTrapFields } from "@/components/SpamTrapFields";
 import { homes } from "@/data/homes";
 import { services } from "@/data/services";
 
@@ -26,6 +27,8 @@ export function BrochureRequestForm({ action, preferredHome, preferredCare }: Br
           Share where to send it and which home you are interested in. The team can follow up from the details you provide.
         </p>
       </div>
+
+      <SpamTrapFields />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Your name" name="name" autoComplete="name" required />

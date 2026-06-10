@@ -2,11 +2,18 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CheckCircle2, Phone } from "lucide-react";
 import { ButtonLink } from "@/components/ButtonLink";
+import { FormSuccessTracking } from "@/components/marketing/FormSuccessTracking";
 import { thankYouContent, type ThankYouType } from "@/data/admissions";
 import { site } from "@/data/site";
 
 type PageProps = {
   params: Promise<{ type: string }>;
+  searchParams?: Promise<{
+    submitted?: string;
+    event_id?: string;
+    form_type?: string;
+    care_home_name?: string;
+  }>;
 };
 
 const thankYouTypes = Object.keys(thankYouContent) as ThankYouType[];
@@ -31,8 +38,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function SpecificThankYouPage({ params }: PageProps) {
+export default async function SpecificThankYouPage({ params, searchParams }: PageProps) {
   const { type } = await params;
+  const trackingParams = searchParams ? await searchParams : {};
 
   if (!isThankYouType(type)) {
     notFound();
@@ -42,6 +50,13 @@ export default async function SpecificThankYouPage({ params }: PageProps) {
 
   return (
     <section className="bg-holly-cream py-20 md:py-28">
+      <FormSuccessTracking
+        thankYouType={type}
+        submitted={trackingParams.submitted === "1"}
+        eventId={trackingParams.event_id}
+        formType={trackingParams.form_type}
+        careHomeName={trackingParams.care_home_name}
+      />
       <div className="section-shell">
         <div className="mx-auto max-w-3xl rounded-[1.6rem] bg-white p-8 text-center shadow-soft md:p-12">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-holly-sky text-holly-leaf">

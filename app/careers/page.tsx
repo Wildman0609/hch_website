@@ -14,6 +14,7 @@ import {
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
+import { SpamTrapFields } from "@/components/SpamTrapFields";
 import { careerPositionOptions, careerRoles, liveVacancies } from "@/data/careers";
 import { homes } from "@/data/homes";
 
@@ -317,6 +318,7 @@ function ApplicationForm() {
         </h2>
       </div>
       <input type="hidden" name="source" value="careers-application" />
+      <SpamTrapFields />
       <div className="grid gap-4 sm:grid-cols-2">
         <ApplicationField label="Your name" name="name" autoComplete="name" required />
         <ApplicationField label="Phone number" name="phone" type="tel" autoComplete="tel" required />

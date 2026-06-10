@@ -1,3 +1,9 @@
+import {
+  assessSubmissionForSpam,
+  shouldBlockSpam,
+  type SpamProtectionInput
+} from "@/lib/spamProtection";
+
 export type WebsiteSubmissionKind =
   | "care_enquiry"
   | "care_guidance"
@@ -29,6 +35,10 @@ export type WebsiteSubmissionResult =
       error: string;
     };
 
+export type WebsiteSubmissionOptions = {
+  spamProtection?: SpamProtectionInput;
+};
+
 function serverEnv(name: string) {
   const value = process.env[name]?.trim();
   return value || "";
@@ -51,8 +61,29 @@ async function readResponseDetail(response: Response) {
 }
 
 export async function submitWebsiteSubmission(
-  payload: WebsiteSubmissionPayload
+  payload: WebsiteSubmissionPayload,
+  options: WebsiteSubmissionOptions = {}
 ): Promise<WebsiteSubmissionResult> {
+  const spamAssessment = assessSubmissionForSpam(payload, options.spamProtection);
+  if (spamAssessment.isSpam) {
+    const shouldBlock = shouldBlockSpam(spamAssessment);
+    console.warn(
+      shouldBlock
+        ? "Website submission blocked as suspected spam"
+        : "Website submission matched spam filter but was allowed",
+      {
+        kind: payload.kind,
+        source: payload.source,
+        score: spamAssessment.score,
+        reasons: spamAssessment.reasons
+      }
+    );
+
+    if (shouldBlock) {
+      return { ok: false, error: "Blocked as suspected spam." };
+    }
+  }
+
   const endpoint = serverEnv("CRM_WEBSITE_INTAKE_URL");
   const secret = serverEnv("CRM_WEBSITE_INTAKE_SECRET");
 
