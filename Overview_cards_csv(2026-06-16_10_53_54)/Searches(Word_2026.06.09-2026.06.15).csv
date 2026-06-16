@@ -1,0 +1,115 @@
+Word,Cost,Clicks,Impressions,Conversions,Top Containing Queries
+care,£81.92,25,307,0.00,"(care homes near me, care homes norwich, care home near me)"
+home,£51.19,15,168,0.00,"(care home near me, care home norwich, brundall care home)"
+homes,£31.23,13,142,0.00,"(care homes near me, care homes norwich, hollyman care homes)"
+norwich,£11.62,5,91,0.00,"(care homes norwich, care home norwich, cascade care home norwich)"
+near,£12.94,6,81,0.00,"(care homes near me, care home near me, care homes near me with vacancies)"
+near me,£12.94,6,76,0.00,"(care homes near me, care home near me, care homes near me with vacancies)"
+house,£0.84,1,32,0.00,"(st thomas house north walsham, beauchamp house norwich, burgh house residential care home)"
+great yarmouth,£1.95,1,22,0.00,"(care homes great yarmouth, care homes in great yarmouth, park house care home great yarmouth)"
+in,£20.25,1,21,0.00,"(care homes in norwich, care home in norwich, care homes in great yarmouth)"
+lowestoft,£0.28,1,20,0.00,"(care homes lowestoft, care home lowestoft, residential homes lowestoft)"
+park,£3.62,5,17,0.00,"(broadland park care home upton, broadlands park upton, park house care home great yarmouth)"
+residential,£8.29,2,15,0.00,"(burgh house residential care home, norwich residential homes, residential homes lowestoft)"
+st,£4.05,1,14,0.00,"(st thomas house north walsham, st edmunds care home attleborough, st georges care home)"
+court,£0.00,0,13,0.00,"(singer court norwich, braydeston court, carlton court care home lowestoft)"
+upton,£3.62,5,12,0.00,"(broadland park care home upton, broadlands park upton)"
+with,£20.78,2,12,0.00,"(care homes near me with vacancies, care homes with tier 2 sponsorship in bedfordshire, care homes with visa sponsorship near me)"
+hollyman,£0.98,5,11,0.00,(hollyman care homes)
+brundall,£1.01,2,11,0.00,(brundall care home)
+broadland,£2.12,4,11,0.00,"(broadland park care home upton, broadland view)"
+martham,£35.09,4,11,0.00,"(martham lodge care home, ealing house care home martham, martham lodge residential care home)"
+lodge,£34.25,3,10,0.00,"(martham lodge care home, cherry lodge care home lowestoft, martham lodge residential care home)"
+nursing home,£7.28,3,9,0.00,"(nursing home near me, nursing home norwich, nursing homes great yarmouth)"
+black swan,£0.00,0,9,0.00,"(black swan care homes norwich, black swan care group norwich)"
+broadlands,£3.06,3,8,0.00,"(broadlands park upton, broadlands care home norwich)"
+vacancies,£0.00,0,8,0.00,(care homes near me with vacancies)
+north walsham,£0.00,0,7,0.00,"(st thomas house north walsham, care homes north walsham)"
+cascade,£0.70,1,7,0.00,(cascade care home norwich)
+sponsorship,£20.78,2,7,0.00,"(care homes that provide sponsorship in uk, care homes with tier 2 sponsorship in bedfordshire, care homes with visa sponsorship near me)"
+dementia,£1.95,1,6,0.00,"(dementia care homes great yarmouth, dementia support norfolk, specialist dementia care homes near me)"
+beauchamp,£0.00,0,6,0.00,"(beauchamp care home norfolk, beauchamp house norwich)"
+fuchsia,£0.00,0,6,0.00,"(fuchsia care gorleston, fuchsia home care)"
+agency norwich,£7.57,1,5,0.00,"(avail care agency norwich, able care agency norwich)"
+care group,£0.00,0,5,0.00,"(black swan care group norwich, blackswan care group)"
+attleborough,£4.05,1,5,0.00,"(st edmunds care home attleborough, attleborough care home)"
+assisted living,£0.00,0,5,0.00,"(assisted living norwich, assisted living)"
+norfolk,£0.00,0,5,0.00,"(beauchamp care home norfolk, dementia support norfolk)"
+uk,£0.00,0,5,0.00,"(care homes that provide sponsorship in uk, carehome co uk)"
+aylsham,£0.00,0,5,0.00,(care home aylsham)
+thomas,£0.00,0,5,0.00,(st thomas house north walsham)
+burgh house,£0.00,0,5,0.00,"(burgh house residential care home, burgh house great yarmouth)"
+farm,£0.00,0,4,0.00,(manor farm blofield)
+old,£0.00,0,4,0.00,"(old peoples home near me, old rectory care home acle)"
+blofield,£0.00,0,4,0.00,(manor farm blofield)
+mayfield care,£0.00,0,4,0.00,"(mayfield care home, mayfield care home long stratton)"
+manor,£0.00,0,4,0.00,(manor farm blofield)
+view,£0.30,1,4,0.00,(broadland view)
+gorleston,£0.00,0,4,0.00,(fuchsia care gorleston)
+limes,£0.00,0,3,0.00,(limes care home norwich)
+edmunds,£4.05,1,3,0.00,(st edmunds care home attleborough)
+provide,£0.00,0,3,0.00,(care homes that provide sponsorship in uk)
+overbury,£0.00,0,3,0.00,(overbury house wroxham)
+singer,£0.00,0,3,0.00,(singer court norwich)
+avail,£7.57,1,3,0.00,(avail care agency norwich)
+ealing,£0.84,1,3,0.00,(ealing house care home martham)
+vineries,£0.00,0,3,0.00,(vineries care home)
+westwood,£0.00,0,3,0.00,(westwood care home)
+that,£0.00,0,3,0.00,(care homes that provide sponsorship in uk)
+avery,£0.00,0,3,0.00,(avery care home norwich)
+wroxham,£0.00,0,3,0.00,(overbury house wroxham)
+gables,£0.00,0,2,0.00,(gables care home)
+rectory,£0.00,0,2,0.00,(old rectory care home acle)
+dereham,£0.00,0,2,0.00,(sanford house dereham)
+stratton,£0.00,0,2,0.00,(mayfield care home long stratton)
+sheringham,£0.00,0,2,0.00,(shannock court sheringham)
+bedfordshire,£20.25,1,2,0.00,(care homes with tier 2 sponsorship in bedfordshire)
+2,£20.25,1,2,0.00,(care homes with tier 2 sponsorship in bedfordshire)
+carlton,£0.00,0,2,0.00,(carlton court care home lowestoft)
+acle,£0.00,0,2,0.00,(old rectory care home acle)
+georges,£0.00,0,2,0.00,(st georges care home)
+oaklands,£0.00,0,2,0.00,(oaklands residential home near me)
+halesworth,£0.00,0,2,0.00,(care homes in halesworth)
+coach,£0.00,0,2,0.00,(coach house care home hemsby)
+cera,£0.00,0,2,0.00,(cera care home)
+cherry,£0.00,0,2,0.00,(cherry lodge care home lowestoft)
+crystal,£0.00,0,2,0.00,(crystal care collection)
+james,£0.00,0,2,0.00,(clark james home care)
+burlingham,£0.00,0,2,0.00,(burlingham house care home)
+kirkley,£0.00,0,2,0.00,(kirkley care home)
+corton,£0.00,0,2,0.00,(corton house care home norwich)
+long,£0.00,0,2,0.00,(mayfield care home long stratton)
+overstrand,£0.00,0,2,0.00,(glendon house overstrand)
+shannock,£0.00,0,2,0.00,(shannock court sheringham)
+centres,£0.00,0,2,0.00,(day centres)
+blackswan,£0.00,0,2,0.00,(blackswan care group)
+brookland,£0.00,0,2,0.00,(brookland care home)
+bowthorpe,£0.00,0,2,0.00,(bowthorpe care home)
+co,£0.00,0,2,0.00,(carehome co uk)
+visa,£0.54,1,2,0.00,(care homes with visa sponsorship near me)
+able,£0.00,0,2,0.00,(able care agency norwich)
+mayflower,£0.00,0,2,0.00,(mayflower court care home)
+glendon,£0.00,0,2,0.00,(glendon house overstrand)
+day,£0.00,0,2,0.00,(day centres)
+peoples,£0.00,0,2,0.00,(old peoples home near me)
+collection,£0.00,0,2,0.00,(crystal care collection)
+sanford,£0.00,0,2,0.00,(sanford house dereham)
+braydeston,£0.00,0,2,0.00,(braydeston court)
+nightingale,£0.00,0,2,0.00,(nightingale care home near me)
+specialist,£0.00,0,2,0.00,(specialist dementia care homes near me)
+dussindale,£0.00,0,2,0.00,(dussindale park)
+support,£0.00,0,2,0.00,(dementia support norfolk)
+hemsby,£0.00,0,2,0.00,(coach house care home hemsby)
+johns,£0.00,0,2,0.00,(st johns care home)
+caremark,£0.00,0,2,0.00,(caremark)
+tier,£20.25,1,2,0.00,(care homes with tier 2 sponsorship in bedfordshire)
+marys,£0.00,0,2,0.00,(st marys care home norwich)
+ltd,£0.00,0,2,0.00,(krg care homes ltd)
+krg,£0.00,0,2,0.00,(krg care homes ltd)
+sunnycroft,£0.00,0,2,0.00,(sunnycroft care home)
+blossom,£0.00,0,2,0.00,(blossom home care)
+stradbroke,£0.00,0,2,0.00,(stradbroke court care home lowestoft)
+carehome,£0.00,0,2,0.00,(carehome co uk)
+novic,£0.00,0,2,0.00,(novic care)
+clark,£0.00,0,2,0.00,(clark james home care)
+swaffham,£0.00,0,2,0.00,(swaffham care homes)

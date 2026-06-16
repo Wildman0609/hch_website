@@ -23,6 +23,7 @@ export const navItems = [
 export const footerNavItems = [
   ...navItems,
   { label: "I need help now", href: "/urgent-care-help" },
+  { label: "Care home availability", href: "/care-home-vacancies-norfolk" },
   { label: "Family Guide", href: "/family-guide" },
   { label: "Request a brochure", href: "/request-brochure" },
   { label: "Events & photos", href: "/events" },

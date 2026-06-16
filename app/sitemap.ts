@@ -6,6 +6,7 @@ import { site } from "@/data/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
+    "/care-home-vacancies-norfolk",
     "/urgent-care-help",
     "/find-the-right-care",
     "/find-your-home",

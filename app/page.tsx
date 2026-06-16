@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, CalendarDays, FileText, HeartHandshake, Images, Phone, ShieldCheck } from "lucide-react";
+import { ArrowRight, CalendarDays, FileText, HeartHandshake, Home, Images, Phone } from "lucide-react";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { EnquiryForm } from "@/components/EnquiryForm";
@@ -180,13 +180,13 @@ function Hero() {
               Call now: {site.phone}
             </ButtonLink>
             <ButtonLink
-              href="/contact?reason=viewing"
+              href="/care-home-vacancies-norfolk"
               variant="secondary"
-              icon={<CalendarDays aria-hidden size={18} />}
+              icon={<Home aria-hidden size={18} />}
               className="text-base"
-              ctaId="homepage_hero_book_viewing"
+              ctaId="homepage_hero_check_availability"
             >
-              Book a viewing
+              Check availability
             </ButtonLink>
           </div>
           <p className="mt-5 max-w-xl text-sm leading-6 text-white/72">
@@ -201,17 +201,17 @@ function Hero() {
 function QuickConversionLinks() {
   const actions = [
     {
+      title: "Check availability",
+      text: "Ask about current rooms, viewings and next steps.",
+      href: "/care-home-vacancies-norfolk",
+      ctaId: "homepage_check_availability",
+      icon: Home
+    },
+    {
       title: "I need help now",
       text: "For discharge, falls, dementia changes or carer burnout.",
       href: "/urgent-care-help",
       ctaId: "homepage_urgent_help",
-      icon: ShieldCheck
-    },
-    {
-      title: "Find the right care",
-      text: "Answer a few questions if you are unsure where to start.",
-      href: "/find-the-right-care",
-      ctaId: "homepage_find_care",
       icon: HeartHandshake
     },
     {

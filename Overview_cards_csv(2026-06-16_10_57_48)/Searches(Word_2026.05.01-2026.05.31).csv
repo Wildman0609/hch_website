@@ -1,0 +1,93 @@
+Word,Cost,Clicks,Impressions,Conversions,Top Containing Queries
+care,£54.36,52,"1,015",0.00,"(care homes near me, care home near me, care homes norwich)"
+home,£25.25,22,544,0.00,"(care home near me, nearest care home to me near me, care home great yarmouth)"
+homes,£28.06,29,464,0.00,"(care homes near me, care homes norwich, hollyman care homes)"
+near,£6.86,10,333,0.00,"(care homes near me, care home near me, nearest care home to me near me)"
+near me,£6.86,10,323,0.00,"(care homes near me, care home near me, nearest care home to me near me)"
+norwich,£8.88,9,250,0.00,"(care homes norwich, care homes in norwich, care agencies norwich)"
+great yarmouth,£16.04,6,172,0.00,"(care homes great yarmouth, care home great yarmouth, burgh house great yarmouth)"
+house,£11.76,8,151,0.00,"(coach house care home hemsby, the coach house hemsby, burgh house great yarmouth)"
+in,£12.70,4,83,0.00,"(care homes in norwich, care homes in great yarmouth, care homes in north walsham)"
+broadland,£10.03,9,74,0.00,"(broadland care home, broadland park care home upton, broadland care home norwich)"
+the,£0.07,1,54,0.00,"(the coach house hemsby, the windmill care home rollesby, the windmill care home great yarmouth)"
+lowestoft,£0.65,3,53,0.00,"(care home lowestoft, care homes lowestoft, cypress house lowestoft)"
+nursing home,£0.00,0,47,0.00,"(nursing home near me, nursing home, nursing homes near me)"
+nearest,£1.19,3,45,0.00,(nearest care home to me near me)
+to,£1.19,3,45,0.00,(nearest care home to me near me)
+hollyman,£5.90,13,43,0.00,(hollyman care homes)
+coach house,£0.62,1,41,0.00,"(coach house care home hemsby, the coach house hemsby, coach house great yarmouth)"
+hemsby,£0.62,1,40,0.00,"(coach house care home hemsby, the coach house hemsby, the vineries care home hemsby)"
+park,£7.27,8,39,0.00,"(broadland park care home upton, broadlands park upton, park house great yarmouth)"
+burgh,£0.30,1,31,0.00,"(burgh house great yarmouth, burgh castle care home, burgh house care home great yarmouth)"
+upton,£7.27,8,30,0.00,"(broadland park care home upton, broadlands park upton)"
+norfolk,£0.65,1,27,0.00,"(care homes norfolk, care homes in norfolk, nursing homes norfolk)"
+north walsham,£0.34,1,21,0.00,"(care homes in north walsham, care home north walsham, care homes north walsham)"
+view,£0.20,2,21,0.00,"(broadland view care home norwich, broadland view, mousehold view care home norwich)"
+windmill care,£0.00,0,21,0.00,"(the windmill care home rollesby, the windmill care home great yarmouth)"
+broadlands,£2.72,4,21,0.00,"(broadlands park upton, broadlands care home norwich)"
+care agencies,£1.05,1,21,0.00,"(care agencies norwich, care agencies in norwich)"
+court,£1.62,1,20,0.00,"(braydeston court, stradbroke court care home lowestoft, braydeston court care home)"
+lodge,£0.00,0,18,0.00,"(avery lodge great yarmouth, eversley lodge)"
+avery,£1.07,1,16,0.00,"(avery lodge great yarmouth, avery care home norwich)"
+brundall,£0.00,0,16,0.00,(brundall care home)
+st,£0.00,0,15,0.00,"(st marys care home norwich, st edmunds care home attleborough)"
+black swan,£0.00,0,15,0.00,"(black swan care homes norwich, black swan care group norwich)"
+with,£0.00,0,14,0.00,(care homes near me with vacancies)
+vacancies,£0.00,0,14,0.00,(care homes near me with vacancies)
+assisted living,£0.00,0,13,0.00,"(assisted living norwich, assisted living near me)"
+braydeston court,£1.62,1,13,0.00,"(braydeston court, braydeston court care home)"
+burlingham,£1.19,1,12,0.00,(burlingham house care home)
+healthcare,£0.00,0,12,0.00,"(barchester healthcare norwich, kingsley healthcare)"
+rollesby,£0.00,0,11,0.00,(the windmill care home rollesby)
+redlands,£0.00,0,11,0.00,(redlands care home)
+ludham,£5.64,1,11,0.00,(ludham care home)
+salisbury,£0.00,0,10,0.00,(salisbury care home great yarmouth)
+mill,£0.00,0,10,0.00,(mill house norwich)
+hickling,£1.31,1,10,0.00,(hickling house care home)
+munhaven,£0.00,0,9,0.00,(munhaven care home)
+marys,£0.00,0,9,0.00,(st marys care home norwich)
+cypress,£0.58,2,9,0.00,(cypress house lowestoft)
+castle,£0.00,0,8,0.00,(burgh castle care home)
+farm,£0.00,0,8,0.00,(decoy farm care home)
+list,£0.00,0,8,0.00,(list of care homes in norwich)
+sheltered,£1.20,1,8,0.00,(sheltered housing norwich)
+housing,£1.20,1,8,0.00,(sheltered housing norwich)
+of,£0.00,0,8,0.00,(list of care homes in norwich)
+decoy,£0.00,0,8,0.00,(decoy farm care home)
+westwood,£0.00,0,7,0.00,(westwood care home)
+chedgrave,£0.00,0,7,0.00,(beauchamp house chedgrave)
+eversley,£0.00,0,7,0.00,(eversley lodge)
+sheringham,£0.00,0,7,0.00,(dalmeny house sheringham)
+stradbroke,£0.00,0,7,0.00,(stradbroke court care home lowestoft)
+dalmeny,£0.00,0,7,0.00,(dalmeny house sheringham)
+brookland,£0.00,0,7,0.00,(brookland care home norwich)
+beauchamp,£0.00,0,7,0.00,(beauchamp house chedgrave)
+lawns,£0.07,1,7,0.00,(the lawns care home great yarmouth)
+attleborough,£0.00,0,6,0.00,(st edmunds care home attleborough)
+cromer,£0.00,0,6,0.00,(care homes in cromer)
+manor,£0.00,0,6,0.00,(kirkley manor)
+companies,£0.00,0,6,0.00,(care companies norwich)
+mousehold,£0.00,0,6,0.00,(mousehold view care home norwich)
+manorcourt,£0.00,0,6,0.00,(manorcourt)
+group,£0.00,0,6,0.00,(black swan care group norwich)
+edmunds,£0.00,0,6,0.00,(st edmunds care home attleborough)
+watton,£0.00,0,6,0.00,(dorrington house watton)
+tawell,£3.30,1,6,0.00,(thomas tawell house norwich)
+adult,£0.00,0,6,0.00,(adult social care)
+kingsley,£0.00,0,6,0.00,(kingsley healthcare)
+kirkley,£0.00,0,6,0.00,(kirkley manor)
+thomas,£3.30,1,6,0.00,(thomas tawell house norwich)
+social,£0.00,0,6,0.00,(adult social care)
+dorrington,£0.00,0,6,0.00,(dorrington house watton)
+barchester,£0.00,0,6,0.00,(barchester healthcare norwich)
+wymondham,£1.23,3,6,0.00,(care homes wymondham)
+vineries,£0.00,0,6,0.00,(the vineries care home hemsby)
+hawthorns,£0.00,0,6,0.00,(the hawthorns care home norwich)
+acle,£0.00,0,5,0.00,(acle care home)
+dementia,£0.00,0,5,0.00,(dementia care homes great yarmouth)
+cera,£0.00,0,5,0.00,(cera care near me)
+fuchsia,£0.00,0,5,0.00,(fuchsia care company)
+company,£0.00,0,5,0.00,(fuchsia care company)
+agency,£0.00,0,5,0.00,(care agency in norwich)
+residential,£0.00,0,5,0.00,(burgh house residential care home)
+gresham,£0.00,0,5,0.00,(gresham nursing home)
