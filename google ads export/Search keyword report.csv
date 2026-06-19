@@ -1,0 +1,86 @@
+Search keyword report
+"May 1, 2026 - May 31, 2026"
+Keyword status,Keyword,Match type,Status,Status reasons,Conversions,Currency code,Cost / conv.,Final URL,Clicks,Impr.,CTR,Avg. CPC,Cost,Conv. rate
+Enabled,"""residential care homes""",Phrase match,Eligible,,0.00,GBP,0.00,,2,65,3.08%,1.31,2.63,0.00%
+Enabled,aged care near me,Broad match,Eligible,,0.00,GBP,0.00,,5,148,3.38%,0.44,2.21,0.00%
+Enabled,martham lodge residential care home,Broad match,Eligible,,0.00,GBP,0.00,,1,1,100.00%,1.30,1.30,0.00%
+Enabled,"""care homes Norfolk""",Phrase match,Eligible,,0.00,GBP,0.00,,0,2,0.00%,0,0.00,0.00%
+Enabled,"""care homes near me""",Phrase match,Eligible,,0.00,GBP,0.00,,0,3,0.00%,0,0.00,0.00%
+Enabled,care homes Norfolk,Broad match,Eligible,,0.00,GBP,0.00,,5,232,2.16%,1.38,6.88,0.00%
+Enabled,"""hollyman care homes""",Phrase match,Eligible,,0.00,GBP,0.00,,13,45,28.89%,0.45,5.90,0.00%
+Enabled,broadlands park care home,Broad match,Eligible,,0.00,GBP,0.00,,0,2,0.00%,0,0.00,0.00%
+Enabled,"""care home in norfolk""",Phrase match,Limited,low quality,0.00,GBP,0.00,,0,11,0.00%,0,0.00,0.00%
+Enabled,care homes great yarmouth,Broad match,Eligible,,0.00,GBP,0.00,,10,163,6.13%,0.60,6.03,0.00%
+Enabled,"""care homes in Norwich""",Phrase match,Eligible,,0.00,GBP,0.00,,0,41,0.00%,0,0.00,0.00%
+Enabled,"""residential care near me""",Phrase match,Eligible,,0.00,GBP,0.00,,0,1,0.00%,0,0.00,0.00%
+Enabled,[residential care home near me],Exact match,Eligible,,0.00,GBP,0.00,,0,5,0.00%,0,0.00,0.00%
+Enabled,blofield care home,Broad match,Limited,low quality,0.00,GBP,0.00,,0,3,0.00%,0,0.00,0.00%
+Enabled,care homes in brundall,Broad match,Limited,low quality,0.00,GBP,0.00,,0,3,0.00%,0,0.00,0.00%
+Enabled,[care home for elderly near me],Exact match,Eligible,,0.00,GBP,0.00,,2,38,5.26%,2.57,5.14,0.00%
+Enabled,elderly care homes near me,Broad match,Eligible,,0.00,GBP,0.00,,1,38,2.63%,2.80,2.80,0.00%
+Enabled,"""care homes in great yarmouth""",Phrase match,Eligible,,0.00,GBP,0.00,,1,12,8.33%,11.64,11.64,0.00%
+Enabled,"""private care home""",Phrase match,Eligible,,0.00,GBP,0.00,,0,1,0.00%,0,0.00,0.00%
+Enabled,"""care home for elderly""",Phrase match,Limited,low quality,0.00,GBP,0.00,,3,166,1.81%,3.80,11.40,0.00%
+Enabled,care homes near me,Broad match,Eligible,,4.00,GBP,41.42,,140,"3,731",3.75%,1.18,165.68,2.86%
+Enabled,care homes Norwich,Broad match,Eligible,,1.00,GBP,21.31,,13,263,4.94%,1.64,21.31,7.69%
+Enabled,[residential care homes Great Yarmouth],Exact match,Eligible,,0.00,GBP,0.00,,0,80,0.00%,0,0.00,0.00%
+Paused,elderly care,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,care for elderly,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,[private care home norfolk],Exact match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,braydeston court,Broad match,Limited,low quality,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,elderly care homes in Norfolk,Broad match,Paused,paused; rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,in home health care near me,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,retirement home near me,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,at home care near me,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,elderly care Norfolk,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,"""elderly care Norfolk""",Phrase match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,"""find a care home for my mum""",Phrase match,Paused,paused; rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,elderly care in brundall,Broad match,Not eligible,rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,care home,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,home health near me,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,services for elderly near me,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,[respite care near Norwich],Exact match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,residential care homes Norwich,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,respite care services near Norwich,Broad match,Paused,paused; rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,elderly car in acle,Broad match,Not eligible,rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,"""local care home""",Phrase match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,broadland house care home,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,caregiving near me,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,[residential care home norfolk],Exact match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,care homes in great yarmouth area,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,"""care homes great yarmouth""",Phrase match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,"""residential care homes Norwich""",Phrase match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,"""affordable residential care Norfolk""",Phrase match,Paused,paused; rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,[elderly care homes in Norfolk],Exact match,Paused,paused; rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,senior care near me,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,care homes in norwich,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,nurse home near me,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,"""care homes Norwich""",Phrase match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,help for the elderly near me,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,"""respite care services near Norwich""",Phrase match,Paused,paused; rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,"""moving into a care home help""",Phrase match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,affordable residential care Norfolk,Broad match,Paused,paused; rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,respite care near Norwich,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,elderly care in potter heigham,Broad match,Not eligible,rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,supportive elderly living Norfolk,Broad match,Not eligible,rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,care facilities near me,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,residential home near me,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,upton care home norfolk,Broad match,Limited,low quality,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,martham lodge care home,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,senior near me,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,"""care homes near Great Yarmouth""",Phrase match,Paused,paused; low quality,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,broadland house potter heigham,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,"""care home gorleston""",Phrase match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,care homes near Great Yarmouth,Broad match,Paused,paused; low quality,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Paused,residential care homes Great Yarmouth,Broad match,Paused,paused,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,broadlands park upton,Broad match,Eligible,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,hollyman care homes near me,Broad match,Not eligible,rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,elderly care in martham,Broad match,Not eligible,rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+Enabled,elderly care in Acle,Broad match,Not eligible,rarely served,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+ --,,Total: All but removed keywords, --,,5.00,GBP,48.58,,196,"5,054",3.88%,1.24,242.92,2.55%
+,,Total: Keywords in your ad group,,,5.00,GBP,48.58,,196,"5,054",3.88%,1.24,242.92,2.55%
+,,Total: Your keywords,,,5.00,GBP,48.58,,196,"5,054",3.88%,1.24,242.92,2.55%
+,,Total: AI Max expanded matches,,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+,,Total: AI Max landing page matches,,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+,,Total: URL inclusions in your ad group,,,0.00,GBP,0.00,,0,0, --,0,0.00,0.00%
+,,Total: Ad group,,,5.00,GBP,48.58,,196,"5,054",3.88%,1.24,242.92,2.55%

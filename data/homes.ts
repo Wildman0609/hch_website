@@ -319,6 +319,8 @@ export const homes: CareHome[] = [
       {
         name: "Lorraine Marie Kennedy",
         role: "Deputy Manager",
+        photo: "/images/team/lorraine-kennedy.jpg",
+        photoAlt: "Lorraine Marie Kennedy, Deputy Manager at Broadlands Park.",
         bio:
           "Lorraine helps run the home day to day, supporting and supervising staff while helping residents receive safe, high-quality care. She is organised, brings good leadership skills to the Blue Team and is known for being on hand when support is needed.",
         careAbout:
@@ -341,6 +343,8 @@ export const homes: CareHome[] = [
       {
         name: "Karen Monument",
         role: "Senior Care Team",
+        photo: "/images/team/karen-monument.jpg",
+        photoAlt: "Karen Monument, Senior Care Team at Broadlands Park.",
         bio:
           "Karen supports the deputy team on the Blue Team and helps keep residents safe and well cared for. She brings around 42 years of care experience, a methodical working style and a calm approach to medication routines, emergencies and resident needs.",
         careAbout:
@@ -351,6 +355,8 @@ export const homes: CareHome[] = [
       {
         name: "Hollie Batley",
         role: "Senior Care Team",
+        photo: "/images/team/hollie-batley.jpg",
+        photoAlt: "Hollie Batley, Senior Care Team at Broadlands Park.",
         bio:
           "Hollie supports the smooth running of shifts and helps oversee the floor when senior cover is needed. She brings about six years at Broadlands Park, medication knowledge and a direct, positive working style focused on getting things done properly.",
         careAbout:

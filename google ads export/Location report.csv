@@ -1,0 +1,9 @@
+Location report
+"May 1, 2026 - May 31, 2026"
+Location,Bid adj.,Clicks,Impr.,CTR,Currency code,Avg. CPC,Cost,Conv. rate,Conversions,Cost / conv.
+"15.0|mi|Brundall, Norwich", --,5,286,1.75%,GBP,0.97,4.85,0.00%,0.00,0.00
+"15.0|mi|Potter Heigham, Great Yarmouth", --,1,30,3.33%,GBP,1.62,1.62,0.00%,0.00,0.00
+"15.0|mi|Acle, Norwich", --,190,"4,738",4.01%,GBP,1.24,236.45,2.63%,5.00,47.29
+,Total: Locations,196,"5,054",3.88%,GBP,1.24,242.92,2.55%,5.00,48.58
+,Total: Other locations,0,0, --,GBP,0,0.00,0.00%,0.00,0.00
+,Total: Campaign,196,"5,054",3.88%,GBP,1.24,242.92,2.55%,5.00,48.58
