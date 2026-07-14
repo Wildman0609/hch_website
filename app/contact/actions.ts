@@ -43,6 +43,7 @@ export async function submitCareEnquiry(formData: FormData) {
   const thankYouType = resolveThankYouType(formData);
   const formType = resolveFormType(formData, thankYouType);
   const preferredHome = formValue(formData, "preferredHome");
+  const spamProtection = spamProtectionFromFormData(formData);
 
   await submitWebsiteSubmission({
     kind: "care_enquiry",
@@ -53,8 +54,9 @@ export async function submitCareEnquiry(formData: FormData) {
     preferredHome,
     careType: formValue(formData, "careType"),
     urgency: formValue(formData, "urgency"),
-    message: formValue(formData, "message")
-  }, { spamProtection: spamProtectionFromFormData(formData) });
+    message: formValue(formData, "message"),
+    pageUrl: spamProtection.pageUrl
+  }, { spamProtection });
 
   redirect(trackedThankYouUrl(thankYouType, {
     formType,

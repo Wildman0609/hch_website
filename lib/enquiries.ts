@@ -51,7 +51,8 @@ export async function submitBrochureRequest(
     careType: request.careType,
     urgency: request.urgency,
     message: request.message,
-    postalAddress: request.postalAddress
+    postalAddress: request.postalAddress,
+    pageUrl: spamProtection?.pageUrl
   }, { spamProtection });
 
   return { status: result.ok ? "sent_to_crm" as const : "crm_submission_failed" as const };
@@ -76,7 +77,8 @@ export async function submitCareCallback(
     preferredHome: request.preferredHome,
     careType: request.careType,
     urgency: request.urgency,
-    message: request.message
+    message: request.message,
+    pageUrl: spamProtection?.pageUrl
   }, { spamProtection });
 
   return { status: result.ok ? "sent_to_crm" as const : "crm_submission_failed" as const };

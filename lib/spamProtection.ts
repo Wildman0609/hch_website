@@ -1,6 +1,8 @@
 import {
+  SPAM_FORM_INTERACTED_AT_FIELD,
   SPAM_FORM_STARTED_AT_FIELD,
-  SPAM_HONEYPOT_FIELD_NAMES
+  SPAM_HONEYPOT_FIELD_NAMES,
+  SPAM_PAGE_URL_FIELD
 } from "@/lib/spamProtectionFields";
 
 type SubmissionLike = {
@@ -21,6 +23,8 @@ type SubmissionLike = {
 
 export type SpamProtectionInput = {
   formStartedAt?: string;
+  formInteractedAt?: string;
+  pageUrl?: string;
   honeypotValues: Record<string, string>;
 };
 
@@ -31,7 +35,7 @@ export type SpamAssessment = {
 };
 
 const SPAM_SCORE_THRESHOLD = 5;
-const MIN_HUMAN_SUBMIT_MS = 3000;
+const MIN_HUMAN_SUBMIT_MS = 5000;
 const MAX_REASONABLE_FORM_AGE_MS = 12 * 60 * 60 * 1000;
 
 const urlPattern =
@@ -61,6 +65,9 @@ const suspiciousPatterns: Array<{ pattern: RegExp; score: number; reason: string
   }
 ];
 
+const careContextPattern =
+  /\b(?:admission|admit|alzheim|assess(?:ment)?|available|availability|bed|blofield|braydeston|broadland|broadlands|brochure|call|callback|care|carer|caring|contact|dad|days?|dementia|details|discharge|email|enquir(?:e|y)|fees?|father|funding|get\s+back|grand(?:ad|father|ma|mother)|help|home|hospital|husband|inquir(?:e|y)|information|loved\s+one|mam|martham|mother|mum|nan|norfolk|nursing|older|palliative|parent|partner|phone|placement|relative|residential|respite|ring|room|sister|social\s+worker|soon|speak|stokesby|support|talk|urgent|viewing|visit|weeks?|wife)\b/i;
+
 function readFormString(formData: FormData, name: string) {
   const value = formData.get(name);
   return typeof value === "string" ? value.trim() : "";
@@ -82,6 +89,34 @@ function isUrlLike(value: string) {
   return /\b(?:https?:\/\/|www\.|[a-z0-9-]+\.[a-z]{2,})(?:\/|\b)/i.test(value);
 }
 
+function phoneDigits(value: string) {
+  return value.replace(/\D/g, "");
+}
+
+function isLikelyNonUkPhone(value: string) {
+  const compact = value.replace(/[^\d+]/g, "");
+  if (compact.startsWith("+")) return !compact.startsWith("+44");
+  if (compact.startsWith("00")) return !compact.startsWith("0044");
+  return false;
+}
+
+function isImplausiblePhone(value: string) {
+  const digits = phoneDigits(value);
+  if (!digits) return false;
+  return digits.length < 10 || digits.length > 15 || /^(\d)\1{7,}$/.test(digits);
+}
+
+function emailNameMismatch(name: string, email: string) {
+  const localPart = email.split("@")[0]?.replace(/[^a-z]+/g, " ") ?? "";
+  const nameTokens = name
+    .split(" ")
+    .map((token) => token.replace(/[^a-z]/g, ""))
+    .filter((token) => token.length >= 3);
+
+  if (nameTokens.length < 2 || localPart.length < 5) return false;
+  return !nameTokens.some((token) => localPart.includes(token));
+}
+
 function spamFilterMode() {
   return (process.env.HCH_SPAM_FILTER_MODE || "block").trim().toLowerCase();
 }
@@ -96,6 +131,8 @@ export function spamProtectionFromFormData(formData: FormData): SpamProtectionIn
 
   return {
     formStartedAt: readFormString(formData, SPAM_FORM_STARTED_AT_FIELD),
+    formInteractedAt: readFormString(formData, SPAM_FORM_INTERACTED_AT_FIELD),
+    pageUrl: readFormString(formData, SPAM_PAGE_URL_FIELD),
     honeypotValues
   };
 }
@@ -120,10 +157,12 @@ export function assessSubmissionForSpam(
     addSignal(100, `hidden fields completed: ${completedHoneypots.join(", ")}`);
   }
 
-  if (spamProtection?.formStartedAt) {
+  if (!spamProtection?.formStartedAt) {
+    addSignal(3, "missing form timestamp");
+  } else {
     const formStartedAt = Number(spamProtection.formStartedAt);
     if (!Number.isFinite(formStartedAt)) {
-      addSignal(2, "invalid form timestamp");
+      addSignal(3, "invalid form timestamp");
     } else {
       const elapsedMs = Date.now() - formStartedAt;
       if (elapsedMs >= 0 && elapsedMs < MIN_HUMAN_SUBMIT_MS) {
@@ -138,9 +177,25 @@ export function assessSubmissionForSpam(
     }
   }
 
+  if (!spamProtection?.formInteractedAt) {
+    addSignal(2, "missing browser interaction marker");
+  } else {
+    const formInteractedAt = Number(spamProtection.formInteractedAt);
+    if (!Number.isFinite(formInteractedAt)) {
+      addSignal(2, "invalid browser interaction marker");
+    } else if (formInteractedAt > Date.now() + 60_000) {
+      addSignal(2, "browser interaction marker is in the future");
+    }
+  }
+
+  if (!spamProtection?.pageUrl) {
+    addSignal(1, "missing page URL");
+  }
+
   const name = normalize(payload.name ?? "");
   const email = normalize(payload.email ?? "");
   const phone = normalize(payload.phone ?? "");
+  const message = normalize(payload.message ?? "");
   const allText = normalize(
     [
       payload.name,
@@ -152,8 +207,7 @@ export function assessSubmissionForSpam(
       payload.message,
       payload.postalAddress,
       payload.role,
-      payload.availability,
-      payload.pageUrl
+      payload.availability
     ]
       .filter(Boolean)
       .join(" ")
@@ -173,6 +227,20 @@ export function assessSubmissionForSpam(
 
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     addSignal(2, "email field looks malformed");
+  }
+
+  if (phone && isImplausiblePhone(phone)) {
+    addSignal(4, "phone number looks implausible");
+  } else if (phone && isLikelyNonUkPhone(phone)) {
+    addSignal(3, "non-UK phone number");
+  }
+
+  if (name && email && emailNameMismatch(name, email)) {
+    addSignal(1, "name and email appear mismatched");
+  }
+
+  if (payload.kind !== "careers_application" && message.length >= 20 && !careContextPattern.test(message)) {
+    addSignal(2, "message lacks care context");
   }
 
   const linkCount = countMatches(allText, urlPattern);
